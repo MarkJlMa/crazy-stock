@@ -60,7 +60,7 @@ def trade(context, buy_stocks):
     # 如果当前在4月底/五月初这个区间，直接清仓所有股票
     current_dt = getattr(context, "now", getattr(context, "current_dt", datetime.datetime.now()))
     today = current_dt.date() if isinstance(current_dt, datetime.datetime) else current_dt
-    if (today.month == 4 and today.day >= 25) or (today.month == 5 and today.day <= 7):
+    if (today.month == 1) or (today.month == 12) or (today.month == 4 and today.day >= 25) or (today.month == 5 and today.day <= 7):
         for stock in list(context.portfolio.positions):
             order_target_value(stock, 0)
             log.info("clear position:%s" % stock)
