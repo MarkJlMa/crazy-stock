@@ -199,7 +199,7 @@ def initialize(context):
     g.fixed_etf_pool = [
         # 大宗商品ETF
         '518880.SS',  # 黄金ETF
-        '161226.SZ',  # 国投白银LOF
+        #'161226.SZ',  # 国投白银LOF
         '159980.SZ',  # 有色ETF大成
         '501018.SS',  # 南方原油ETF
         '159985.SZ',  # 豆粕ETF
@@ -409,7 +409,7 @@ def initialize(context):
     
     # ==================== 定时任务 ====================
     run_daily(context, morning_routine, time='09:00')
-    run_daily(context, afternoon_routine, time='13:10')
+    run_daily(context, afternoon_routine, time='13:30')
     run_daily(context, reset_daily_flags, time='15:10')
     
     # 分钟级止损任务
@@ -525,46 +525,31 @@ def morning_routine(context):
         init_range_bound_status(context)
         g.range_bound_initialized = True
     
-    log.info("【持仓检查】检查当前持仓状态...")
     check_positions(context)
-    log.info("【回撤监控】监控策略回撤...")
     monitor_drawdown(context)
-    log.info("【流动性阈值】计算全市场ETF流动性阈值...")
     calculate_global_etf_threshold(context)
-    log.info("【动态池更新】更新行业ETF动态池...")
     update_sector_pool(context)
-    log.info("【固定池过滤】过滤固定ETF池流动性...")
     filter_fixed_pool_by_volume(context)
-    log.info("【合并池】合并固定池与动态池...")
     daily_merge_etf_pools(context)
-    log.info("【晨间流水线】执行完毕！")
+
 
 def afternoon_routine(context):
     # 午后交易流水线（13:10执行）：震荡期退出检查 → 震荡期进入检查 → 动量计算 → 卖出执行 → 买入执行
-    log.info("▶️ 【午后交易流水线】启动...")
-    log.info("【震荡期退出检查】检查是否需要退出震荡期...")
     check_and_exit_range_bound_mode(context)
-    log.info("【震荡期进入检查】检查是否需要进入震荡期...")
     check_and_enter_range_bound_mode(context)
-    log.info("【动量计算】计算ETF动量得分与排序...")
     calculate_and_log_ranked_etfs(context)
-    log.info("【卖出执行】执行卖出操作...")
     execute_sell_trades(context)
-    log.info("【买入执行】执行买入操作...")
     execute_buy_trades(context)
-    log.info("⏸️ 【午后交易流水线】执行完毕！")
 
 def reset_daily_flags(context):
     # 收盘后重置当日标志（15:10执行）：重置止损标志 → 更新震荡期统计
     g.stop_loss_triggered_today = False
     g.sold_today.clear()
-    log.info("🔄 【收盘重置】今日止损标志已重置")
     # 更新震荡期交易日计数
     if g.current_filter == 'range_bound' and g.range_bound_start_date is not None:
         trade_days = get_trade_days(start_date=str(g.range_bound_start_date).replace('-', ''), 
                                     end_date=context.blotter.current_dt.strftime('%Y%m%d'))
         g.range_bound_days_count = len(trade_days) - 1
-        log.info("【震荡期统计】已持续 %s 个交易日" % g.range_bound_days_count)
 
 # ==================== 持仓检查 ====================
 def check_positions(context):
