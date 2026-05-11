@@ -1422,8 +1422,8 @@ def get_final_ranked_etfs(context):
         return []
 
     # ========== 2. 获取今日分钟数据（到13:10为止） ==========
-    # 聚宽原版在13:10运行，已交易130分钟（9:30-11:30共120分钟，13:00-13:10共10分钟）
-    mins_elapsed = 130
+    # 聚宽原版在13:10运行，已交易130分钟（9:30-11:30共120分钟，13:00-13:10共10分钟），因此获取前150分钟的分钟数据以确保覆盖到13:10
+    mins_elapsed = 150
     minute_price_df = get_history(mins_elapsed, '1m', ['close'], etf_set, fq='pre', include=True)
     minute_price_df = _normalize_price_df(minute_price_df)
     minute_vol_df = get_history(mins_elapsed, '1m', ['volume'], etf_set, fq='pre', include=True)
