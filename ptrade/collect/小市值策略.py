@@ -20,11 +20,14 @@ def initialize(context):
     # 股票池对应指数代码
     g.index = "399101.XBHS"  # 中小板综
     # 持有股票数量
-    g.buy_stock_count = 5
+    g.buy_stock_count = 10
     # 筛选股票数量
     g.screen_stock_count = 10
     if not is_trade():
         set_backtest()  # 设置回测条件
+    
+    # 打印持仓信息
+    run_daily(context, print_position_info, "14:55")
 
 
 # 设置回测条件
@@ -90,3 +93,52 @@ def get_trade_stocks(context, data):
     check_out_lists = stocks[:count]
     check_out_lists = check_out_lists + hold_up_limit_stock
     return check_out_lists
+
+def print_position_info(context):
+    """打印持仓信息（按流通市值从小到大排列）"""
+    log.info("=" * 50)
+    log.info("持仓信息（按流通市值从小到大排列）")
+    log.info("=" * 50)
+
+    # 收集持仓信息
+    positions_data = []
+    for stock, pos in context.portfolio.positions.items():
+        pos_value = pos.amount * pos.last_sale_price
+        if pos_value <= 0:
+            continue
+
+        try:
+            stock_name = get_stock_name(stock)
+            if isinstance(stock_name, dict):
+                stock_name = stock_name.get(stock, "未知")
+        except:
+            stock_name = "未知"
+
+        cost = pos.cost_basis
+        price = pos.last_sale_price
+        ret = 100 * (price / cost - 1) if cost > 0 else 0
+
+        # 获取流通市值
+        try:
+            fund_df = get_fundamentals([stock], "valuation", fields=["float_value"], date=context.previous_date)
+            float_value = fund_df.loc[stock, "float_value"] if not fund_df.empty else 0
+        except:
+            float_value = 0
+
+        positions_data.append({
+            'stock': stock,
+            'name': stock_name,
+            'cost': cost,
+            'price': price,
+            'ret': ret,
+            'amount': pos.amount,
+            'pos_value': pos_value,
+            'float_value': float_value
+        })
+
+    # 按流通市值从小到大排序
+    positions_data.sort(key=lambda x: x['float_value'])
+
+    # 打印排序后的持仓信息
+    for i, data in enumerate(positions_data, 1):
+        log.info(f"[{i}] {data['stock']} {data['name']}: 现价 {data['price']:.2f}, 收益率 {data['ret']:.2f}%, 流通市值 {data['float_value']/1e8:.2f}亿")
