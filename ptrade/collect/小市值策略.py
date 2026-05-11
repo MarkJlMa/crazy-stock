@@ -10,6 +10,21 @@
 策略中调用的order_target_value接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
 回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
 的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+
+策略弊端：
+1. 小市值股票流动性差，大资金难以进出，容易产生较大滑点
+2. 小市值股票波动大，风险较高，可能出现大幅回撤
+3. 策略换仓频率较高，交易成本侵蚀收益
+4. 小市值股票容易受市场情绪影响，极端行情下可能连续跌停无法卖出
+5. 策略依赖历史市值数据，存在一定的滞后性
+
+回测与实盘差异：
+1. 滑点差异：回测通常难以准确模拟小市值股票的真实滑点，实盘滑点可能更大
+2. 成交时间：回测按收盘价成交，实盘需在交易时段内成交，价格可能偏离
+3. 停牌处理：回测可自动跳过停牌股，实盘停牌股无法卖出，可能影响资金利用率
+4. 涨跌停限制：回测涨停股可能仍能买入，实盘涨停股买入困难；跌停股实盘无法卖出
+5. 流动性风险：回测假设能按目标市值成交，实盘小市值股票可能因流动性不足无法完全成交
+6. 数据延迟：实盘行情数据可能有延迟，影响决策时效性
 """
 
 
@@ -33,6 +48,8 @@ def initialize(context):
 # 设置回测条件
 def set_backtest():
     set_limit_mode("UNLIMITED")
+    # 设置交易费用：万1不免五
+    set_commission(commission_ratio=0.0001, min_commission=5.0, type="STOCK")
 
 
 # 盘前处理
@@ -59,20 +76,43 @@ def handle_data(context, data):
 
 # 交易函数
 def trade(context, buy_stocks):
-    # 卖出
+    # 获取持仓中涨停的标的（涨停股不卖，包括买入后变成ST的涨停股）
+    hold_up_limit_stocks = []
+    for stock in list(context.portfolio.positions.keys()):
+        try:
+            limit_info = check_limit(stock)
+            if limit_info.get(stock) == 1:
+                hold_up_limit_stocks.append(stock)
+        except:
+            pass
+
+    # 计算总资产和目标平均市值
+    total_value = context.portfolio.portfolio_value
+    target_value_per_stock = total_value / g.buy_stock_count
+
+    # 第一步：卖出不在买入列表且非涨停的标的（清仓）
+    # 注意：涨停股不卖，即使变成ST也不卖（等开板后再处理）
     for stock in context.portfolio.positions:
-        if stock not in buy_stocks:
+        if stock not in buy_stocks and stock not in hold_up_limit_stocks:
             order_target_value(stock, 0)
-            log.info("sell:%s" % stock)
-    # 买入
-    position_list = [position.sid for position in context.portfolio.positions.values()
-                     if position.amount != 0]
-    position_count = len(position_list)
-    if g.buy_stock_count > position_count:
-        value = context.portfolio.cash / (g.buy_stock_count - position_count)
-        for stock in buy_stocks:
-            if stock not in context.portfolio.positions:
-                order_target_value(stock, value)
+            log.info("清仓卖出: %s" % stock)
+
+    # 第二步：对目标持仓进行调仓（涨多的卖掉，平给其他股票）
+    # 排除涨停股，只对可交易的目标股票进行平均持仓调整
+    tradeable_stocks = [stock for stock in buy_stocks if stock not in hold_up_limit_stocks]
+
+    for stock in tradeable_stocks:
+        current_pos = context.portfolio.positions.get(stock)
+        if current_pos and current_pos.amount > 0:
+            current_value = current_pos.amount * current_pos.last_sale_price
+            # 如果当前持仓市值超过目标市值，卖出超额部分
+            if current_value > target_value_per_stock * 1.05:  # 5%容差
+                order_target_value(stock, target_value_per_stock)
+                log.info("调仓卖出: %s, 当前市值 %.2f -> 目标市值 %.2f" % (stock, current_value, target_value_per_stock))
+        else:
+            # 不在持仓中，需要买入
+            order_target_value(stock, target_value_per_stock)
+            log.info("买入: %s, 目标市值 %.2f" % (stock, target_value_per_stock))
 
 
 # 获取买入股票池（涨停股不参与换仓）
