@@ -1,45 +1,45 @@
-# ¿ËÂ¡×Ô¾Û¿íÎÄÕÂ£ºhttps://www.joinquant.com/post/65201
-# ±êÌâ£º¡¾²ßÂÔÉı¼¶¡¿ËÄ¼¾·¢²ÆETFÂÖ¶¯²ßÂÔÓÅ»¯-ATR¶¯Ì¬Ö¹Ëğ
-# ×÷Õß£ºŒÅË¿ÄæÏ®Á¿»¯
+# å…‹éš†è‡ªèšå®½æ–‡ç« ï¼šhttps://www.joinquant.com/post/65201
+# æ ‡é¢˜ï¼šã€ç­–ç•¥å‡çº§ã€‘å››å­£å‘è´¢ETFè½®åŠ¨ç­–ç•¥ä¼˜åŒ–-ATRåŠ¨æ€æ­¢æŸ
+# ä½œè€…ï¼šå±Œä¸é€†è¢­é‡åŒ–
 
-# ²ßÂÔÃû³Æ£ºETFÊÕÒæÂÊÎÈ¶¨ĞÔÂÖ¶¯²ßÂÔ£¨´ø¶ÌÆÚ¶¯Á¿¹ıÂËºÍATR¶¯Ì¬Ö¹Ëğ£©
-# ²ßÂÔ×÷Õß£ºŒÅË¿ÄæÏ®Á¿»¯
-# ÓÅ»¯Ê±¼ä£º2025-12-26
-# ÓÅ»¯ÄÚÈİ£ºÔö¼Ó¶ÌÆÚ¶¯Á¿¹ıÂË¹¦ÄÜ£¬Ôö¼ÓMA5/MA25¹ıÂËÌõ¼ş
-# ĞÂÔöÄÚÈİ£ºÔö¼ÓRSIÖ¸±ê¹ıÂË¹¦ÄÜ£¬Ôö¼ÓMACDÖ¸±ê¹ıÂË¹¦ÄÜ
-# ĞÂÔöÄÚÈİ£ºÔö¼Ó³É½»Á¿Òì³£¹ıÂË¹¦ÄÜ
-# ĞÂÔöÄÚÈİ£ºÔö¼Ó²¼ÁÖ´ø¹ıÂË¹¦ÄÜ
-# ĞÂÔöÄÚÈİ£ºÔö¼Ó»ùÓÚATRµÄ¶¯Ì¬Ö¹Ëğ¹¦ÄÜ
+# ç­–ç•¥åç§°ï¼šETFæ”¶ç›Šç‡ç¨³å®šæ€§è½®åŠ¨ç­–ç•¥ï¼ˆå¸¦çŸ­æœŸåŠ¨é‡è¿‡æ»¤å’ŒATRåŠ¨æ€æ­¢æŸï¼‰
+# ç­–ç•¥ä½œè€…ï¼šå±Œä¸é€†è¢­é‡åŒ–
+# ä¼˜åŒ–æ—¶é—´ï¼š2025-12-26
+# ä¼˜åŒ–å†…å®¹ï¼šå¢åŠ çŸ­æœŸåŠ¨é‡è¿‡æ»¤åŠŸèƒ½ï¼Œå¢åŠ MA5/MA25è¿‡æ»¤æ¡ä»¶
+# æ–°å¢å†…å®¹ï¼šå¢åŠ RSIæŒ‡æ ‡è¿‡æ»¤åŠŸèƒ½ï¼Œå¢åŠ MACDæŒ‡æ ‡è¿‡æ»¤åŠŸèƒ½
+# æ–°å¢å†…å®¹ï¼šå¢åŠ æˆäº¤é‡å¼‚å¸¸è¿‡æ»¤åŠŸèƒ½
+# æ–°å¢å†…å®¹ï¼šå¢åŠ å¸ƒæ—å¸¦è¿‡æ»¤åŠŸèƒ½
+# æ–°å¢å†…å®¹ï¼šå¢åŠ åŸºäºATRçš„åŠ¨æ€æ­¢æŸåŠŸèƒ½
 
-# Ìí¼Ó±ØÒªµÄµ¼Èë
+# æ·»åŠ å¿…è¦çš„å¯¼å…¥
 import numpy as np
 import math
 import pandas as pd
 
-# ³õÊ¼»¯º¯Êı£¬ÉèÖÃ²ßÂÔ²ÎÊı
+# åˆå§‹åŒ–å‡½æ•°ï¼Œè®¾ç½®ç­–ç•¥å‚æ•°
 def initialize(context):
-    # ==================== ÊµÅÌ½»Ò×ÉèÖÃ£¨²Î¿¼²ßÂÔ1£©====================
-    set_option("avoid_future_data", True)  # ´ò¿ª·ÀÎ´À´º¯Êı
-    set_option("use_real_price", True)     # ¿ªÆô¶¯Ì¬¸´È¨Ä£Ê½(ÕæÊµ¼Û¸ñ)
+    # ==================== å®ç›˜äº¤æ˜“è®¾ç½®ï¼ˆå‚è€ƒç­–ç•¥1ï¼‰====================
+    set_option("avoid_future_data", True)  # æ‰“å¼€é˜²æœªæ¥å‡½æ•°
+    set_option("use_real_price", True)     # å¼€å¯åŠ¨æ€å¤æƒæ¨¡å¼(çœŸå®ä»·æ ¼)
     
-    # ÉèÖÃ»¬µã
+    # è®¾ç½®æ»‘ç‚¹
     set_slippage(FixedSlippage(0.0001), type="fund")
     set_slippage(FixedSlippage(0.003), type="stock")
     
-    # ÉèÖÃ½»Ò×³É±¾£¨ETF½»Ò×³É±¾½ÏµÍ£©
+    # è®¾ç½®äº¤æ˜“æˆæœ¬ï¼ˆETFäº¤æ˜“æˆæœ¬è¾ƒä½ï¼‰
     set_order_cost(
         OrderCost(
-            open_tax=0,               # ÂòÈëÓ¡»¨Ë°
-            close_tax=0,          # Âô³öÓ¡»¨Ë°:½ü¹ÉÆ±ÊÕÈ¡
-            open_commission=0.0002,   # ÂòÈëÓ¶½ğ
-            close_commission=0.0002,  # Âô³öÓ¶½ğ
-            close_today_commission=0, # ½ñÆ½Ó¶½ğ
-            min_commission=5,         # ×îµÍÓ¶½ğ
+            open_tax=0,               # ä¹°å…¥å°èŠ±ç¨
+            close_tax=0,          # å–å‡ºå°èŠ±ç¨:è¿‘è‚¡ç¥¨æ”¶å–
+            open_commission=0.0002,   # ä¹°å…¥ä½£é‡‘
+            close_commission=0.0002,  # å–å‡ºä½£é‡‘
+            close_today_commission=0, # ä»Šå¹³ä½£é‡‘
+            min_commission=5,         # æœ€ä½ä½£é‡‘
         ),
         type="fund",
     )
     
-    # ÉèÖÃ»õ±ÒETF½»Ò×Ó¶½ğÎª0
+    # è®¾ç½®è´§å¸ETFäº¤æ˜“ä½£é‡‘ä¸º0
     set_order_cost(
         OrderCost(
             open_tax=0,
@@ -52,185 +52,185 @@ def initialize(context):
         type="mmf",
     )
     
-    # ÉèÖÃÈÕÖ¾¼¶±ğ
+    # è®¾ç½®æ—¥å¿—çº§åˆ«
     log.set_level('order', 'error')
     log.set_level('system', 'error')
     
-    log.info("²ßÂÔ2ÓÅ»¯°æ³õÊ¼»¯Íê³É - °üº¬ÍêÕûÊµÅÌ½»Ò×ÉèÖÃºÍ¶ÌÆÚ¶¯Á¿¹ıÂË")
-    #ÉèÖÃ»ù×¼
-    set_benchmark("513100.XSHG")  #×éºÏÖĞº¬ÄÉË¹´ï¿Ë£¬¹ÊÉèÖÃÄÉË¹´ï¿ËÎª²Î¿¼»ù×¼
-    # ==================== ²ßÂÔ²ÎÊıÉèÖÃ ====================
-    # ÉèÖÃETF³Ø£¬°üº¬A¹É¡¢ÃÀ¹É¡¢ÉÌÆ·µÈÈ«ÇòÖ÷ÒªETF
+    log.info("ç­–ç•¥2ä¼˜åŒ–ç‰ˆåˆå§‹åŒ–å®Œæˆ - åŒ…å«å®Œæ•´å®ç›˜äº¤æ˜“è®¾ç½®å’ŒçŸ­æœŸåŠ¨é‡è¿‡æ»¤")
+    #è®¾ç½®åŸºå‡†
+    set_benchmark("513100.XSHG")  #ç»„åˆä¸­å«çº³æ–¯è¾¾å…‹ï¼Œæ•…è®¾ç½®çº³æ–¯è¾¾å…‹ä¸ºå‚è€ƒåŸºå‡†
+    # ==================== ç­–ç•¥å‚æ•°è®¾ç½® ====================
+    # è®¾ç½®ETFæ± ï¼ŒåŒ…å«Aè‚¡ã€ç¾è‚¡ã€å•†å“ç­‰å…¨çƒä¸»è¦ETF
     g.etf_pool = [
-        ##³ÉÁ¢³¬¹ı10Äê£¬¹æÄ£³¬¹ı10ÒÚ£¬Ö»Ñ¡¿í»ù¡¢ÍâÅÌ¡¢ÉÌÆ·
-        #ÖĞ¹úETF
-        "159915.XSHE",  # ´´Òµ°åETF£ºĞ¡ÅÌ´ú±í
-         #´ó×ÚÉÌÆ·ETF
-        "518880.XSHG",  # »Æ½ğETF£ºÉÌÆ·×Ê²ú´ú±í
-        #¹ú¼ÊETF
-        "513100.XSHG",  # ÄÉÖ¸ETF£ºÍâÅÌ´ú±í
-        #·ÀÓùETF
-        "511220.XSHG",  # ·ÀÓùĞÔETF£º³ÇÍ¶Õ®ETF£ºÕ®È¯´ú±í
+        ##æˆç«‹è¶…è¿‡10å¹´ï¼Œè§„æ¨¡è¶…è¿‡10äº¿ï¼Œåªé€‰å®½åŸºã€å¤–ç›˜ã€å•†å“
+        #ä¸­å›½ETF
+        "159915.XSHE",  # åˆ›ä¸šæ¿ETFï¼šå°ç›˜ä»£è¡¨
+         #å¤§å®—å•†å“ETF
+        "518880.XSHG",  # é»„é‡‘ETFï¼šå•†å“èµ„äº§ä»£è¡¨
+        #å›½é™…ETF
+        "513100.XSHG",  # çº³æŒ‡ETFï¼šå¤–ç›˜ä»£è¡¨
+        #é˜²å¾¡ETF
+        "511220.XSHG",  # é˜²å¾¡æ€§ETFï¼šåŸæŠ•å€ºETFï¼šå€ºåˆ¸ä»£è¡¨
         ]
-    # ETFÂÖ¶¯²ßÂÔ±¸Ñ¡ETF³Ø
+    # ETFè½®åŠ¨ç­–ç•¥å¤‡é€‰ETFæ± 
     g.etf_pool0 = [
-        #´ó×ÚÉÌÆ·ETF
-        "518880.XSHG",  # »Æ½ğETF
-        "159980.XSHE",  # ÓĞÉ«ETF£¨¸ú×ÙÓĞÉ«½ğÊô°å¿é£©
-        "159985.XSHE",  # ¶¹ÆÉETF£¨¸ú×Ù¶¹ÆÉÆÚ»õ¼Û¸ñ£©
-        "501018.XSHG",  # ÄÏ·½Ô­ÓÍ£¨Í¶×ÊÔ­ÓÍÏà¹Ø×Ê²ú£©
-        #¹ú¼ÊETF
-        "513100.XSHG",  # ÄÉÖ¸ETF
-        "513500.XSHG",  # ±êÆÕ500ETF
-        "513520.XSHG",  # ÈÕ¾­225ETF
-        "513030.XSHG",  # µÂ¹ú30ETF
-        "513080.XSHG",  # ·¨¹úETF
-        #Ïã¸ÛETF
-        "159920.XSHE",  # ºãÉúETF
-        #ÖĞ¹úETF
-        "510300.XSHG",  # »¦Éî300ETF
-        "510500.XSHG",  # ÉÏÖ¤500ETF
-        "510050.XSHG",  # ÉÏÖ¤50ETF
-        "510210.XSHG",  # ÉÏÖ¤ETF
-        "159915.XSHE",  # ´´Òµ°åETF
-        "588080.XSHG",  # ¿Æ´´50          
-        "159995.XSHE",  # Ğ¾Æ¬ETF             
-        "513050.XSHG",  # ÖĞ¸Å»¥ÁªÍø             
-        "159852.XSHE",  # Èí¼ş 
-        "159845.XSHE",  # »ªÏÄÖĞÖ¤1000ETF
-        "515030.XSHG",  # »ªÏÄ¹úÖ¤°ëµ¼ÌåETF
-        "159806.XSHE",  # ¹úÌ©ÖĞÖ¤ĞÂÄÜÔ´Æû³µETF
-        "516160.XSHG",  # ÄÏ·½ÖĞÖ¤ĞÂÄÜÔ´ETF
-        "159928.XSHE",  # »ãÌí¸»ÖĞÖ¤Ö÷ÒªÏû·ÑETF
-        #·ÀÓùETF
-        "511010.XSHG",  # ·ÀÓùĞÔETF£¨¹úÕ®ETF
-        "511880.XSHG",  # ·ÀÓùĞÔETF£¨»õ±ÒETF
+        #å¤§å®—å•†å“ETF
+        "518880.XSHG",  # é»„é‡‘ETF
+        "159980.XSHE",  # æœ‰è‰²ETFï¼ˆè·Ÿè¸ªæœ‰è‰²é‡‘å±æ¿å—ï¼‰
+        "159985.XSHE",  # è±†ç²•ETFï¼ˆè·Ÿè¸ªè±†ç²•æœŸè´§ä»·æ ¼ï¼‰
+        "501018.XSHG",  # å—æ–¹åŸæ²¹ï¼ˆæŠ•èµ„åŸæ²¹ç›¸å…³èµ„äº§ï¼‰
+        #å›½é™…ETF
+        "513100.XSHG",  # çº³æŒ‡ETF
+        "513500.XSHG",  # æ ‡æ™®500ETF
+        "513520.XSHG",  # æ—¥ç»225ETF
+        "513030.XSHG",  # å¾·å›½30ETF
+        "513080.XSHG",  # æ³•å›½ETF
+        #é¦™æ¸¯ETF
+        "159920.XSHE",  # æ’ç”ŸETF
+        #ä¸­å›½ETF
+        "510300.XSHG",  # æ²ªæ·±300ETF
+        "510500.XSHG",  # ä¸Šè¯500ETF
+        "510050.XSHG",  # ä¸Šè¯50ETF
+        "510210.XSHG",  # ä¸Šè¯ETF
+        "159915.XSHE",  # åˆ›ä¸šæ¿ETF
+        "588080.XSHG",  # ç§‘åˆ›50          
+        "159995.XSHE",  # èŠ¯ç‰‡ETF             
+        "513050.XSHG",  # ä¸­æ¦‚äº’è”ç½‘             
+        "159852.XSHE",  # è½¯ä»¶ 
+        "159845.XSHE",  # åå¤ä¸­è¯1000ETF
+        "515030.XSHG",  # åå¤å›½è¯åŠå¯¼ä½“ETF
+        "159806.XSHE",  # å›½æ³°ä¸­è¯æ–°èƒ½æºæ±½è½¦ETF
+        "516160.XSHG",  # å—æ–¹ä¸­è¯æ–°èƒ½æºETF
+        "159928.XSHE",  # æ±‡æ·»å¯Œä¸­è¯ä¸»è¦æ¶ˆè´¹ETF
+        #é˜²å¾¡ETF
+        "511010.XSHG",  # é˜²å¾¡æ€§ETFï¼ˆå›½å€ºETF
+        "511880.XSHG",  # é˜²å¾¡æ€§ETFï¼ˆè´§å¸ETF
     ]
         
-    # ²ßÂÔ²ÎÊı
-    g.lookback_days = 25  # ³¤ÆÚ¶¯Á¿¼ÆËãÖÜÆÚ
-    g.holdings_num = 1    # Ö»³ÖÓĞ1Ö»ETF
-    g.stop_loss = 0.95    # Ö¹ËğÏß£¨0.92±íÊ¾ÏÂµø8%Ö¹Ëğ£©
-    g.loss = 0.97   #½ü3ÈÕµø·ùÖ¹ËğÏß£ºÓÃÓÚ¹ıÂË
-    g.defensive_etf = "511880.XSHG"  # ·ÀÓùĞÔETF£¨»õ±ÒETF£©
-    g.min_score_threshold = 0.0  # ×îµÍµÃ·ÖãĞÖµ£¬µÍÓÚ´ËÖµ½øÈë·ÀÓùÄ£Ê½
-    g.max_score_threshold = 6.0  # ×î¸ßµÃ·ÖãĞÖµ£¬¸ßÓÚ´ËÖµµÄETFÊÓÎªÒì³£Öµ:¹ı¶ÈÉÏÕÇ£¬ÏÂµø·çÏÕ¸ß
-    g.min_money = 5000  # ×îĞ¡½»Ò×½ğ¶î
+    # ç­–ç•¥å‚æ•°
+    g.lookback_days = 25  # é•¿æœŸåŠ¨é‡è®¡ç®—å‘¨æœŸ
+    g.holdings_num = 1    # åªæŒæœ‰1åªETF
+    g.stop_loss = 0.95    # æ­¢æŸçº¿ï¼ˆ0.92è¡¨ç¤ºä¸‹è·Œ8%æ­¢æŸï¼‰
+    g.loss = 0.97   #è¿‘3æ—¥è·Œå¹…æ­¢æŸçº¿ï¼šç”¨äºè¿‡æ»¤
+    g.defensive_etf = "511880.XSHG"  # é˜²å¾¡æ€§ETFï¼ˆè´§å¸ETFï¼‰
+    g.min_score_threshold = 0.0  # æœ€ä½å¾—åˆ†é˜ˆå€¼ï¼Œä½äºæ­¤å€¼è¿›å…¥é˜²å¾¡æ¨¡å¼
+    g.max_score_threshold = 6.0  # æœ€é«˜å¾—åˆ†é˜ˆå€¼ï¼Œé«˜äºæ­¤å€¼çš„ETFè§†ä¸ºå¼‚å¸¸å€¼:è¿‡åº¦ä¸Šæ¶¨ï¼Œä¸‹è·Œé£é™©é«˜
+    g.min_money = 5000  # æœ€å°äº¤æ˜“é‡‘é¢
     
-    # ==================== ĞÂÔö¶ÌÆÚ¶¯Á¿¹ıÂË²ÎÊı ====================
-    g.use_short_momentum_filter = True  # ÊÇ·ñÆôÓÃ¶ÌÆÚ¶¯Á¿¹ıÂË£¨ĞÂÔö²ÎÊı£©
-    g.short_lookback_days = 12  # ¶ÌÆÚ¶¯Á¿¼ÆËãÖÜÆÚ£¨ĞÂÔö²ÎÊı£©
-    g.short_momentum_threshold = 0.0  # ¶ÌÆÚ¶¯Á¿ãĞÖµ£¨ĞÂÔö²ÎÊı£©
+    # ==================== æ–°å¢çŸ­æœŸåŠ¨é‡è¿‡æ»¤å‚æ•° ====================
+    g.use_short_momentum_filter = True  # æ˜¯å¦å¯ç”¨çŸ­æœŸåŠ¨é‡è¿‡æ»¤ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.short_lookback_days = 12  # çŸ­æœŸåŠ¨é‡è®¡ç®—å‘¨æœŸï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.short_momentum_threshold = 0.0  # çŸ­æœŸåŠ¨é‡é˜ˆå€¼ï¼ˆæ–°å¢å‚æ•°ï¼‰
     
-    # ==================== ĞÂÔöATR¶¯Ì¬Ö¹Ëğ²ÎÊı ====================
-    g.use_atr_stop_loss = True  # ÊÇ·ñÆôÓÃATR¶¯Ì¬Ö¹Ëğ£¨ĞÂÔö²ÎÊı£©
-    g.atr_period = 14  # ATR¼ÆËãÖÜÆÚ£¬Ä¬ÈÏ14ÈÕ£¨ĞÂÔö²ÎÊı£©
-    g.atr_multiplier = 2  # ATR±¶Êı£¬Ä¬ÈÏ2±¶£¨ĞÂÔö²ÎÊı£©
-    g.atr_trailing_stop = False  # ÊÇ·ñÊ¹ÓÃ¸ú×ÙÖ¹Ëğ£¨ĞÂÔö²ÎÊı£©
-    g.atr_exclude_defensive = True  # ·ÀÓùETFÊÇ·ñ»íÃâATRÖ¹Ëğ£¨ĞÂÔö²ÎÊı£©
+    # ==================== æ–°å¢ATRåŠ¨æ€æ­¢æŸå‚æ•° ====================
+    g.use_atr_stop_loss = True  # æ˜¯å¦å¯ç”¨ATRåŠ¨æ€æ­¢æŸï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.atr_period = 14  # ATRè®¡ç®—å‘¨æœŸï¼Œé»˜è®¤14æ—¥ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.atr_multiplier = 2  # ATRå€æ•°ï¼Œé»˜è®¤2å€ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.atr_trailing_stop = False  # æ˜¯å¦ä½¿ç”¨è·Ÿè¸ªæ­¢æŸï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.atr_exclude_defensive = True  # é˜²å¾¡ETFæ˜¯å¦è±å…ATRæ­¢æŸï¼ˆæ–°å¢å‚æ•°ï¼‰
 
     
-    # ==================== ĞÂÔöMA¹ıÂË²ÎÊı ====================
-    g.use_ma_filter = False  # ÊÇ·ñÆôÓÃMA¹ıÂË£¨ĞÂÔö²ÎÊı£©
-    g.ma_short_period = 5   # ¶ÌÆÚMAÖÜÆÚ£¬Ä¬ÈÏ5ÈÕ£¨ĞÂÔö²ÎÊı£©
-    g.ma_long_period = 25   # ³¤ÆÚMAÖÜÆÚ£¬Ä¬ÈÏ25ÈÕ£¨ĞÂÔö²ÎÊı£©
-    g.ma_filter_condition = "above"  # MA¹ıÂËÌõ¼ş£º"above"±íÊ¾MA5>MA25£¬"below"±íÊ¾MA5<MA25£¨ĞÂÔö²ÎÊı£©
+    # ==================== æ–°å¢MAè¿‡æ»¤å‚æ•° ====================
+    g.use_ma_filter = False  # æ˜¯å¦å¯ç”¨MAè¿‡æ»¤ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.ma_short_period = 5   # çŸ­æœŸMAå‘¨æœŸï¼Œé»˜è®¤5æ—¥ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.ma_long_period = 25   # é•¿æœŸMAå‘¨æœŸï¼Œé»˜è®¤25æ—¥ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.ma_filter_condition = "above"  # MAè¿‡æ»¤æ¡ä»¶ï¼š"above"è¡¨ç¤ºMA5>MA25ï¼Œ"below"è¡¨ç¤ºMA5<MA25ï¼ˆæ–°å¢å‚æ•°ï¼‰
     
-    # ==================== ĞÂÔöRSI¹ıÂË²ÎÊı ====================
-    g.use_rsi_filter = False  # ÊÇ·ñÆôÓÃRSI¹ıÂË£¨ĞÂÔö²ÎÊı£©
-    g.rsi_period = 6  # RSI¼ÆËãÖÜÆÚ£¨Ä¬ÈÏ6ÈÕ£©
-    g.rsi_lookback_days = 1  # ¼ì²éRSIµÄÀúÊ·ÌìÊı£¨Ä¬ÈÏ5ÈÕ£©
-    g.rsi_threshold = 95  # RSIãĞÖµ£¨Ä¬ÈÏ90£©
+    # ==================== æ–°å¢RSIè¿‡æ»¤å‚æ•° ====================
+    g.use_rsi_filter = False  # æ˜¯å¦å¯ç”¨RSIè¿‡æ»¤ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.rsi_period = 6  # RSIè®¡ç®—å‘¨æœŸï¼ˆé»˜è®¤6æ—¥ï¼‰
+    g.rsi_lookback_days = 1  # æ£€æŸ¥RSIçš„å†å²å¤©æ•°ï¼ˆé»˜è®¤5æ—¥ï¼‰
+    g.rsi_threshold = 95  # RSIé˜ˆå€¼ï¼ˆé»˜è®¤90ï¼‰
     
-    # ==================== ĞÂÔöMACD¹ıÂË²ÎÊı ====================
-    g.use_macd_filter = False  # ÊÇ·ñÆôÓÃMACD¹ıÂË£¨ĞÂÔö²ÎÊı£©
-    g.macd_fast_period = 12  # MACD¿ìÏßÖÜÆÚ£¨Ä¬ÈÏ12£©
-    g.macd_slow_period = 26  # MACDÂıÏßÖÜÆÚ£¨Ä¬ÈÏ26£©
-    g.macd_signal_period = 9  # MACDĞÅºÅÏßÖÜÆÚ£¨Ä¬ÈÏ9£©
-    g.macd_filter_condition = "bullish"  # MACD¹ıÂËÌõ¼ş£º"bullish"±íÊ¾¿´¶à£¨DIF>DEA£©£¬"bearish"±íÊ¾¿´¿Õ£¨DIF<DEA£©
+    # ==================== æ–°å¢MACDè¿‡æ»¤å‚æ•° ====================
+    g.use_macd_filter = False  # æ˜¯å¦å¯ç”¨MACDè¿‡æ»¤ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.macd_fast_period = 12  # MACDå¿«çº¿å‘¨æœŸï¼ˆé»˜è®¤12ï¼‰
+    g.macd_slow_period = 26  # MACDæ…¢çº¿å‘¨æœŸï¼ˆé»˜è®¤26ï¼‰
+    g.macd_signal_period = 9  # MACDä¿¡å·çº¿å‘¨æœŸï¼ˆé»˜è®¤9ï¼‰
+    g.macd_filter_condition = "bullish"  # MACDè¿‡æ»¤æ¡ä»¶ï¼š"bullish"è¡¨ç¤ºçœ‹å¤šï¼ˆDIF>DEAï¼‰ï¼Œ"bearish"è¡¨ç¤ºçœ‹ç©ºï¼ˆDIF<DEAï¼‰
     
-    # ==================== ĞÂÔö³É½»Á¿Òì³£¹ıÂË²ÎÊı ====================
-    g.use_volume_filter = False  # ÊÇ·ñÆôÓÃ³É½»Á¿Òì³£¹ıÂË£¨ĞÂÔö²ÎÊı£©
-    g.volume_lookback_days = 7  # ³É½»Á¿¼ÆËãÖÜÆÚ£¬Ä¬ÈÏ10ÈÕ£¨ĞÂÔö²ÎÊı£©
-    g.volume_threshold = 2.0  # ³É½»Á¿Òì³£±¶Êı£¬Ä¬ÈÏ2±¶£¨ĞÂÔö²ÎÊı£©
-    g.volume_exclude_defensive = True  # ·ÀÓùETFÊÇ·ñ»íÃâ³É½»Á¿¹ıÂË£¨ĞÂÔö²ÎÊı£©
+    # ==================== æ–°å¢æˆäº¤é‡å¼‚å¸¸è¿‡æ»¤å‚æ•° ====================
+    g.use_volume_filter = False  # æ˜¯å¦å¯ç”¨æˆäº¤é‡å¼‚å¸¸è¿‡æ»¤ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.volume_lookback_days = 7  # æˆäº¤é‡è®¡ç®—å‘¨æœŸï¼Œé»˜è®¤10æ—¥ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.volume_threshold = 2.0  # æˆäº¤é‡å¼‚å¸¸å€æ•°ï¼Œé»˜è®¤2å€ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.volume_exclude_defensive = True  # é˜²å¾¡ETFæ˜¯å¦è±å…æˆäº¤é‡è¿‡æ»¤ï¼ˆæ–°å¢å‚æ•°ï¼‰
     
-    # ==================== ĞÂÔö²¼ÁÖ´ø¹ıÂË²ÎÊı ====================
-    g.use_bollinger_filter = False  # ÊÇ·ñÆôÓÃ²¼ÁÖ´ø¹ıÂË£¨ĞÂÔö²ÎÊı£©
-    g.bollinger_period = 20  # ²¼ÁÖ´øÖÜÆÚ£¬Ä¬ÈÏ20ÈÕ£¨ĞÂÔö²ÎÊı£©
-    g.bollinger_std = 2.0  # ²¼ÁÖ´ø±ê×¼²î±¶Êı£¬Ä¬ÈÏ2.0£¨ĞÂÔö²ÎÊı£©
-    g.bollinger_lookback_days = 3  # ¼ì²é²¼ÁÖ´øÍ»ÆÆµÄÌìÊı£¬Ä¬ÈÏ5ÈÕ£¨ĞÂÔö²ÎÊı£©
+    # ==================== æ–°å¢å¸ƒæ—å¸¦è¿‡æ»¤å‚æ•° ====================
+    g.use_bollinger_filter = False  # æ˜¯å¦å¯ç”¨å¸ƒæ—å¸¦è¿‡æ»¤ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.bollinger_period = 20  # å¸ƒæ—å¸¦å‘¨æœŸï¼Œé»˜è®¤20æ—¥ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.bollinger_std = 2.0  # å¸ƒæ—å¸¦æ ‡å‡†å·®å€æ•°ï¼Œé»˜è®¤2.0ï¼ˆæ–°å¢å‚æ•°ï¼‰
+    g.bollinger_lookback_days = 3  # æ£€æŸ¥å¸ƒæ—å¸¦çªç ´çš„å¤©æ•°ï¼Œé»˜è®¤5æ—¥ï¼ˆæ–°å¢å‚æ•°ï¼‰
     
 
-    # ³Ö²Ö¹ÜÀí£¨²Î¿¼²ßÂÔ1µÄ³Ö²Ö¹ÜÀí·½Ê½£©
-    g.positions = {}  # ¼ÇÂ¼³Ö²Ö
-    # ĞÂÔö£º¼ÇÂ¼Ã¿¸ö³Ö²ÖµÄ×î¸ß¼ÛºÍATRÖ¹Ëğ¼Û
-    g.position_highs = {}  # ¼ÇÂ¼³Ö²ÖÆÚ¼äµÄ×î¸ß¼Û
-    g.position_stop_prices = {}  # ¼ÇÂ¼³Ö²ÖµÄATRÖ¹Ëğ¼Û
+    # æŒä»“ç®¡ç†ï¼ˆå‚è€ƒç­–ç•¥1çš„æŒä»“ç®¡ç†æ–¹å¼ï¼‰
+    g.positions = {}  # è®°å½•æŒä»“
+    # æ–°å¢ï¼šè®°å½•æ¯ä¸ªæŒä»“çš„æœ€é«˜ä»·å’ŒATRæ­¢æŸä»·
+    g.position_highs = {}  # è®°å½•æŒä»“æœŸé—´çš„æœ€é«˜ä»·
+    g.position_stop_prices = {}  # è®°å½•æŒä»“çš„ATRæ­¢æŸä»·
 
-    # ==================== ½»Ò×µ÷¶È ====================
-    # Ã¿Ìì14:50Ö´ĞĞETFÂÖ¶¯½»Ò×
+    # ==================== äº¤æ˜“è°ƒåº¦ ====================
+    # æ¯å¤©14:50æ‰§è¡ŒETFè½®åŠ¨äº¤æ˜“
     run_daily(etf_trade, time='14:20')
-    # Ã¿Ìì¿ªÅÌºó¼ì²é³Ö²Ö£¨²Î¿¼²ßÂÔ1£©
+    # æ¯å¤©å¼€ç›˜åæ£€æŸ¥æŒä»“ï¼ˆå‚è€ƒç­–ç•¥1ï¼‰
     run_daily(check_positions, time='09:30')
-    # ĞÂÔö£ºÃ¿Ìì¿ªÅÌºó¼ì²éATR¶¯Ì¬Ö¹Ëğ
+    # æ–°å¢ï¼šæ¯å¤©å¼€ç›˜åæ£€æŸ¥ATRåŠ¨æ€æ­¢æŸ
     run_daily(check_atr_stop_loss, time='09:30')
 
-# ¼ÆËãATR£¨Æ½¾ùÕæÊµ²¨·ù£©Ö¸±ê
+# è®¡ç®—ATRï¼ˆå¹³å‡çœŸå®æ³¢å¹…ï¼‰æŒ‡æ ‡
 def calculate_atr(security, period=14):
     """
-    ¼ÆËãATR£¨Æ½¾ùÕæÊµ²¨·ù£©Ö¸±ê
-    :param security: Ö¤È¯´úÂë
-    :param period: ATR¼ÆËãÖÜÆÚ
-    :return: µ±Ç°ATRÖµ£¬ATRĞòÁĞ£¬ÊÇ·ñ¼ÆËã³É¹¦
+    è®¡ç®—ATRï¼ˆå¹³å‡çœŸå®æ³¢å¹…ï¼‰æŒ‡æ ‡
+    :param security: è¯åˆ¸ä»£ç 
+    :param period: ATRè®¡ç®—å‘¨æœŸ
+    :return: å½“å‰ATRå€¼ï¼ŒATRåºåˆ—ï¼Œæ˜¯å¦è®¡ç®—æˆåŠŸ
     """
     try:
-        # »ñÈ¡ÀúÊ·Êı¾İ£¬ĞèÒªperiod+1ÌìµÄÊı¾İÀ´¼ÆËãTR
-        needed_days = period + 20  # ¶àÈ¡Ò»Ğ©Êı¾İ
+        # è·å–å†å²æ•°æ®ï¼Œéœ€è¦period+1å¤©çš„æ•°æ®æ¥è®¡ç®—TR
+        needed_days = period + 20  # å¤šå–ä¸€äº›æ•°æ®
         hist_data = attribute_history(security, needed_days, '1d', 
                                      ['high', 'low', 'close'])
         
         if len(hist_data) < period + 1:
-            return 0, [], False, f"Êı¾İ²»×ã{period+1}Ìì"
+            return 0, [], False, f"æ•°æ®ä¸è¶³{period+1}å¤©"
         
-        # ¼ÆËãÕæÊµ²¨·ù£¨TR£©
+        # è®¡ç®—çœŸå®æ³¢å¹…ï¼ˆTRï¼‰
         high_prices = hist_data['high'].values
         low_prices = hist_data['low'].values
         close_prices = hist_data['close'].values
         
-        # ³õÊ¼»¯TRÊı×é
+        # åˆå§‹åŒ–TRæ•°ç»„
         tr_values = np.zeros(len(high_prices))
         
-        # ¼ÆËãÃ¿ÌìµÄTRÖµ
+        # è®¡ç®—æ¯å¤©çš„TRå€¼
         for i in range(1, len(high_prices)):
-            tr1 = high_prices[i] - low_prices[i]  # µ±ÈÕ×î¸ß¼Û-×îµÍ¼Û
-            tr2 = abs(high_prices[i] - close_prices[i-1])  # µ±ÈÕ×î¸ß¼Û-Ç°ÈÕÊÕÅÌ¼Û
-            tr3 = abs(low_prices[i] - close_prices[i-1])   # µ±ÈÕ×îµÍ¼Û-Ç°ÈÕÊÕÅÌ¼Û
+            tr1 = high_prices[i] - low_prices[i]  # å½“æ—¥æœ€é«˜ä»·-æœ€ä½ä»·
+            tr2 = abs(high_prices[i] - close_prices[i-1])  # å½“æ—¥æœ€é«˜ä»·-å‰æ—¥æ”¶ç›˜ä»·
+            tr3 = abs(low_prices[i] - close_prices[i-1])   # å½“æ—¥æœ€ä½ä»·-å‰æ—¥æ”¶ç›˜ä»·
             tr_values[i] = max(tr1, tr2, tr3)
         
-        # ¼ÆËãATR£¨Ê¹ÓÃ¼òµ¥ÒÆ¶¯Æ½¾ù£©
+        # è®¡ç®—ATRï¼ˆä½¿ç”¨ç®€å•ç§»åŠ¨å¹³å‡ï¼‰
         atr_values = np.zeros(len(tr_values))
         
-        # Ç°period¸öATRÖµÎª0
+        # å‰periodä¸ªATRå€¼ä¸º0
         for i in range(period, len(tr_values)):
             atr_values[i] = np.mean(tr_values[i-period+1:i+1])
         
-        # »ñÈ¡×îĞÂµÄATRÖµ
+        # è·å–æœ€æ–°çš„ATRå€¼
         current_atr = atr_values[-1] if len(atr_values) > 0 else 0
         
-        # ·µ»ØATRĞòÁĞ£¨Ö»·µ»ØÓĞĞ§²¿·Ö£©
+        # è¿”å›ATRåºåˆ—ï¼ˆåªè¿”å›æœ‰æ•ˆéƒ¨åˆ†ï¼‰
         valid_atr = atr_values[period:] if len(atr_values) > period else atr_values
         
-        return current_atr, valid_atr, True, "¼ÆËã³É¹¦"
+        return current_atr, valid_atr, True, "è®¡ç®—æˆåŠŸ"
     
     except Exception as e:
-        log.warn(f"¼ÆËã{security} ATRÊ±³ö´í: {e}")
-        return 0, [], False, f"¼ÆËã³ö´í:{str(e)}"
+        log.warn(f"è®¡ç®—{security} ATRæ—¶å‡ºé”™: {e}")
+        return 0, [], False, f"è®¡ç®—å‡ºé”™:{str(e)}"
 
-# ¼ì²é²¢Ö´ĞĞATR¶¯Ì¬Ö¹Ëğ
+# æ£€æŸ¥å¹¶æ‰§è¡ŒATRåŠ¨æ€æ­¢æŸ
 def check_atr_stop_loss(context):
     """
-    ¼ì²é²¢Ö´ĞĞATR¶¯Ì¬Ö¹Ëğ
+    æ£€æŸ¥å¹¶æ‰§è¡ŒATRåŠ¨æ€æ­¢æŸ
     """
     if not g.use_atr_stop_loss:
         return
@@ -238,7 +238,7 @@ def check_atr_stop_loss(context):
     current_data = get_current_data()
     
     for security in list(context.portfolio.positions.keys()):
-        # Ö»´¦ÀíETF³ØÖĞµÄ±êµÄÇÒµ±Ç°ÓĞ³Ö²Ö
+        # åªå¤„ç†ETFæ± ä¸­çš„æ ‡çš„ä¸”å½“å‰æœ‰æŒä»“
         if security not in g.etf_pool:
             continue
             
@@ -246,101 +246,101 @@ def check_atr_stop_loss(context):
         if position.total_amount <= 0:
             continue
             
-        # ·ÀÓùETF»íÃâ¼ì²é
+        # é˜²å¾¡ETFè±å…æ£€æŸ¥
         if g.atr_exclude_defensive and security == g.defensive_etf:
             continue
         
         try:
-            # »ñÈ¡µ±Ç°¼Û¸ñ
+            # è·å–å½“å‰ä»·æ ¼
             current_price = current_data[security].last_price
             if current_price == 0:
                 continue
             
-            # »ñÈ¡³É±¾¼Û
+            # è·å–æˆæœ¬ä»·
             cost_price = position.avg_cost
             
-            # ¼ÆËãµ±Ç°ATRÖµ
+            # è®¡ç®—å½“å‰ATRå€¼
             current_atr, atr_values, success, atr_info = calculate_atr(security, g.atr_period)
             
             if not success:
-                log.info(f"?? {security} {get_security_name(security)} ATR¼ÆËãÊ§°Ü: {atr_info}")
+                log.info(f"?? {security} {get_security_name(security)} ATRè®¡ç®—å¤±è´¥: {atr_info}")
                 continue
             
-            # ¸üĞÂ³Ö²ÖÆÚ¼äµÄ×î¸ß¼Û
+            # æ›´æ–°æŒä»“æœŸé—´çš„æœ€é«˜ä»·
             if security not in g.position_highs:
                 g.position_highs[security] = current_price
             else:
                 g.position_highs[security] = max(g.position_highs[security], current_price)
             
-            # »ñÈ¡µ±Ç°³Ö²ÖÆÚ¼äµÄ×î¸ß¼Û
+            # è·å–å½“å‰æŒä»“æœŸé—´çš„æœ€é«˜ä»·
             position_high = g.position_highs[security]
             
-            # ¼ÆËãATRÖ¹Ëğ¼Û
+            # è®¡ç®—ATRæ­¢æŸä»·
             if g.atr_trailing_stop:
-                # ¸ú×ÙÖ¹Ëğ£º»ùÓÚ³Ö²ÖÆÚ¼ä×î¸ß¼Û
+                # è·Ÿè¸ªæ­¢æŸï¼šåŸºäºæŒä»“æœŸé—´æœ€é«˜ä»·
                 atr_stop_price = position_high - g.atr_multiplier * current_atr
             else:
-                # ¹Ì¶¨Ö¹Ëğ£º»ùÓÚ³É±¾¼Û
+                # å›ºå®šæ­¢æŸï¼šåŸºäºæˆæœ¬ä»·
                 atr_stop_price = cost_price - g.atr_multiplier * current_atr
             
-            # ¼ÇÂ¼Ö¹Ëğ¼Û
+            # è®°å½•æ­¢æŸä»·
             g.position_stop_prices[security] = atr_stop_price
             
-            # ¼ì²éÊÇ·ñ´¥·¢ATRÖ¹Ëğ
+            # æ£€æŸ¥æ˜¯å¦è§¦å‘ATRæ­¢æŸ
             if current_price <= atr_stop_price:
-                # ´¥·¢ATRÖ¹Ëğ
+                # è§¦å‘ATRæ­¢æŸ
                 success = smart_order_target_value(security, 0, context)
                 if success:
                     security_name = get_security_name(security)
                     loss_percent = (current_price/cost_price - 1) * 100
-                    atr_stop_type = "¸ú×Ù" if g.atr_trailing_stop else "¹Ì¶¨"
-                    log.info(f"?? ATR¶¯Ì¬Ö¹Ëğ({atr_stop_type})Âô³ö: {security} {security_name}£¬³É±¾: {cost_price:.3f}£¬ÏÖ¼Û: {current_price:.3f}£¬ATR: {current_atr:.3f}£¬Ö¹Ëğ¼Û: {atr_stop_price:.3f}£¬¿÷Ëğ: {loss_percent:.2f}%")
+                    atr_stop_type = "è·Ÿè¸ª" if g.atr_trailing_stop else "å›ºå®š"
+                    log.info(f"?? ATRåŠ¨æ€æ­¢æŸ({atr_stop_type})å–å‡º: {security} {security_name}ï¼Œæˆæœ¬: {cost_price:.3f}ï¼Œç°ä»·: {current_price:.3f}ï¼ŒATR: {current_atr:.3f}ï¼Œæ­¢æŸä»·: {atr_stop_price:.3f}ï¼ŒäºæŸ: {loss_percent:.2f}%")
                     
-                    # Çå³ı¼ÇÂ¼
+                    # æ¸…é™¤è®°å½•
                     if security in g.position_highs:
                         del g.position_highs[security]
                     if security in g.position_stop_prices:
                         del g.position_stop_prices[security]
             else:
-                # ¼ÇÂ¼ATRÖ¹Ëğ×´Ì¬£¨¿ÉÑ¡£¬±ÜÃâÈÕÖ¾¹ı¶à£©
+                # è®°å½•ATRæ­¢æŸçŠ¶æ€ï¼ˆå¯é€‰ï¼Œé¿å…æ—¥å¿—è¿‡å¤šï¼‰
                 if context.current_dt.hour == 14 and context.current_dt.minute == 20:
-                    # ½öÔÚ½»Ò×Ê±¼ä¼ÇÂ¼
+                    # ä»…åœ¨äº¤æ˜“æ—¶é—´è®°å½•
                     security_name = get_security_name(security)
-                    atr_stop_type = "¸ú×Ù" if g.atr_trailing_stop else "¹Ì¶¨"
-                    log.debug(f"ATRÖ¹Ëğ×´Ì¬: {security} {security_name}£¬ÏÖ¼Û: {current_price:.3f}£¬ATR: {current_atr:.3f}£¬Ö¹Ëğ¼Û: {atr_stop_price:.3f}£¬¾àÀëÖ¹Ëğ: {(current_price/atr_stop_price-1)*100:.2f}%")
+                    atr_stop_type = "è·Ÿè¸ª" if g.atr_trailing_stop else "å›ºå®š"
+                    log.debug(f"ATRæ­¢æŸçŠ¶æ€: {security} {security_name}ï¼Œç°ä»·: {current_price:.3f}ï¼ŒATR: {current_atr:.3f}ï¼Œæ­¢æŸä»·: {atr_stop_price:.3f}ï¼Œè·ç¦»æ­¢æŸ: {(current_price/atr_stop_price-1)*100:.2f}%")
         
         except Exception as e:
-            log.warn(f"¼ì²é{security} ATRÖ¹ËğÊ±³ö´í: {e}")
+            log.warn(f"æ£€æŸ¥{security} ATRæ­¢æŸæ—¶å‡ºé”™: {e}")
 
-# ¼ÆËã²¼ÁÖ´øÖ¸±ê
+# è®¡ç®—å¸ƒæ—å¸¦æŒ‡æ ‡
 def calculate_bollinger_bands(prices, period=20, std_dev=2.0):
     """
-    ¼ÆËã²¼ÁÖ´øÖ¸±ê
-    :param prices: ¼Û¸ñĞòÁĞ
-    :param period: ²¼ÁÖ´øÖÜÆÚ
-    :param std_dev: ±ê×¼²î±¶Êı
-    :return: ÖĞ¹ì¡¢ÉÏ¹ì¡¢ÏÂ¹ì
+    è®¡ç®—å¸ƒæ—å¸¦æŒ‡æ ‡
+    :param prices: ä»·æ ¼åºåˆ—
+    :param period: å¸ƒæ—å¸¦å‘¨æœŸ
+    :param std_dev: æ ‡å‡†å·®å€æ•°
+    :return: ä¸­è½¨ã€ä¸Šè½¨ã€ä¸‹è½¨
     """
     if len(prices) < period:
         return [], [], []
     
-    # ³õÊ¼»¯½á¹ûÊı×é
+    # åˆå§‹åŒ–ç»“æœæ•°ç»„
     middle_band = np.zeros(len(prices))
     upper_band = np.zeros(len(prices))
     lower_band = np.zeros(len(prices))
     
-    # ¼ÆËã²¼ÁÖ´ø
+    # è®¡ç®—å¸ƒæ—å¸¦
     for i in range(period - 1, len(prices)):
-        # È¡×î½üperiodÌìµÄÊı¾İ
+        # å–æœ€è¿‘periodå¤©çš„æ•°æ®
         window = prices[i-period+1:i+1]
         
-        # ¼ÆËãÖĞ¹ì£¨¼òµ¥ÒÆ¶¯Æ½¾ù£©
+        # è®¡ç®—ä¸­è½¨ï¼ˆç®€å•ç§»åŠ¨å¹³å‡ï¼‰
         middle = np.mean(window)
         
-        # ¼ÆËã±ê×¼²î
+        # è®¡ç®—æ ‡å‡†å·®
         std = np.std(window)
         
-        # ¼ÆËãÉÏ¹ìºÍÏÂ¹ì
+        # è®¡ç®—ä¸Šè½¨å’Œä¸‹è½¨
         upper = middle + std_dev * std
         lower = middle - std_dev * std
         
@@ -348,46 +348,46 @@ def calculate_bollinger_bands(prices, period=20, std_dev=2.0):
         upper_band[i] = upper
         lower_band[i] = lower
     
-    # Ö»·µ»ØÓĞĞ§Êı¾İ
+    # åªè¿”å›æœ‰æ•ˆæ•°æ®
     return middle_band[period-1:], upper_band[period-1:], lower_band[period-1:]
 
-# ¼ì²é²¼ÁÖ´ø¹ıÂËÌõ¼ş
+# æ£€æŸ¥å¸ƒæ—å¸¦è¿‡æ»¤æ¡ä»¶
 def check_bollinger_filter(etf, current_price, lookback_days=5, period=20, std_dev=2.0):
     """
-    ¼ì²é²¼ÁÖ´ø¹ıÂËÌõ¼ş
-    :param etf: ETF´úÂë
-    :param current_price: µ±Ç°¼Û¸ñ
-    :param lookback_days: ¼ì²éÍ»ÆÆµÄÌìÊı
-    :param period: ²¼ÁÖ´øÖÜÆÚ
-    :param std_dev: ±ê×¼²î±¶Êı
-    :return: ÊÇ·ñÍ¨¹ı²¼ÁÖ´ø¹ıÂË£¬ÏêÏ¸ĞÅÏ¢
+    æ£€æŸ¥å¸ƒæ—å¸¦è¿‡æ»¤æ¡ä»¶
+    :param etf: ETFä»£ç 
+    :param current_price: å½“å‰ä»·æ ¼
+    :param lookback_days: æ£€æŸ¥çªç ´çš„å¤©æ•°
+    :param period: å¸ƒæ—å¸¦å‘¨æœŸ
+    :param std_dev: æ ‡å‡†å·®å€æ•°
+    :return: æ˜¯å¦é€šè¿‡å¸ƒæ—å¸¦è¿‡æ»¤ï¼Œè¯¦ç»†ä¿¡æ¯
     """
     try:
-        # »ñÈ¡ÀúÊ·¼Û¸ñÊı¾İ
-        # ĞèÒª»ñÈ¡×ã¹»µÄÌìÊıÀ´¼ÆËã²¼ÁÖ´øºÍ¼ì²éÍ»ÆÆ
-        needed_days = max(period, lookback_days) + 10  # ¶àÈ¡Ò»Ğ©Êı¾İ
+        # è·å–å†å²ä»·æ ¼æ•°æ®
+        # éœ€è¦è·å–è¶³å¤Ÿçš„å¤©æ•°æ¥è®¡ç®—å¸ƒæ—å¸¦å’Œæ£€æŸ¥çªç ´
+        needed_days = max(period, lookback_days) + 10  # å¤šå–ä¸€äº›æ•°æ®
         price_data = attribute_history(etf, needed_days, '1d', ['close', 'high'])
         
         if len(price_data) < period:
-            return True, f"Êı¾İ²»×ã{period}Ìì£¬ÎŞ·¨¼ÆËã²¼ÁÖ´ø"
+            return True, f"æ•°æ®ä¸è¶³{period}å¤©ï¼Œæ— æ³•è®¡ç®—å¸ƒæ—å¸¦"
         
-        # »ñÈ¡ÊÕÅÌ¼ÛĞòÁĞ
+        # è·å–æ”¶ç›˜ä»·åºåˆ—
         close_prices = price_data['close'].values
         
-        # ¼ÆËã²¼ÁÖ´ø
+        # è®¡ç®—å¸ƒæ—å¸¦
         middle_band, upper_band, lower_band = calculate_bollinger_bands(
             close_prices, period, std_dev
         )
         
         if len(upper_band) < lookback_days:
-            return True, f"²¼ÁÖ´øÊı¾İ²»×ã{lookback_days}Ìì"
+            return True, f"å¸ƒæ—å¸¦æ•°æ®ä¸è¶³{lookback_days}å¤©"
         
-        # ¼ì²é½ülookback_daysÈÕÄÚÊÇ·ñÔø¾­Í»ÆÆÉÏ¹ì
-        # È¡×î½ülookback_daysÌìµÄ²¼ÁÖ´øÉÏ¹ìºÍ¶ÔÓ¦µÄÊÕÅÌ¼Û
+        # æ£€æŸ¥è¿‘lookback_daysæ—¥å†…æ˜¯å¦æ›¾ç»çªç ´ä¸Šè½¨
+        # å–æœ€è¿‘lookback_dayså¤©çš„å¸ƒæ—å¸¦ä¸Šè½¨å’Œå¯¹åº”çš„æ”¶ç›˜ä»·
         recent_upper_band = upper_band[-lookback_days:]
         recent_close_prices = close_prices[-(len(middle_band)-len(upper_band)+lookback_days):][-lookback_days:]
         
-        # ¼ì²éÊÇ·ñÓĞÈÎºÎÒ»ÌìÊÕÅÌ¼ÛÍ»ÆÆÉÏ¹ì
+        # æ£€æŸ¥æ˜¯å¦æœ‰ä»»ä½•ä¸€å¤©æ”¶ç›˜ä»·çªç ´ä¸Šè½¨
         breakthrough_occurred = False
         breakthrough_day = None
         breakthrough_price = 0
@@ -401,106 +401,106 @@ def check_bollinger_filter(etf, current_price, lookback_days=5, period=20, std_d
                 breakthrough_upper = recent_upper_band[i]
                 break
         
-        # ¼ÆËãMA5£¨Ê¹ÓÃ×î½ü5ÌìµÄÊÕÅÌ¼Û£©
+        # è®¡ç®—MA5ï¼ˆä½¿ç”¨æœ€è¿‘5å¤©çš„æ”¶ç›˜ä»·ï¼‰
         if len(close_prices) >= 5:
             ma5 = np.mean(close_prices[-5:])
         else:
             ma5 = np.mean(close_prices)
         
-        # ÅĞ¶ÏÊÇ·ñÂú×ã¹ıÂËÌõ¼ş
-        # Ìõ¼ş£º½ülookback_daysÈÕ¼Û¸ñÔø¾­Í»ÆÆ²¼ÁÖ´øÉÏ¹ì£¬ÇÒµ±Ç°¼Û¸ñµÍÓÚMA5
+        # åˆ¤æ–­æ˜¯å¦æ»¡è¶³è¿‡æ»¤æ¡ä»¶
+        # æ¡ä»¶ï¼šè¿‘lookback_daysæ—¥ä»·æ ¼æ›¾ç»çªç ´å¸ƒæ—å¸¦ä¸Šè½¨ï¼Œä¸”å½“å‰ä»·æ ¼ä½äºMA5
         if breakthrough_occurred and current_price < ma5:
-            return False, f"½ü{lookback_days}ÈÕÔøÍ»ÆÆ²¼ÁÖ´øÉÏ¹ì(µÚ{breakthrough_day+1}ÈÕ:{breakthrough_price:.3f}>{breakthrough_upper:.3f})£¬ÇÒµ±Ç°¼Û{current_price:.3f}<MA5({ma5:.3f})"
+            return False, f"è¿‘{lookback_days}æ—¥æ›¾çªç ´å¸ƒæ—å¸¦ä¸Šè½¨(ç¬¬{breakthrough_day+1}æ—¥:{breakthrough_price:.3f}>{breakthrough_upper:.3f})ï¼Œä¸”å½“å‰ä»·{current_price:.3f}<MA5({ma5:.3f})"
         else:
             if breakthrough_occurred:
-                return True, f"½ü{lookback_days}ÈÕÔøÍ»ÆÆ²¼ÁÖ´øÉÏ¹ì(µÚ{breakthrough_day+1}ÈÕ:{breakthrough_price:.3f}>{breakthrough_upper:.3f})£¬µ«µ±Ç°¼Û{current_price:.3f}¡İMA5({ma5:.3f})£¬Î´´¥·¢¹ıÂË"
+                return True, f"è¿‘{lookback_days}æ—¥æ›¾çªç ´å¸ƒæ—å¸¦ä¸Šè½¨(ç¬¬{breakthrough_day+1}æ—¥:{breakthrough_price:.3f}>{breakthrough_upper:.3f})ï¼Œä½†å½“å‰ä»·{current_price:.3f}â‰¥MA5({ma5:.3f})ï¼Œæœªè§¦å‘è¿‡æ»¤"
             else:
-                return True, f"½ü{lookback_days}ÈÕÎ´Í»ÆÆ²¼ÁÖ´øÉÏ¹ì£¬µ±Ç°¼Û{current_price:.3f}£¬MA5={ma5:.3f}"
+                return True, f"è¿‘{lookback_days}æ—¥æœªçªç ´å¸ƒæ—å¸¦ä¸Šè½¨ï¼Œå½“å‰ä»·{current_price:.3f}ï¼ŒMA5={ma5:.3f}"
     
     except Exception as e:
-        log.warn(f"¼ì²é{etf}²¼ÁÖ´øÊ±³ö´í: {e}")
-        return True, f"¼ì²é³ö´í:{str(e)}"
+        log.warn(f"æ£€æŸ¥{etf}å¸ƒæ—å¸¦æ—¶å‡ºé”™: {e}")
+        return True, f"æ£€æŸ¥å‡ºé”™:{str(e)}"
 
-# ¼ÆËã³É½»Á¿Òì³£Ö¸±ê
+# è®¡ç®—æˆäº¤é‡å¼‚å¸¸æŒ‡æ ‡
 def check_volume_anomaly(etf, lookback_days=10, threshold=2.0, exclude_defensive=False, defensive_etf=""):
     """
-    ¼ì²é³É½»Á¿ÊÇ·ñÒì³£
-    :param etf: ETF´úÂë
-    :param lookback_days: ³É½»Á¿¼ÆËãÖÜÆÚ
-    :param threshold: ³É½»Á¿Òì³£±¶Êı
-    :param exclude_defensive: ·ÀÓùETFÊÇ·ñ»íÃâ
-    :param defensive_etf: ·ÀÓùETF´úÂë
-    :return: ÊÇ·ñÍ¨¹ı³É½»Á¿¹ıÂË£¬³É½»Á¿±ÈÖµ£¬½ü1ÈÕ³É½»Á¿£¬½üNÈÕ¾ù³É½»Á¿
+    æ£€æŸ¥æˆäº¤é‡æ˜¯å¦å¼‚å¸¸
+    :param etf: ETFä»£ç 
+    :param lookback_days: æˆäº¤é‡è®¡ç®—å‘¨æœŸ
+    :param threshold: æˆäº¤é‡å¼‚å¸¸å€æ•°
+    :param exclude_defensive: é˜²å¾¡ETFæ˜¯å¦è±å…
+    :param defensive_etf: é˜²å¾¡ETFä»£ç 
+    :return: æ˜¯å¦é€šè¿‡æˆäº¤é‡è¿‡æ»¤ï¼Œæˆäº¤é‡æ¯”å€¼ï¼Œè¿‘1æ—¥æˆäº¤é‡ï¼Œè¿‘Næ—¥å‡æˆäº¤é‡
     """
-    # ·ÀÓùETF»íÃâ¼ì²é
+    # é˜²å¾¡ETFè±å…æ£€æŸ¥
     if exclude_defensive and etf == defensive_etf:
-        return True, 0.0, 0, 0, "·ÀÓùETF»íÃâ³É½»Á¿¼ì²é"
+        return True, 0.0, 0, 0, "é˜²å¾¡ETFè±å…æˆäº¤é‡æ£€æŸ¥"
     
     try:
-        # »ñÈ¡ÀúÊ·³É½»Á¿Êı¾İ£¬ĞèÒª×ã¹»µÄÌìÊı
-        volume_lookback = lookback_days + 5  # ¶àÈ¡¼¸Ìì×÷Îª»º³å
+        # è·å–å†å²æˆäº¤é‡æ•°æ®ï¼Œéœ€è¦è¶³å¤Ÿçš„å¤©æ•°
+        volume_lookback = lookback_days + 5  # å¤šå–å‡ å¤©ä½œä¸ºç¼“å†²
         volume_data = attribute_history(etf, volume_lookback, '1d', ['volume'])
         
         if len(volume_data) < lookback_days:
-            return True, 0.0, 0, 0, f"Êı¾İ²»×ã{lookback_days}Ìì"
+            return True, 0.0, 0, 0, f"æ•°æ®ä¸è¶³{lookback_days}å¤©"
         
-        # »ñÈ¡½ü1ÈÕ³É½»Á¿
+        # è·å–è¿‘1æ—¥æˆäº¤é‡
         recent_volume = volume_data['volume'].iloc[-1]
         
-        # »ñÈ¡½ülookback_daysÈÕ³É½»Á¿¾ùÖµ£¨ÅÅ³ı×î½ü1ÈÕ£©
+        # è·å–è¿‘lookback_daysæ—¥æˆäº¤é‡å‡å€¼ï¼ˆæ’é™¤æœ€è¿‘1æ—¥ï¼‰
         if len(volume_data) >= lookback_days + 1:
-            # È¡Ç°lookback_daysÈÕµÄ³É½»Á¿£¨ÅÅ³ı×î½ü1ÈÕ£©
+            # å–å‰lookback_daysæ—¥çš„æˆäº¤é‡ï¼ˆæ’é™¤æœ€è¿‘1æ—¥ï¼‰
             avg_volume = volume_data['volume'].iloc[-(lookback_days+1):-1].mean()
         else:
-            # Êı¾İ²»×ãÊ±£¬Ê¹ÓÃËùÓĞ¿ÉÓÃÊı¾İ£¨ÅÅ³ı×î½ü1ÈÕ£©
+            # æ•°æ®ä¸è¶³æ—¶ï¼Œä½¿ç”¨æ‰€æœ‰å¯ç”¨æ•°æ®ï¼ˆæ’é™¤æœ€è¿‘1æ—¥ï¼‰
             avg_volume = volume_data['volume'].iloc[:-1].mean()
         
-        # ±ÜÃâ³ıÁã´íÎó
+        # é¿å…é™¤é›¶é”™è¯¯
         if avg_volume <= 0:
-            return True, 0.0, recent_volume, avg_volume, f"ÀúÊ·¾ùÁ¿Òì³£:{avg_volume:.0f}"
+            return True, 0.0, recent_volume, avg_volume, f"å†å²å‡é‡å¼‚å¸¸:{avg_volume:.0f}"
         
-        # ¼ÆËã³É½»Á¿±ÈÖµ
+        # è®¡ç®—æˆäº¤é‡æ¯”å€¼
         volume_ratio = recent_volume / avg_volume
         
-        # ¼ì²éÊÇ·ñ³¬¹ıãĞÖµ
+        # æ£€æŸ¥æ˜¯å¦è¶…è¿‡é˜ˆå€¼
         if volume_ratio > threshold:
-            return False, volume_ratio, recent_volume, avg_volume, f"³É½»Á¿Òì³£:½ü1ÈÕ{recent_volume:.0f} > ½ü{lookback_days}ÈÕ¾ùÖµ{avg_volume:.0f}µÄ{threshold}±¶"
+            return False, volume_ratio, recent_volume, avg_volume, f"æˆäº¤é‡å¼‚å¸¸:è¿‘1æ—¥{recent_volume:.0f} > è¿‘{lookback_days}æ—¥å‡å€¼{avg_volume:.0f}çš„{threshold}å€"
         else:
-            return True, volume_ratio, recent_volume, avg_volume, f"³É½»Á¿Õı³£:±ÈÖµ{volume_ratio:.2f}"
+            return True, volume_ratio, recent_volume, avg_volume, f"æˆäº¤é‡æ­£å¸¸:æ¯”å€¼{volume_ratio:.2f}"
     
     except Exception as e:
-        log.warn(f"¼ì²é{etf}³É½»Á¿Ê±³ö´í: {e}")
-        return True, 0.0, 0, 0, f"¼ì²é³ö´í:{str(e)}"
+        log.warn(f"æ£€æŸ¥{etf}æˆäº¤é‡æ—¶å‡ºé”™: {e}")
+        return True, 0.0, 0, 0, f"æ£€æŸ¥å‡ºé”™:{str(e)}"
 
-# ¼ÆËãRSIÖ¸±ê
+# è®¡ç®—RSIæŒ‡æ ‡
 def calculate_rsi(prices, period=6):
     """
-    ¼ÆËãRSIÖ¸±ê
-    :param prices: ¼Û¸ñĞòÁĞ
-    :param period: RSI¼ÆËãÖÜÆÚ
-    :return: RSIÖµÁĞ±í
+    è®¡ç®—RSIæŒ‡æ ‡
+    :param prices: ä»·æ ¼åºåˆ—
+    :param period: RSIè®¡ç®—å‘¨æœŸ
+    :return: RSIå€¼åˆ—è¡¨
     """
     if len(prices) < period + 1:
         return []
     
-    # ¼ÆËã¼Û¸ñ±ä»¯
+    # è®¡ç®—ä»·æ ¼å˜åŒ–
     deltas = np.diff(prices)
     
-    # ·ÖÀëÉÏÕÇºÍÏÂµø
+    # åˆ†ç¦»ä¸Šæ¶¨å’Œä¸‹è·Œ
     gains = np.where(deltas > 0, deltas, 0)
     losses = np.where(deltas < 0, -deltas, 0)
     
-    # ¼ÆËãÆ½¾ùÔöÒæºÍÆ½¾ùËğÊ§£¨¼òµ¥ÒÆ¶¯Æ½¾ù£©
+    # è®¡ç®—å¹³å‡å¢ç›Šå’Œå¹³å‡æŸå¤±ï¼ˆç®€å•ç§»åŠ¨å¹³å‡ï¼‰
     avg_gains = np.zeros_like(prices)
     avg_losses = np.zeros_like(prices)
     
-    # ³õÊ¼»¯µÚÒ»¸öÆ½¾ùÖµ
+    # åˆå§‹åŒ–ç¬¬ä¸€ä¸ªå¹³å‡å€¼
     avg_gains[period] = np.mean(gains[:period])
     avg_losses[period] = np.mean(losses[:period])
     
-    # ¼ÆËãºóĞøµÄRSIÖµ
+    # è®¡ç®—åç»­çš„RSIå€¼
     rsi_values = np.zeros(len(prices))
-    rsi_values[:period] = 50  # ³õÊ¼ÖµÉèÎª50
+    rsi_values[:period] = 50  # åˆå§‹å€¼è®¾ä¸º50
     
     for i in range(period + 1, len(prices)):
         avg_gains[i] = (avg_gains[i-1] * (period - 1) + gains[i-1]) / period
@@ -514,20 +514,20 @@ def calculate_rsi(prices, period=6):
     
     return rsi_values[period:]
 
-# ¼ÆËãMACDÖ¸±ê
+# è®¡ç®—MACDæŒ‡æ ‡
 def calculate_macd(prices, fast_period=12, slow_period=26, signal_period=9):
     """
-    ¼ÆËãMACDÖ¸±ê
-    :param prices: ¼Û¸ñĞòÁĞ
-    :param fast_period: ¿ìÏßÖÜÆÚ
-    :param slow_period: ÂıÏßÖÜÆÚ
-    :param signal_period: ĞÅºÅÏßÖÜÆÚ
-    :return: MACDÖ¸±êÖµ (DIF, DEA, MACDÖù)
+    è®¡ç®—MACDæŒ‡æ ‡
+    :param prices: ä»·æ ¼åºåˆ—
+    :param fast_period: å¿«çº¿å‘¨æœŸ
+    :param slow_period: æ…¢çº¿å‘¨æœŸ
+    :param signal_period: ä¿¡å·çº¿å‘¨æœŸ
+    :return: MACDæŒ‡æ ‡å€¼ (DIF, DEA, MACDæŸ±)
     """
     if len(prices) < slow_period + signal_period:
         return [], [], []
     
-    # ¼ÆËãEMA
+    # è®¡ç®—EMA
     def calculate_ema(data, period):
         ema = np.zeros_like(data)
         ema[0] = data[0]
@@ -538,61 +538,61 @@ def calculate_macd(prices, fast_period=12, slow_period=26, signal_period=9):
         
         return ema
     
-    # ¼ÆËã¿ìÏßEMAºÍÂıÏßEMA
+    # è®¡ç®—å¿«çº¿EMAå’Œæ…¢çº¿EMA
     ema_fast = calculate_ema(prices, fast_period)
     ema_slow = calculate_ema(prices, slow_period)
     
-    # ¼ÆËãDIF£¨²îÀëÖµ£©
+    # è®¡ç®—DIFï¼ˆå·®ç¦»å€¼ï¼‰
     dif = ema_fast - ema_slow
     
-    # ¼ÆËãDEA£¨DIFµÄEMA£©
+    # è®¡ç®—DEAï¼ˆDIFçš„EMAï¼‰
     dea = calculate_ema(dif, signal_period)
     
-    # ¼ÆËãMACDÖù£¨DIF-DEA£©
+    # è®¡ç®—MACDæŸ±ï¼ˆDIF-DEAï¼‰
     macd_bar = dif - dea
     
-    # Ö»·µ»ØÓĞĞ§Êı¾İ£¨È¥µôÇ°Ãæ²»¹»¼ÆËãµÄ²¿·Ö£©
+    # åªè¿”å›æœ‰æ•ˆæ•°æ®ï¼ˆå»æ‰å‰é¢ä¸å¤Ÿè®¡ç®—çš„éƒ¨åˆ†ï¼‰
     start_idx = slow_period + signal_period - 1
     return dif[start_idx:], dea[start_idx:], macd_bar[start_idx:]
 
-# ¼ì²é³Ö²Ö×´Ì¬
+# æ£€æŸ¥æŒä»“çŠ¶æ€
 def check_positions(context):
-    """Ã¿ÈÕ¿ªÅÌºó¼ì²é³Ö²Ö×´Ì¬"""
+    """æ¯æ—¥å¼€ç›˜åæ£€æŸ¥æŒä»“çŠ¶æ€"""
     current_data = get_current_data()
     for security in context.portfolio.positions:
         position = context.portfolio.positions[security]
         if position.total_amount > 0:
             security_name = get_security_name(security)
-            log.info(f"?? ³Ö²Ö¼ì²é: {security} {security_name}, ÊıÁ¿: {position.total_amount}, ³É±¾: {position.avg_cost:.3f}, µ±Ç°¼Û: {position.price:.3f}")
+            log.info(f"?? æŒä»“æ£€æŸ¥: {security} {security_name}, æ•°é‡: {position.total_amount}, æˆæœ¬: {position.avg_cost:.3f}, å½“å‰ä»·: {position.price:.3f}")
 
-# ¼ÆËãETF¶¯Á¿µÃ·Ö£¨Ìí¼Ó¶ÌÆÚ¶¯Á¿ºÍMA¼ÆËã£©
+# è®¡ç®—ETFåŠ¨é‡å¾—åˆ†ï¼ˆæ·»åŠ çŸ­æœŸåŠ¨é‡å’ŒMAè®¡ç®—ï¼‰
 def calculate_momentum_metrics(etf):
     try:
-        # »ñÈ¡ÀúÊ·¼Û¸ñÊı¾İ - Ê¹ÓÃattribute_history±ÜÃâÎ´À´º¯Êı
-        # »ñÈ¡×ã¹»¶àµÄÊı¾İÓÃÓÚ³¤ÆÚºÍ¶ÌÆÚ¶¯Á¿¼ÆËã
+        # è·å–å†å²ä»·æ ¼æ•°æ® - ä½¿ç”¨attribute_historyé¿å…æœªæ¥å‡½æ•°
+        # è·å–è¶³å¤Ÿå¤šçš„æ•°æ®ç”¨äºé•¿æœŸå’ŒçŸ­æœŸåŠ¨é‡è®¡ç®—
         lookback = max(g.lookback_days, g.short_lookback_days, g.ma_long_period, 
                       g.rsi_period + g.rsi_lookback_days, 
                       g.macd_slow_period + g.macd_signal_period,
                       g.volume_lookback_days,
-                      g.bollinger_period + g.bollinger_lookback_days) + 20  # ¼Ó20Ìì±£Ö¤ÓĞ×ã¹»Êı¾İ
+                      g.bollinger_period + g.bollinger_lookback_days) + 20  # åŠ 20å¤©ä¿è¯æœ‰è¶³å¤Ÿæ•°æ®
         prices = attribute_history(etf, lookback, '1d', ['close', 'high'])
         current_data = get_current_data()
         
-        # ¼ì²éÊı¾İÊÇ·ñ×ã¹»
+        # æ£€æŸ¥æ•°æ®æ˜¯å¦è¶³å¤Ÿ
         if len(prices) < lookback:
             return None
             
-        # ²ßÂÔ1µÄ¹Ø¼ü£º»ñÈ¡µ±Ç°¼Û¸ñ²¢Ìí¼Óµ½¼Û¸ñĞòÁĞÖĞ
+        # ç­–ç•¥1çš„å…³é”®ï¼šè·å–å½“å‰ä»·æ ¼å¹¶æ·»åŠ åˆ°ä»·æ ¼åºåˆ—ä¸­
         current_price = current_data[etf].last_price
         price_series = np.append(prices["close"].values, current_price)
         
-        # ========== ĞÂÔö£º¼ÆËãMAÖ¸±ê ==========
+        # ========== æ–°å¢ï¼šè®¡ç®—MAæŒ‡æ ‡ ==========
         if len(price_series) >= g.ma_long_period:
-            # ¼ÆËãMA5ºÍMA25
+            # è®¡ç®—MA5å’ŒMA25
             ma5 = np.mean(price_series[-g.ma_short_period:])
             ma25 = np.mean(price_series[-g.ma_long_period:])
             
-            # ÅĞ¶ÏMA¹ıÂËÌõ¼şÊÇ·ñÂú×ã
+            # åˆ¤æ–­MAè¿‡æ»¤æ¡ä»¶æ˜¯å¦æ»¡è¶³
             if g.ma_filter_condition == "above":
                 ma_condition_met = ma5 >= ma25
                 condition_desc = f"MA{g.ma_short_period}>={g.ma_long_period}"
@@ -600,64 +600,64 @@ def calculate_momentum_metrics(etf):
                 ma_condition_met = ma5 <= ma25
                 condition_desc = f"MA{g.ma_short_period}<={g.ma_long_period}"
             
-            ma_ratio = ma5 / ma25 - 1  # MAÏà¶Ô±ÈÖµ
+            ma_ratio = ma5 / ma25 - 1  # MAç›¸å¯¹æ¯”å€¼
         else:
             ma5 = 0
             ma25 = 0
-            ma_condition_met = True  # Êı¾İ²»×ãÊ±Ä¬ÈÏÂú×ãÌõ¼ş
+            ma_condition_met = True  # æ•°æ®ä¸è¶³æ—¶é»˜è®¤æ»¡è¶³æ¡ä»¶
             ma_ratio = 0
-            condition_desc = "Êı¾İ²»×ã"
+            condition_desc = "æ•°æ®ä¸è¶³"
         # =====================================
         
-        # ========== ĞÂÔö£º¼ÆËãRSIÖ¸±ê²¢¼ì²é¹ıÂËÌõ¼ş ==========
-        rsi_filter_pass = True  # Ä¬ÈÏÍ¨¹ıRSI¹ıÂË
+        # ========== æ–°å¢ï¼šè®¡ç®—RSIæŒ‡æ ‡å¹¶æ£€æŸ¥è¿‡æ»¤æ¡ä»¶ ==========
+        rsi_filter_pass = True  # é»˜è®¤é€šè¿‡RSIè¿‡æ»¤
         
         if g.use_rsi_filter and len(price_series) >= g.rsi_period + g.rsi_lookback_days:
-            # ¼ÆËãRSIÖ¸±ê
+            # è®¡ç®—RSIæŒ‡æ ‡
             rsi_values = calculate_rsi(price_series, g.rsi_period)
             
             if len(rsi_values) >= g.rsi_lookback_days:
-                # »ñÈ¡×î½üg.rsi_lookback_daysÈÕµÄRSIÖµ
+                # è·å–æœ€è¿‘g.rsi_lookback_daysæ—¥çš„RSIå€¼
                 recent_rsi = rsi_values[-g.rsi_lookback_days:]
                 
-                # ¼ì²éÊÇ·ñÔø¾­³¬¹ıãĞÖµ
+                # æ£€æŸ¥æ˜¯å¦æ›¾ç»è¶…è¿‡é˜ˆå€¼
                 rsi_ever_above_threshold = np.any(recent_rsi > g.rsi_threshold)
                 
-                # ¼ì²éµ±Ç°¼Û¸ñÊÇ·ñÔÚMA5Ö®ÏÂ
+                # æ£€æŸ¥å½“å‰ä»·æ ¼æ˜¯å¦åœ¨MA5ä¹‹ä¸‹
                 #current_below_ma5 = current_price < ma5 if ma5 > 0 else False
                 current_below_ma5 = True
-                # Èç¹û½üNÈÕRSIÔø¾­´óÓÚãĞÖµÇÒµ±Ç°¼Û¸ñÔÚMA5Ö®ÏÂ£¬Ôò¹ıÂËµô
+                # å¦‚æœè¿‘Næ—¥RSIæ›¾ç»å¤§äºé˜ˆå€¼ä¸”å½“å‰ä»·æ ¼åœ¨MA5ä¹‹ä¸‹ï¼Œåˆ™è¿‡æ»¤æ‰
                 if rsi_ever_above_threshold and current_below_ma5:
                     rsi_filter_pass = False
                     
-                    # »ñÈ¡×î´óRSIÖµºÍµ±Ç°RSIÖµ
+                    # è·å–æœ€å¤§RSIå€¼å’Œå½“å‰RSIå€¼
                     max_rsi = np.max(recent_rsi)
                     current_rsi = recent_rsi[-1] if len(recent_rsi) > 0 else 0
-                    log.info(f"? RSI¹ıÂË: {etf} {get_security_name(etf)} ½ü{g.rsi_lookback_days}ÈÕRSIÔø´ï{max_rsi:.1f}>={g.rsi_threshold}£¬µ±Ç°¼Û{current_price:.3f}<MA5({ma5:.3f})£¬µ±Ç°RSI={current_rsi:.1f}")
+                    log.info(f"? RSIè¿‡æ»¤: {etf} {get_security_name(etf)} è¿‘{g.rsi_lookback_days}æ—¥RSIæ›¾è¾¾{max_rsi:.1f}>={g.rsi_threshold}ï¼Œå½“å‰ä»·{current_price:.3f}<MA5({ma5:.3f})ï¼Œå½“å‰RSI={current_rsi:.1f}")
                 else:
-                    # ¼ÇÂ¼RSIĞÅÏ¢µ«²»¹ıÂË
+                    # è®°å½•RSIä¿¡æ¯ä½†ä¸è¿‡æ»¤
                     max_rsi = np.max(recent_rsi) if len(recent_rsi) > 0 else 0
                     current_rsi = recent_rsi[-1] if len(recent_rsi) > 0 else 0
                     rsi_info = f"RSI(max={max_rsi:.1f}, current={current_rsi:.1f})"
             else:
-                rsi_info = "RSIÊı¾İ²»×ã"
+                rsi_info = "RSIæ•°æ®ä¸è¶³"
                 current_rsi = 0
                 max_rsi = 0
         else:
-            rsi_info = "Î´ÆôÓÃRSI¹ıÂË»òÊı¾İ²»×ã"
+            rsi_info = "æœªå¯ç”¨RSIè¿‡æ»¤æˆ–æ•°æ®ä¸è¶³"
             current_rsi = 0
             max_rsi = 0
         # ===================================================
         
-        # ========== ĞÂÔö£º¼ÆËãMACDÖ¸±ê²¢¼ì²é¹ıÂËÌõ¼ş ==========
-        macd_filter_pass = True  # Ä¬ÈÏÍ¨¹ıMACD¹ıÂË
+        # ========== æ–°å¢ï¼šè®¡ç®—MACDæŒ‡æ ‡å¹¶æ£€æŸ¥è¿‡æ»¤æ¡ä»¶ ==========
+        macd_filter_pass = True  # é»˜è®¤é€šè¿‡MACDè¿‡æ»¤
         dif_value = 0
         dea_value = 0
         macd_bar = 0
-        macd_info = "Î´ÆôÓÃMACD¹ıÂË»òÊı¾İ²»×ã"
+        macd_info = "æœªå¯ç”¨MACDè¿‡æ»¤æˆ–æ•°æ®ä¸è¶³"
         
         if g.use_macd_filter and len(price_series) >= g.macd_slow_period + g.macd_signal_period:
-            # ¼ÆËãMACDÖ¸±ê
+            # è®¡ç®—MACDæŒ‡æ ‡
             dif_values, dea_values, macd_bars = calculate_macd(
                 price_series, 
                 g.macd_fast_period, 
@@ -666,18 +666,18 @@ def calculate_momentum_metrics(etf):
             )
             
             if len(dif_values) > 0:
-                # »ñÈ¡×îĞÂµÄMACDÖµ
+                # è·å–æœ€æ–°çš„MACDå€¼
                 dif_value = dif_values[-1] if len(dif_values) > 0 else 0
                 dea_value = dea_values[-1] if len(dea_values) > 0 else 0
                 macd_bar = macd_bars[-1] if len(macd_bars) > 0 else 0
                 
-                # ÅĞ¶ÏMACD¹ıÂËÌõ¼şÊÇ·ñÂú×ã
+                # åˆ¤æ–­MACDè¿‡æ»¤æ¡ä»¶æ˜¯å¦æ»¡è¶³
                 if g.macd_filter_condition == "bullish":
-                    # ¿´¶àÌõ¼ş£ºDIF > DEA£¨½ğ²æ»ò±£³Ö¶àÍ·£©
+                    # çœ‹å¤šæ¡ä»¶ï¼šDIF > DEAï¼ˆé‡‘å‰æˆ–ä¿æŒå¤šå¤´ï¼‰
                     macd_condition_met = dif_value > dea_value
                     condition_desc = f"DIF({dif_value:.4f})>DEA({dea_value:.4f})"
                 else:
-                    # ¿´¿ÕÌõ¼ş£ºDIF < DEA£¨ËÀ²æ»ò±£³Ö¿ÕÍ·£©
+                    # çœ‹ç©ºæ¡ä»¶ï¼šDIF < DEAï¼ˆæ­»å‰æˆ–ä¿æŒç©ºå¤´ï¼‰
                     macd_condition_met = dif_value < dea_value
                     condition_desc = f"DIF({dif_value:.4f})<DEA({dea_value:.4f})"
                 
@@ -685,17 +685,17 @@ def calculate_momentum_metrics(etf):
                 macd_info = f"MACD(DIF={dif_value:.4f}, DEA={dea_value:.4f}, BAR={macd_bar:.4f})"
                 
                 if not macd_filter_pass:
-                    log.info(f"?? MACD¹ıÂË: {etf} {get_security_name(etf)} ²»Âú×ã{condition_desc}£¬MACDÖù={macd_bar:.4f}")
+                    log.info(f"?? MACDè¿‡æ»¤: {etf} {get_security_name(etf)} ä¸æ»¡è¶³{condition_desc}ï¼ŒMACDæŸ±={macd_bar:.4f}")
             else:
-                macd_info = "MACDÊı¾İ²»×ã"
+                macd_info = "MACDæ•°æ®ä¸è¶³"
         # ===================================================
         
-        # ========== ĞÂÔö£º¼ì²é³É½»Á¿Òì³£ ==========
-        volume_filter_pass = True  # Ä¬ÈÏÍ¨¹ı³É½»Á¿¹ıÂË
+        # ========== æ–°å¢ï¼šæ£€æŸ¥æˆäº¤é‡å¼‚å¸¸ ==========
+        volume_filter_pass = True  # é»˜è®¤é€šè¿‡æˆäº¤é‡è¿‡æ»¤
         volume_ratio = 0
         recent_volume = 0
         avg_volume = 0
-        volume_info = "Î´ÆôÓÃ³É½»Á¿¹ıÂË"
+        volume_info = "æœªå¯ç”¨æˆäº¤é‡è¿‡æ»¤"
         
         if g.use_volume_filter:
             volume_filter_pass, volume_ratio, recent_volume, avg_volume, volume_info = check_volume_anomaly(
@@ -707,12 +707,12 @@ def calculate_momentum_metrics(etf):
             )
             
             if not volume_filter_pass:
-                log.info(f"?? ³É½»Á¿¹ıÂË: {etf} {get_security_name(etf)} {volume_info}")
+                log.info(f"?? æˆäº¤é‡è¿‡æ»¤: {etf} {get_security_name(etf)} {volume_info}")
         # =====================================
         
-        # ========== ĞÂÔö£º¼ì²é²¼ÁÖ´ø¹ıÂËÌõ¼ş ==========
-        bollinger_filter_pass = True  # Ä¬ÈÏÍ¨¹ı²¼ÁÖ´ø¹ıÂË
-        bollinger_info = "Î´ÆôÓÃ²¼ÁÖ´ø¹ıÂË"
+        # ========== æ–°å¢ï¼šæ£€æŸ¥å¸ƒæ—å¸¦è¿‡æ»¤æ¡ä»¶ ==========
+        bollinger_filter_pass = True  # é»˜è®¤é€šè¿‡å¸ƒæ—å¸¦è¿‡æ»¤
+        bollinger_info = "æœªå¯ç”¨å¸ƒæ—å¸¦è¿‡æ»¤"
         
         if g.use_bollinger_filter:
             bollinger_filter_pass, bollinger_info = check_bollinger_filter(
@@ -724,50 +724,50 @@ def calculate_momentum_metrics(etf):
             )
             
             if not bollinger_filter_pass:
-                log.info(f"?? ²¼ÁÖ´ø¹ıÂË: {etf} {get_security_name(etf)} {bollinger_info}")
+                log.info(f"?? å¸ƒæ—å¸¦è¿‡æ»¤: {etf} {get_security_name(etf)} {bollinger_info}")
         # ============================================
         
-        # ========== ¼ÆËã¶ÌÆÚ¶¯Á¿ ==========
+        # ========== è®¡ç®—çŸ­æœŸåŠ¨é‡ ==========
         if len(price_series) >= g.short_lookback_days + 1:
-            # ¼ÆËã¶ÌÆÚ¶¯Á¿£º½üNÌìµÄÊÕÒæÂÊ
+            # è®¡ç®—çŸ­æœŸåŠ¨é‡ï¼šè¿‘Nå¤©çš„æ”¶ç›Šç‡
             short_return = price_series[-1] / price_series[-(g.short_lookback_days + 1)] - 1
-            # ×ª»»ÎªÄê»¯ÊÕÒæÂÊ
+            # è½¬æ¢ä¸ºå¹´åŒ–æ”¶ç›Šç‡
             short_annualized = (1 + short_return) ** (250 / g.short_lookback_days) - 1
         else:
             short_return = 0
             short_annualized = 0
         # =====================================
 
-        # Ê¹ÓÃ²ßÂÔ1µÄÏßĞÔÈ¨ÖØ¼ÆËã·½Ê½¼ÆËã³¤ÆÚ¶¯Á¿
-        # Ê¹ÓÃ×îºóg.lookback_days+1ÌìµÄÊı¾İ£¨°üÀ¨µ±Ç°¼Û¸ñ£©
+        # ä½¿ç”¨ç­–ç•¥1çš„çº¿æ€§æƒé‡è®¡ç®—æ–¹å¼è®¡ç®—é•¿æœŸåŠ¨é‡
+        # ä½¿ç”¨æœ€åg.lookback_days+1å¤©çš„æ•°æ®ï¼ˆåŒ…æ‹¬å½“å‰ä»·æ ¼ï¼‰
         recent_price_series = price_series[-(g.lookback_days + 1):]
         y = np.log(recent_price_series)
         x = np.arange(len(y))
-        weights = np.linspace(1, 2, len(y))  # ÏßĞÔÈ¨ÖØ1-2£¬½üÆÚÈ¨ÖØ¸ü¸ß
+        weights = np.linspace(1, 2, len(y))  # çº¿æ€§æƒé‡1-2ï¼Œè¿‘æœŸæƒé‡æ›´é«˜
 
-        # ¼ÆËãÄê»¯ÊÕÒæÂÊ£¨ÍêÈ«¸´ÖÆ²ßÂÔ1£©
+        # è®¡ç®—å¹´åŒ–æ”¶ç›Šç‡ï¼ˆå®Œå…¨å¤åˆ¶ç­–ç•¥1ï¼‰
         slope, intercept = np.polyfit(x, y, 1, w=weights)
-        annualized_returns = math.exp(slope * 250) - 1  # Äê»¯´¦Àí
+        annualized_returns = math.exp(slope * 250) - 1  # å¹´åŒ–å¤„ç†
 
-        # ¼ÆËãR2£¨ÄâºÏÓÅ¶È£¬ÖµÔ½¸ßÇ÷ÊÆÔ½ÎÈ¶¨£©- Ê¹ÓÃ¼ÓÈ¨¼ÆËã£¨²ßÂÔ1·½Ê½£©
+        # è®¡ç®—R2ï¼ˆæ‹Ÿåˆä¼˜åº¦ï¼Œå€¼è¶Šé«˜è¶‹åŠ¿è¶Šç¨³å®šï¼‰- ä½¿ç”¨åŠ æƒè®¡ç®—ï¼ˆç­–ç•¥1æ–¹å¼ï¼‰
         ss_res = np.sum(weights * (y - (slope * x + intercept)) ** 2)
         ss_tot = np.sum(weights * (y - np.mean(y)) ** 2)
         r_squared = 1 - ss_res / ss_tot if ss_tot else 0
 
-        # ×ÛºÏµÃ·Ö = Äê»¯ÊÕÒæÂÊ * Ç÷ÊÆÎÈ¶¨ĞÔ£¨²ßÂÔ1µÄºËĞÄ¹«Ê½£©
+        # ç»¼åˆå¾—åˆ† = å¹´åŒ–æ”¶ç›Šç‡ * è¶‹åŠ¿ç¨³å®šæ€§ï¼ˆç­–ç•¥1çš„æ ¸å¿ƒå…¬å¼ï¼‰
         score = annualized_returns * r_squared
 
-        # ²ßÂÔ1µÄ¶ÌÆÚ·ç¿Ø£º¹ıÂË½ü3ÈÕµø·ù³¬¹ıN%µÄETF
+        # ç­–ç•¥1çš„çŸ­æœŸé£æ§ï¼šè¿‡æ»¤è¿‘3æ—¥è·Œå¹…è¶…è¿‡N%çš„ETF
         if len(price_series) >= 4:
-            # ¼ì²é×î½ü3¸ö½»Ò×ÈÕµÄÁ¬Ğø±íÏÖ£¨²ßÂÔ1µÄÑÏ¸ñ·ç¿Ø£©
-            day1_ratio = price_series[-1] / price_series[-2]  # ½ñÈÕ/×òÈÕ
-            day2_ratio = price_series[-2] / price_series[-3]  # ×òÈÕ/Ç°ÈÕ  
-            day3_ratio = price_series[-3] / price_series[-4]  # Ç°ÈÕ/´óÇ°ÈÕ
+            # æ£€æŸ¥æœ€è¿‘3ä¸ªäº¤æ˜“æ—¥çš„è¿ç»­è¡¨ç°ï¼ˆç­–ç•¥1çš„ä¸¥æ ¼é£æ§ï¼‰
+            day1_ratio = price_series[-1] / price_series[-2]  # ä»Šæ—¥/æ˜¨æ—¥
+            day2_ratio = price_series[-2] / price_series[-3]  # æ˜¨æ—¥/å‰æ—¥  
+            day3_ratio = price_series[-3] / price_series[-4]  # å‰æ—¥/å¤§å‰æ—¥
             
-            # Èç¹ûÈÎÒâÒ»ÈÕµø·ù³¬¹ıN%£¬ÅÅ³ı¸ÃETF£¨²ßÂÔ1µÄÂß¼­£©
+            # å¦‚æœä»»æ„ä¸€æ—¥è·Œå¹…è¶…è¿‡N%ï¼Œæ’é™¤è¯¥ETFï¼ˆç­–ç•¥1çš„é€»è¾‘ï¼‰
             if min(day1_ratio, day2_ratio, day3_ratio) < g.loss:
-                score = 0  # ÉèÎª0·Ö£¬²»»á±»Ñ¡ÖĞ
-                log.info(f"?? {etf} {get_security_name(etf)} ½ü3ÈÕÓĞµ¥ÈÕµø·ù³¬5%£¬ÒÑÅÅ³ı")
+                score = 0  # è®¾ä¸º0åˆ†ï¼Œä¸ä¼šè¢«é€‰ä¸­
+                log.info(f"?? {etf} {get_security_name(etf)} è¿‘3æ—¥æœ‰å•æ—¥è·Œå¹…è¶…5%ï¼Œå·²æ’é™¤")
 
         return {
             'etf': etf,
@@ -776,161 +776,161 @@ def calculate_momentum_metrics(etf):
             'score': score,
             'slope': slope,
             'current_price': current_price,
-            'short_return': short_return,  # ĞÂÔö£º¶ÌÆÚÊÕÒæÂÊ
-            'short_annualized': short_annualized,  # ĞÂÔö£ºÄê»¯¶ÌÆÚ¶¯Á¿
-            'short_momentum_pass': short_return >= g.short_momentum_threshold,  # ĞÂÔö£ºÊÇ·ñÍ¨¹ı¶ÌÆÚ¶¯Á¿¹ıÂË
-            'ma5': ma5,  # ĞÂÔö£ºMA5Öµ
-            'ma25': ma25,  # ĞÂÔö£ºMA25Öµ
-            'ma_condition_met': ma_condition_met,  # ĞÂÔö£ºÊÇ·ñÂú×ãMAÌõ¼ş
-            'ma_ratio': ma_ratio,  # ĞÂÔö£ºMAÏà¶Ô±ÈÖµ
-            'ma_condition_desc': condition_desc,  # ĞÂÔö£ºMAÌõ¼şÃèÊö
-            'rsi_filter_pass': rsi_filter_pass,  # ĞÂÔö£ºÊÇ·ñÍ¨¹ıRSI¹ıÂË
-            'current_rsi': current_rsi,  # ĞÂÔö£ºµ±Ç°RSIÖµ
-            'max_recent_rsi': max_rsi,  # ĞÂÔö£º½üÆÚ×î´óRSIÖµ
-            'rsi_info': rsi_info,  # ĞÂÔö£ºRSIĞÅÏ¢ÃèÊö
-            'macd_filter_pass': macd_filter_pass,  # ĞÂÔö£ºÊÇ·ñÍ¨¹ıMACD¹ıÂË
-            'dif': dif_value,  # ĞÂÔö£ºDIFÖµ
-            'dea': dea_value,  # ĞÂÔö£ºDEAÖµ
-            'macd_bar': macd_bar,  # ĞÂÔö£ºMACDÖùÖµ
-            'macd_info': macd_info,  # ĞÂÔö£ºMACDĞÅÏ¢ÃèÊö
-            'volume_filter_pass': volume_filter_pass,  # ĞÂÔö£ºÊÇ·ñÍ¨¹ı³É½»Á¿¹ıÂË
-            'volume_ratio': volume_ratio,  # ĞÂÔö£º³É½»Á¿±ÈÖµ
-            'recent_volume': recent_volume,  # ĞÂÔö£º½ü1ÈÕ³É½»Á¿
-            'avg_volume': avg_volume,  # ĞÂÔö£º¾ù³É½»Á¿
-            'volume_info': volume_info,  # ĞÂÔö£º³É½»Á¿ĞÅÏ¢ÃèÊö
-            'bollinger_filter_pass': bollinger_filter_pass,  # ĞÂÔö£ºÊÇ·ñÍ¨¹ı²¼ÁÖ´ø¹ıÂË
-            'bollinger_info': bollinger_info  # ĞÂÔö£º²¼ÁÖ´øĞÅÏ¢ÃèÊö
+            'short_return': short_return,  # æ–°å¢ï¼šçŸ­æœŸæ”¶ç›Šç‡
+            'short_annualized': short_annualized,  # æ–°å¢ï¼šå¹´åŒ–çŸ­æœŸåŠ¨é‡
+            'short_momentum_pass': short_return >= g.short_momentum_threshold,  # æ–°å¢ï¼šæ˜¯å¦é€šè¿‡çŸ­æœŸåŠ¨é‡è¿‡æ»¤
+            'ma5': ma5,  # æ–°å¢ï¼šMA5å€¼
+            'ma25': ma25,  # æ–°å¢ï¼šMA25å€¼
+            'ma_condition_met': ma_condition_met,  # æ–°å¢ï¼šæ˜¯å¦æ»¡è¶³MAæ¡ä»¶
+            'ma_ratio': ma_ratio,  # æ–°å¢ï¼šMAç›¸å¯¹æ¯”å€¼
+            'ma_condition_desc': condition_desc,  # æ–°å¢ï¼šMAæ¡ä»¶æè¿°
+            'rsi_filter_pass': rsi_filter_pass,  # æ–°å¢ï¼šæ˜¯å¦é€šè¿‡RSIè¿‡æ»¤
+            'current_rsi': current_rsi,  # æ–°å¢ï¼šå½“å‰RSIå€¼
+            'max_recent_rsi': max_rsi,  # æ–°å¢ï¼šè¿‘æœŸæœ€å¤§RSIå€¼
+            'rsi_info': rsi_info,  # æ–°å¢ï¼šRSIä¿¡æ¯æè¿°
+            'macd_filter_pass': macd_filter_pass,  # æ–°å¢ï¼šæ˜¯å¦é€šè¿‡MACDè¿‡æ»¤
+            'dif': dif_value,  # æ–°å¢ï¼šDIFå€¼
+            'dea': dea_value,  # æ–°å¢ï¼šDEAå€¼
+            'macd_bar': macd_bar,  # æ–°å¢ï¼šMACDæŸ±å€¼
+            'macd_info': macd_info,  # æ–°å¢ï¼šMACDä¿¡æ¯æè¿°
+            'volume_filter_pass': volume_filter_pass,  # æ–°å¢ï¼šæ˜¯å¦é€šè¿‡æˆäº¤é‡è¿‡æ»¤
+            'volume_ratio': volume_ratio,  # æ–°å¢ï¼šæˆäº¤é‡æ¯”å€¼
+            'recent_volume': recent_volume,  # æ–°å¢ï¼šè¿‘1æ—¥æˆäº¤é‡
+            'avg_volume': avg_volume,  # æ–°å¢ï¼šå‡æˆäº¤é‡
+            'volume_info': volume_info,  # æ–°å¢ï¼šæˆäº¤é‡ä¿¡æ¯æè¿°
+            'bollinger_filter_pass': bollinger_filter_pass,  # æ–°å¢ï¼šæ˜¯å¦é€šè¿‡å¸ƒæ—å¸¦è¿‡æ»¤
+            'bollinger_info': bollinger_info  # æ–°å¢ï¼šå¸ƒæ—å¸¦ä¿¡æ¯æè¿°
         }
     except Exception as e:
-        log.warn(f"¼ÆËã{etf}¶¯Á¿Ö¸±êÊ±³ö´í: {e}")
+        log.warn(f"è®¡ç®—{etf}åŠ¨é‡æŒ‡æ ‡æ—¶å‡ºé”™: {e}")
         return None
 
-# »ñÈ¡ETFÅÅÃû£¨Ìí¼Ó¶ÌÆÚ¶¯Á¿ºÍMA¹ıÂË£©
+# è·å–ETFæ’åï¼ˆæ·»åŠ çŸ­æœŸåŠ¨é‡å’ŒMAè¿‡æ»¤ï¼‰
 def get_ranked_etfs():
     etf_metrics = []
     for etf in g.etf_pool:
         metrics = calculate_momentum_metrics(etf)
         if metrics is not None:
-            # Ó¦ÓÃ¶ÌÆÚ¶¯Á¿¹ıÂË£¨Èç¹ûÆôÓÃ£©
+            # åº”ç”¨çŸ­æœŸåŠ¨é‡è¿‡æ»¤ï¼ˆå¦‚æœå¯ç”¨ï¼‰
             if g.use_short_momentum_filter and not metrics['short_momentum_pass']:
-                log.info(f"?? ÅÅ³ı¶ÌÆÚ¶¯Á¿²»×ãµÄETF: {etf} {get_security_name(etf)}£¬¶ÌÆÚ¶¯Á¿: {metrics['short_return']:.4f}£¬ãĞÖµ: {g.short_momentum_threshold}")
+                log.info(f"?? æ’é™¤çŸ­æœŸåŠ¨é‡ä¸è¶³çš„ETF: {etf} {get_security_name(etf)}ï¼ŒçŸ­æœŸåŠ¨é‡: {metrics['short_return']:.4f}ï¼Œé˜ˆå€¼: {g.short_momentum_threshold}")
                 continue
             
-            # Ó¦ÓÃMA¹ıÂË£¨Èç¹ûÆôÓÃ£©
+            # åº”ç”¨MAè¿‡æ»¤ï¼ˆå¦‚æœå¯ç”¨ï¼‰
             if g.use_ma_filter and not metrics['ma_condition_met']:
-                log.info(f"?? ÅÅ³ıMAÌõ¼ş²»·ûµÄETF: {etf} {get_security_name(etf)}£¬MA{g.ma_short_period}: {metrics['ma5']:.3f}£¬MA{g.ma_long_period}: {metrics['ma25']:.3f}£¬{metrics['ma_condition_desc']}: {metrics['ma_ratio']:.4f}")
+                log.info(f"?? æ’é™¤MAæ¡ä»¶ä¸ç¬¦çš„ETF: {etf} {get_security_name(etf)}ï¼ŒMA{g.ma_short_period}: {metrics['ma5']:.3f}ï¼ŒMA{g.ma_long_period}: {metrics['ma25']:.3f}ï¼Œ{metrics['ma_condition_desc']}: {metrics['ma_ratio']:.4f}")
                 continue
             
-            # Ó¦ÓÃRSI¹ıÂË£¨Èç¹ûÆôÓÃ£©
+            # åº”ç”¨RSIè¿‡æ»¤ï¼ˆå¦‚æœå¯ç”¨ï¼‰
             if g.use_rsi_filter and not metrics['rsi_filter_pass']:
-                # ÒÑ¾­ÔÚcalculate_momentum_metricsÖĞ¼ÇÂ¼ÁËÈÕÖ¾£¬ÕâÀïÖ±½ÓÌø¹ı
+                # å·²ç»åœ¨calculate_momentum_metricsä¸­è®°å½•äº†æ—¥å¿—ï¼Œè¿™é‡Œç›´æ¥è·³è¿‡
                 continue
             
-            # Ó¦ÓÃMACD¹ıÂË£¨Èç¹ûÆôÓÃ£©
+            # åº”ç”¨MACDè¿‡æ»¤ï¼ˆå¦‚æœå¯ç”¨ï¼‰
             if g.use_macd_filter and not metrics['macd_filter_pass']:
-                # ÒÑ¾­ÔÚcalculate_momentum_metricsÖĞ¼ÇÂ¼ÁËÈÕÖ¾£¬ÕâÀïÖ±½ÓÌø¹ı
+                # å·²ç»åœ¨calculate_momentum_metricsä¸­è®°å½•äº†æ—¥å¿—ï¼Œè¿™é‡Œç›´æ¥è·³è¿‡
                 continue
             
-            # Ó¦ÓÃ³É½»Á¿¹ıÂË£¨Èç¹ûÆôÓÃ£©
+            # åº”ç”¨æˆäº¤é‡è¿‡æ»¤ï¼ˆå¦‚æœå¯ç”¨ï¼‰
             if g.use_volume_filter and not metrics['volume_filter_pass']:
-                # ÒÑ¾­ÔÚcalculate_momentum_metricsÖĞ¼ÇÂ¼ÁËÈÕÖ¾£¬ÕâÀïÖ±½ÓÌø¹ı
+                # å·²ç»åœ¨calculate_momentum_metricsä¸­è®°å½•äº†æ—¥å¿—ï¼Œè¿™é‡Œç›´æ¥è·³è¿‡
                 continue
             
-            # Ó¦ÓÃ²¼ÁÖ´ø¹ıÂË£¨Èç¹ûÆôÓÃ£©
+            # åº”ç”¨å¸ƒæ—å¸¦è¿‡æ»¤ï¼ˆå¦‚æœå¯ç”¨ï¼‰
             if g.use_bollinger_filter and not metrics['bollinger_filter_pass']:
-                # ÒÑ¾­ÔÚcalculate_momentum_metricsÖĞ¼ÇÂ¼ÁËÈÕÖ¾£¬ÕâÀïÖ±½ÓÌø¹ı
+                # å·²ç»åœ¨calculate_momentum_metricsä¸­è®°å½•äº†æ—¥å¿—ï¼Œè¿™é‡Œç›´æ¥è·³è¿‡
                 continue
             
-            # ¹ıÂËµôµÃ·ÖÒì³£µÄETF£¨µÃ·Ö¹ı¸ß¿ÉÄÜÊÇÊı¾İÒì³££©
+            # è¿‡æ»¤æ‰å¾—åˆ†å¼‚å¸¸çš„ETFï¼ˆå¾—åˆ†è¿‡é«˜å¯èƒ½æ˜¯æ•°æ®å¼‚å¸¸ï¼‰
             if 0 < metrics['score'] < g.max_score_threshold:
                 etf_metrics.append(metrics)
             else:
-                log.info(f"ÅÅ³ıÒì³£ÖµETF: {etf} {get_security_name(etf)}£¬µÃ·Ö: {metrics['score']:.4f}")
+                log.info(f"æ’é™¤å¼‚å¸¸å€¼ETF: {etf} {get_security_name(etf)}ï¼Œå¾—åˆ†: {metrics['score']:.4f}")
     
-    # °´µÃ·Ö½µĞòÅÅĞò
+    # æŒ‰å¾—åˆ†é™åºæ’åº
     etf_metrics.sort(key=lambda x: x['score'], reverse=True)
     return etf_metrics
 
-# »ñÈ¡»ù½ğÃû³Æ
+# è·å–åŸºé‡‘åç§°
 def get_security_name(security):
-    """»ñÈ¡Ö¤È¯Ãû³Æ"""
+    """è·å–è¯åˆ¸åç§°"""
     current_data = get_current_data()
     return current_data[security].name if security in current_data else security
 
-# ×Ô¶¨ÒåÏÂµ¥º¯Êı£¨ÍêÉÆ½»Ò×Ö´ĞĞ¿ØÖÆ£¬²Î¿¼²ßÂÔ1µÄ½»Ò×Âß¼­£©
+# è‡ªå®šä¹‰ä¸‹å•å‡½æ•°ï¼ˆå®Œå–„äº¤æ˜“æ‰§è¡Œæ§åˆ¶ï¼Œå‚è€ƒç­–ç•¥1çš„äº¤æ˜“é€»è¾‘ï¼‰
 def smart_order_target_value(security, target_value, context):
     """
-    ÖÇÄÜÏÂµ¥º¯Êı£¬¼ì²é½»Ò×Ìõ¼ş²¢Ö´ĞĞÏÂµ¥
-    ²Î¿¼²ßÂÔ1µÄ½»Ò×¿ØÖÆÂß¼­
+    æ™ºèƒ½ä¸‹å•å‡½æ•°ï¼Œæ£€æŸ¥äº¤æ˜“æ¡ä»¶å¹¶æ‰§è¡Œä¸‹å•
+    å‚è€ƒç­–ç•¥1çš„äº¤æ˜“æ§åˆ¶é€»è¾‘
     """
     current_data = get_current_data()
     
-    # ¼ì²é±êµÄÊÇ·ñÍ£ÅÆ
+    # æ£€æŸ¥æ ‡çš„æ˜¯å¦åœç‰Œ
     if current_data[security].paused:
-        log.info(f"{security} {get_security_name(security)}: ½ñÈÕÍ£ÅÆ£¬Ìø¹ı½»Ò×")
+        log.info(f"{security} {get_security_name(security)}: ä»Šæ—¥åœç‰Œï¼Œè·³è¿‡äº¤æ˜“")
         return False
 
-    # ¼ì²éÕÇÍ££¨²ßÂÔ1µÄÕÇÍ£¼ì²é£©
+    # æ£€æŸ¥æ¶¨åœï¼ˆç­–ç•¥1çš„æ¶¨åœæ£€æŸ¥ï¼‰
     if current_data[security].last_price >= current_data[security].high_limit:
-        log.info(f"{security} {get_security_name(security)}: µ±Ç°ÕÇÍ££¬Ìø¹ıÂòÈë")
+        log.info(f"{security} {get_security_name(security)}: å½“å‰æ¶¨åœï¼Œè·³è¿‡ä¹°å…¥")
         return False
 
-    # ¼ì²éµøÍ££¨²ßÂÔ1µÄµøÍ£¼ì²é£©
+    # æ£€æŸ¥è·Œåœï¼ˆç­–ç•¥1çš„è·Œåœæ£€æŸ¥ï¼‰
     if current_data[security].last_price <= current_data[security].low_limit:
-        log.info(f"{security} {get_security_name(security)}: µ±Ç°µøÍ££¬Ìø¹ıÂô³ö")
+        log.info(f"{security} {get_security_name(security)}: å½“å‰è·Œåœï¼Œè·³è¿‡å–å‡º")
         return False
 
-    # »ñÈ¡µ±Ç°¼Û¸ñ
+    # è·å–å½“å‰ä»·æ ¼
     current_price = current_data[security].last_price
     if current_price == 0:
-        log.info(f"{security} {get_security_name(security)}: µ±Ç°¼Û¸ñÎª0£¬Ìø¹ı½»Ò×")
+        log.info(f"{security} {get_security_name(security)}: å½“å‰ä»·æ ¼ä¸º0ï¼Œè·³è¿‡äº¤æ˜“")
         return False
 
-    # ¼ÆËãÄ¿±êÊıÁ¿
+    # è®¡ç®—ç›®æ ‡æ•°é‡
     target_amount = int(target_value / current_price)
     
-    # ¶ÔÓÚETF£¬°´100¹ÉÕûÊı±¶µ÷Õû£¨ÊµÅÌ½»Ò×ÒªÇó£©
+    # å¯¹äºETFï¼ŒæŒ‰100è‚¡æ•´æ•°å€è°ƒæ•´ï¼ˆå®ç›˜äº¤æ˜“è¦æ±‚ï¼‰
     target_amount = (target_amount // 100) * 100
     if target_amount <= 0 and target_value > 0:
-        target_amount = 100  # ÖÁÉÙÂò100¹É
+        target_amount = 100  # è‡³å°‘ä¹°100è‚¡
     
-    # »ñÈ¡µ±Ç°³Ö²Ö
+    # è·å–å½“å‰æŒä»“
     current_position = context.portfolio.positions.get(security, None)
     current_amount = current_position.total_amount if current_position else 0
     
-    # ¼ÆËãĞèÒªµ÷ÕûµÄÊıÁ¿
+    # è®¡ç®—éœ€è¦è°ƒæ•´çš„æ•°é‡
     amount_diff = target_amount - current_amount
     
-    # ¼ì²é×îĞ¡½»Ò×½ğ¶î
+    # æ£€æŸ¥æœ€å°äº¤æ˜“é‡‘é¢
     trade_value = abs(amount_diff) * current_price
     if 0 < trade_value < g.min_money:
-        log.info(f"{security} {get_security_name(security)}: ½»Ò×½ğ¶î{trade_value:.2f}Ğ¡ÓÚ×îĞ¡½»Ò×¶î{g.min_money}£¬Ìø¹ı½»Ò×")
+        log.info(f"{security} {get_security_name(security)}: äº¤æ˜“é‡‘é¢{trade_value:.2f}å°äºæœ€å°äº¤æ˜“é¢{g.min_money}ï¼Œè·³è¿‡äº¤æ˜“")
         return False
 
-    # ¼ì²éT+1ÏŞÖÆ£¨²ßÂÔ1µÄ¹Ø¼ü·ç¿Ø£©
-    if amount_diff < 0:  # Âô³ö²Ù×÷
+    # æ£€æŸ¥T+1é™åˆ¶ï¼ˆç­–ç•¥1çš„å…³é”®é£æ§ï¼‰
+    if amount_diff < 0:  # å–å‡ºæ“ä½œ
         closeable_amount = current_position.closeable_amount if current_position else 0
         if closeable_amount == 0:
-            log.info(f"{security} {get_security_name(security)}: µ±ÌìÂòÈë²»¿ÉÂô³ö(T+1)")
+            log.info(f"{security} {get_security_name(security)}: å½“å¤©ä¹°å…¥ä¸å¯å–å‡º(T+1)")
             return False
-        # È·±£Âô³öÊıÁ¿²»³¬¹ı¿ÉÂôÊıÁ¿
+        # ç¡®ä¿å–å‡ºæ•°é‡ä¸è¶…è¿‡å¯å–æ•°é‡
         amount_diff = -min(abs(amount_diff), closeable_amount)
 
-    # Ö´ĞĞÏÂµ¥
+    # æ‰§è¡Œä¸‹å•
     if amount_diff != 0:
-        # Ê¹ÓÃorderº¯ÊıÏÂµ¥£¬ÈÃ¾Û¿í´¦Àí¾ßÌå½»Ò×Ï¸½Ú
+        # ä½¿ç”¨orderå‡½æ•°ä¸‹å•ï¼Œè®©èšå®½å¤„ç†å…·ä½“äº¤æ˜“ç»†èŠ‚
         order_result = order(security, amount_diff)
         if order_result:
-            # ¸üĞÂ³Ö²Ö¼ÇÂ¼£¨²Î¿¼²ßÂÔ1µÄ³Ö²Ö¹ÜÀí£©
+            # æ›´æ–°æŒä»“è®°å½•ï¼ˆå‚è€ƒç­–ç•¥1çš„æŒä»“ç®¡ç†ï¼‰
             if security not in g.positions:
                 g.positions[security] = 0
             g.positions[security] = target_amount
             
-            # ĞÂÔö£ºÈç¹ûÂòÈë²Ù×÷£¬³õÊ¼»¯×î¸ß¼Û¼ÇÂ¼ºÍATRÖ¹Ëğ¼Û
+            # æ–°å¢ï¼šå¦‚æœä¹°å…¥æ“ä½œï¼Œåˆå§‹åŒ–æœ€é«˜ä»·è®°å½•å’ŒATRæ­¢æŸä»·
             if amount_diff > 0 and security in g.etf_pool:
                 g.position_highs[security] = current_price
                 
-                # ¼ÆËãATRÖ¹Ëğ¼Û
+                # è®¡ç®—ATRæ­¢æŸä»·
                 if g.use_atr_stop_loss and not (g.atr_exclude_defensive and security == g.defensive_etf):
                     current_atr, _, success, _ = calculate_atr(security, g.atr_period)
                     if success:
@@ -941,19 +941,19 @@ def smart_order_target_value(security, target_value, context):
             
             security_name = get_security_name(security)
             if amount_diff > 0:
-                log.info(f"?? ÂòÈë {security} {security_name}£¬ÊıÁ¿: {amount_diff}£¬¼Û¸ñ: {current_price:.3f}£¬½ğ¶î: {trade_value:.2f}")
+                log.info(f"?? ä¹°å…¥ {security} {security_name}ï¼Œæ•°é‡: {amount_diff}ï¼Œä»·æ ¼: {current_price:.3f}ï¼Œé‡‘é¢: {trade_value:.2f}")
             else:
-                log.info(f"?? Âô³ö {security} {security_name}£¬ÊıÁ¿: {abs(amount_diff)}£¬¼Û¸ñ: {current_price:.3f}£¬½ğ¶î: {trade_value:.2f}")
+                log.info(f"?? å–å‡º {security} {security_name}ï¼Œæ•°é‡: {abs(amount_diff)}ï¼Œä»·æ ¼: {current_price:.3f}ï¼Œé‡‘é¢: {trade_value:.2f}")
             return True
         else:
-            log.warn(f"ÏÂµ¥Ê§°Ü: {security} {get_security_name(security)}£¬ÊıÁ¿: {amount_diff}")
+            log.warn(f"ä¸‹å•å¤±è´¥: {security} {get_security_name(security)}ï¼Œæ•°é‡: {amount_diff}")
             return False
     
     return False
 
-# ¼ì²é·ÀÓùĞÔETFÊÇ·ñ¿É½»Ò×
+# æ£€æŸ¥é˜²å¾¡æ€§ETFæ˜¯å¦å¯äº¤æ˜“
 def is_defensive_etf_available():
-    """¼ì²é»Æ½ğETFÊÇ·ñ¿É½»Ò×"""
+    """æ£€æŸ¥é»„é‡‘ETFæ˜¯å¦å¯äº¤æ˜“"""
     current_data = get_current_data()
     defensive_etf = g.defensive_etf
     
@@ -961,35 +961,35 @@ def is_defensive_etf_available():
         return False
         
     if current_data[defensive_etf].paused:
-        log.info(f"·ÀÓùĞÔETF {defensive_etf} {get_security_name(defensive_etf)} ½ñÈÕÍ£ÅÆ")
+        log.info(f"é˜²å¾¡æ€§ETF {defensive_etf} {get_security_name(defensive_etf)} ä»Šæ—¥åœç‰Œ")
         return False
         
     if current_data[defensive_etf].last_price >= current_data[defensive_etf].high_limit:
-        log.info(f"·ÀÓùĞÔETF {defensive_etf} {get_security_name(defensive_etf)} µ±Ç°ÕÇÍ£")
+        log.info(f"é˜²å¾¡æ€§ETF {defensive_etf} {get_security_name(defensive_etf)} å½“å‰æ¶¨åœ")
         return False
         
     if current_data[defensive_etf].last_price <= current_data[defensive_etf].low_limit:
-        log.info(f"·ÀÓùĞÔETF {defensive_etf} {get_security_name(defensive_etf)} µ±Ç°µøÍ£")
+        log.info(f"é˜²å¾¡æ€§ETF {defensive_etf} {get_security_name(defensive_etf)} å½“å‰è·Œåœ")
         return False
         
     return True
 
-# ETFÂÖ¶¯½»Ò×Ö÷º¯Êı
+# ETFè½®åŠ¨äº¤æ˜“ä¸»å‡½æ•°
 def etf_trade(context):
-    # »ñÈ¡ETFÅÅÃûºÍÖ¸±ê£¨ÒÑ¹ıÂËÒì³£Öµ£©
+    # è·å–ETFæ’åå’ŒæŒ‡æ ‡ï¼ˆå·²è¿‡æ»¤å¼‚å¸¸å€¼ï¼‰
     ranked_etfs = get_ranked_etfs()
     
-    # ¼ÇÂ¼ËùÓĞETFµÄÖ¸±ê£¨°üÀ¨¶ÌÆÚ¶¯Á¿ºÍMAÖ¸±ê£©
-    log.info("=== ETFÇ÷ÊÆÖ¸±ê·ÖÎö£¨º¬¶ÌÆÚ¶¯Á¿¡¢MAÖ¸±ê¡¢RSIÖ¸±ê¡¢MACDÖ¸±ê¡¢³É½»Á¿Ö¸±êºÍ²¼ÁÖ´øÖ¸±ê£© ===")
+    # è®°å½•æ‰€æœ‰ETFçš„æŒ‡æ ‡ï¼ˆåŒ…æ‹¬çŸ­æœŸåŠ¨é‡å’ŒMAæŒ‡æ ‡ï¼‰
+    log.info("=== ETFè¶‹åŠ¿æŒ‡æ ‡åˆ†æï¼ˆå«çŸ­æœŸåŠ¨é‡ã€MAæŒ‡æ ‡ã€RSIæŒ‡æ ‡ã€MACDæŒ‡æ ‡ã€æˆäº¤é‡æŒ‡æ ‡å’Œå¸ƒæ—å¸¦æŒ‡æ ‡ï¼‰ ===")
     for metrics in ranked_etfs:
         etf_name = get_security_name(metrics['etf'])
-        bollinger_status = metrics['bollinger_info'] if g.use_bollinger_filter else "Î´ÆôÓÃ"
-        log.info(f"{metrics['etf']} {etf_name}: Äê»¯={metrics['annualized_returns']:.4f}, R2={metrics['r_squared']:.4f}, µÃ·Ö={metrics['score']:.4f}, ¶ÌÆÚ¶¯Á¿={metrics['short_return']:.4f}, MA{g.ma_short_period}={metrics['ma5']:.3f}, MA{g.ma_long_period}={metrics['ma25']:.3f}, ³É½»Á¿±È={metrics['volume_ratio']:.2f}, RSI={metrics['current_rsi']:.1f}, MACD(DIF={metrics['dif']:.4f}), ²¼ÁÖ´ø={bollinger_status}, µ±Ç°¼Û={metrics['current_price']:.3f}")
+        bollinger_status = metrics['bollinger_info'] if g.use_bollinger_filter else "æœªå¯ç”¨"
+        log.info(f"{metrics['etf']} {etf_name}: å¹´åŒ–={metrics['annualized_returns']:.4f}, R2={metrics['r_squared']:.4f}, å¾—åˆ†={metrics['score']:.4f}, çŸ­æœŸåŠ¨é‡={metrics['short_return']:.4f}, MA{g.ma_short_period}={metrics['ma5']:.3f}, MA{g.ma_long_period}={metrics['ma25']:.3f}, æˆäº¤é‡æ¯”={metrics['volume_ratio']:.2f}, RSI={metrics['current_rsi']:.1f}, MACD(DIF={metrics['dif']:.4f}), å¸ƒæ—å¸¦={bollinger_status}, å½“å‰ä»·={metrics['current_price']:.3f}")
     
-    # Èç¹ûÃ»ÓĞÍ¨¹ı¹ıÂËÌõ¼şµÄETF£¬¼ÇÂ¼ÈÕÖ¾
+    # å¦‚æœæ²¡æœ‰é€šè¿‡è¿‡æ»¤æ¡ä»¶çš„ETFï¼Œè®°å½•æ—¥å¿—
     filter_conditions = []
     if g.use_short_momentum_filter:
-        filter_conditions.append(f"¶ÌÆÚ¶¯Á¿<{g.short_momentum_threshold}")
+        filter_conditions.append(f"çŸ­æœŸåŠ¨é‡<{g.short_momentum_threshold}")
     if g.use_ma_filter:
         if g.ma_filter_condition == "above":
             ma_desc = f"MA{g.ma_short_period}<MA{g.ma_long_period}"
@@ -997,108 +997,108 @@ def etf_trade(context):
             ma_desc = f"MA{g.ma_short_period}>MA{g.ma_long_period}"
         filter_conditions.append(ma_desc)
     if g.use_rsi_filter:
-        filter_conditions.append(f"RSI¹ıÂË(½ü{g.rsi_lookback_days}ÈÕÔø>{g.rsi_threshold}ÇÒÏÖ¼Û<MA5)")
+        filter_conditions.append(f"RSIè¿‡æ»¤(è¿‘{g.rsi_lookback_days}æ—¥æ›¾>{g.rsi_threshold}ä¸”ç°ä»·<MA5)")
     if g.use_macd_filter:
         if g.macd_filter_condition == "bullish":
-            macd_desc = f"MACD²»Âú×ã¿´¶àÌõ¼ş(DIF>DEA)"
+            macd_desc = f"MACDä¸æ»¡è¶³çœ‹å¤šæ¡ä»¶(DIF>DEA)"
         else:
-            macd_desc = f"MACD²»Âú×ã¿´¿ÕÌõ¼ş(DIF<DEA)"
+            macd_desc = f"MACDä¸æ»¡è¶³çœ‹ç©ºæ¡ä»¶(DIF<DEA)"
         filter_conditions.append(macd_desc)
     if g.use_volume_filter:
-        filter_conditions.append(f"³É½»Á¿>½ü{g.volume_lookback_days}ÈÕ¾ù{g.volume_threshold}±¶")
+        filter_conditions.append(f"æˆäº¤é‡>è¿‘{g.volume_lookback_days}æ—¥å‡{g.volume_threshold}å€")
     if g.use_bollinger_filter:
-        filter_conditions.append(f"²¼ÁÖ´ø¹ıÂË(½ü{g.bollinger_lookback_days}ÈÕÔøÍ»ÆÆÉÏ¹ìÇÒÏÖ¼Û<MA5)")
+        filter_conditions.append(f"å¸ƒæ—å¸¦è¿‡æ»¤(è¿‘{g.bollinger_lookback_days}æ—¥æ›¾çªç ´ä¸Šè½¨ä¸”ç°ä»·<MA5)")
     
     if (g.use_short_momentum_filter or g.use_ma_filter or g.use_rsi_filter or g.use_macd_filter or g.use_volume_filter or g.use_bollinger_filter) and not ranked_etfs:
-        log.info(f"?? ËùÓĞETF¾ùÎ´Í¨¹ı¹ıÂËÌõ¼ş({', '.join(filter_conditions)})£¬½«½øÈë·ÀÓùÄ£Ê½»ò¿Õ²Ö")
+        log.info(f"?? æ‰€æœ‰ETFå‡æœªé€šè¿‡è¿‡æ»¤æ¡ä»¶({', '.join(filter_conditions)})ï¼Œå°†è¿›å…¥é˜²å¾¡æ¨¡å¼æˆ–ç©ºä»“")
 
-    # È·¶¨Ä¿±êETF - Ö»Ñ¡ÔñµÃ·Ö×î¸ßµÄÒ»Ö»
+    # ç¡®å®šç›®æ ‡ETF - åªé€‰æ‹©å¾—åˆ†æœ€é«˜çš„ä¸€åª
     target_etf = None
     if ranked_etfs and ranked_etfs[0]['score'] >= g.min_score_threshold:
-        # Õı³£Ä£Ê½£ºÑ¡ÔñµÃ·Ö×î¸ßµÄÒ»Ö»ETF
+        # æ­£å¸¸æ¨¡å¼ï¼šé€‰æ‹©å¾—åˆ†æœ€é«˜çš„ä¸€åªETF
         target_etf = ranked_etfs[0]['etf']
         top_metrics = ranked_etfs[0]
         etf_name = get_security_name(target_etf)
-        log.info(f"?? Õı³£Ä£Ê½£¬Ñ¡ÔñµÃ·Ö×î¸ßµÄETF: {target_etf} {etf_name}£¬µÃ·Ö: {top_metrics['score']:.4f}£¬¶ÌÆÚ¶¯Á¿: {top_metrics['short_return']:.4f}£¬MA±ÈÂÊ: {top_metrics['ma_ratio']:.4f}£¬³É½»Á¿±È: {top_metrics['volume_ratio']:.2f}£¬RSI: {top_metrics['current_rsi']:.1f}£¬MACDÖù: {top_metrics['macd_bar']:.4f}£¬²¼ÁÖ´ø: {top_metrics['bollinger_info']}")
+        log.info(f"?? æ­£å¸¸æ¨¡å¼ï¼Œé€‰æ‹©å¾—åˆ†æœ€é«˜çš„ETF: {target_etf} {etf_name}ï¼Œå¾—åˆ†: {top_metrics['score']:.4f}ï¼ŒçŸ­æœŸåŠ¨é‡: {top_metrics['short_return']:.4f}ï¼ŒMAæ¯”ç‡: {top_metrics['ma_ratio']:.4f}ï¼Œæˆäº¤é‡æ¯”: {top_metrics['volume_ratio']:.2f}ï¼ŒRSI: {top_metrics['current_rsi']:.1f}ï¼ŒMACDæŸ±: {top_metrics['macd_bar']:.4f}ï¼Œå¸ƒæ—å¸¦: {top_metrics['bollinger_info']}")
     else:
-        # ·ÀÓùÄ£Ê½£º¼ì²éÊÇ·ñ¿ÉÂòÈë·ÀÓùETF
-        # ×¢Òâ£º·ÀÓùĞÔETF¿ÉÒÔ»íÃâ¹ıÂËÌõ¼ş£¬ÒòÎªËüÊÇÔÚÊĞ³¡²»ºÃÊ±µÄ±ÜÏÕÑ¡Ôñ
+        # é˜²å¾¡æ¨¡å¼ï¼šæ£€æŸ¥æ˜¯å¦å¯ä¹°å…¥é˜²å¾¡ETF
+        # æ³¨æ„ï¼šé˜²å¾¡æ€§ETFå¯ä»¥è±å…è¿‡æ»¤æ¡ä»¶ï¼Œå› ä¸ºå®ƒæ˜¯åœ¨å¸‚åœºä¸å¥½æ—¶çš„é¿é™©é€‰æ‹©
         if is_defensive_etf_available():
             target_etf = g.defensive_etf
             etf_name = get_security_name(target_etf)
-            log.info(f"??? ½øÈë·ÀÓùÄ£Ê½£¬Ñ¡Ôñ·ÀÓùETF: {target_etf} {etf_name}")
+            log.info(f"??? è¿›å…¥é˜²å¾¡æ¨¡å¼ï¼Œé€‰æ‹©é˜²å¾¡ETF: {target_etf} {etf_name}")
         else:
-            log.info("?? ½øÈë¿Õ²ÖÄ£Ê½£¬ËùÓĞETFµÃ·Ö¾ù²»´ï±êÇÒ·ÀÓùETF²»¿ÉÓÃ")
+            log.info("?? è¿›å…¥ç©ºä»“æ¨¡å¼ï¼Œæ‰€æœ‰ETFå¾—åˆ†å‡ä¸è¾¾æ ‡ä¸”é˜²å¾¡ETFä¸å¯ç”¨")
     
     target_etfs = [target_etf] if target_etf else []
     
-    # ¼ì²é²¢Ö´ĞĞ¹Ì¶¨°Ù·Ö±ÈÖ¹Ëğ
+    # æ£€æŸ¥å¹¶æ‰§è¡Œå›ºå®šç™¾åˆ†æ¯”æ­¢æŸ
     for security in list(context.portfolio.positions.keys()):
         position = context.portfolio.positions[security]
-        # È·±£Ö»´¦ÀíETF³ØÖĞµÄ±êµÄÇÒµ±Ç°ÓĞ³Ö²Ö
+        # ç¡®ä¿åªå¤„ç†ETFæ± ä¸­çš„æ ‡çš„ä¸”å½“å‰æœ‰æŒä»“
         if security in g.etf_pool and position.total_amount > 0:
             current_price = position.price
             cost_price = position.avg_cost
-            # Ö¹Ëğ¼ì²é
+            # æ­¢æŸæ£€æŸ¥
             if current_price <= cost_price * g.stop_loss:
-                # Ê¹ÓÃÖÇÄÜÏÂµ¥º¯ÊıÖ´ĞĞÖ¹Ëğ
+                # ä½¿ç”¨æ™ºèƒ½ä¸‹å•å‡½æ•°æ‰§è¡Œæ­¢æŸ
                 success = smart_order_target_value(security, 0, context)
                 if success:
                     security_name = get_security_name(security)
                     loss_percent = (current_price/cost_price-1)*100
-                    log.info(f"?? ¹Ì¶¨°Ù·Ö±ÈÖ¹ËğÂô³ö: {security} {security_name}£¬³É±¾: {cost_price:.3f}£¬ÏÖ¼Û: {current_price:.3f}£¬¿÷Ëğ: {loss_percent:.2f}%")
+                    log.info(f"?? å›ºå®šç™¾åˆ†æ¯”æ­¢æŸå–å‡º: {security} {security_name}ï¼Œæˆæœ¬: {cost_price:.3f}ï¼Œç°ä»·: {current_price:.3f}ï¼ŒäºæŸ: {loss_percent:.2f}%")
                     
-                    # Çå³ı¼ÇÂ¼
+                    # æ¸…é™¤è®°å½•
                     if security in g.position_highs:
                         del g.position_highs[security]
                     if security in g.position_stop_prices:
                         del g.position_stop_prices[security]
 
-    # ¼ÆËãÄ¿±ê³Ö²Ö½ğ¶î
+    # è®¡ç®—ç›®æ ‡æŒä»“é‡‘é¢
     total_value = context.portfolio.total_value
     target_value = total_value if target_etfs else 0
     
-    # µ÷²ÖÂß¼­
+    # è°ƒä»“é€»è¾‘
     current_positions = set(context.portfolio.positions.keys())
     target_etfs_set = set(target_etfs)
     
-    # Âô³ö²»ÔÚÄ¿±êÁĞ±íÖĞµÄETF
+    # å–å‡ºä¸åœ¨ç›®æ ‡åˆ—è¡¨ä¸­çš„ETF
     for security in current_positions:
         if security in g.etf_pool and security not in target_etfs_set:
             position = context.portfolio.positions[security]
-            if position.total_amount > 0:  # È·±£ÓĞ³Ö²Ö²ÅÂô³ö
+            if position.total_amount > 0:  # ç¡®ä¿æœ‰æŒä»“æ‰å–å‡º
                 success = smart_order_target_value(security, 0, context)
                 if success:
                     security_name = get_security_name(security)
-                    log.info(f"?? Âô³ö: {security} {security_name} (²»ÔÚÄ¿±êÁĞ±íÖĞ)")
+                    log.info(f"?? å–å‡º: {security} {security_name} (ä¸åœ¨ç›®æ ‡åˆ—è¡¨ä¸­)")
                     
-                    # Çå³ı¼ÇÂ¼
+                    # æ¸…é™¤è®°å½•
                     if security in g.position_highs:
                         del g.position_highs[security]
                     if security in g.position_stop_prices:
                         del g.position_stop_prices[security]
 
-    # µ÷ÕûÄ¿±êETFµÄ²ÖÎ»
+    # è°ƒæ•´ç›®æ ‡ETFçš„ä»“ä½
     for etf in target_etfs:
-        # »ñÈ¡¸ÃETFµÄÖ¸±êÓÃÓÚÈÕÖ¾ÏÔÊ¾
+        # è·å–è¯¥ETFçš„æŒ‡æ ‡ç”¨äºæ—¥å¿—æ˜¾ç¤º
         etf_metrics = next((m for m in ranked_etfs if m['etf'] == etf), None)
         
-        # ¼ÆËãµ±Ç°³Ö²Ö¼ÛÖµ
+        # è®¡ç®—å½“å‰æŒä»“ä»·å€¼
         current_value = 0
         if etf in context.portfolio.positions:
             position = context.portfolio.positions[etf]
             if position.total_amount > 0:
                 current_value = position.total_amount * position.price
         
-        # ÅĞ¶ÏÊÇ·ñĞèÒªµ÷²Ö£¨5%Èİ²î£©
+        # åˆ¤æ–­æ˜¯å¦éœ€è¦è°ƒä»“ï¼ˆ5%å®¹å·®ï¼‰
         if abs(current_value - target_value) > target_value * 0.05 or current_value == 0:
             success = smart_order_target_value(etf, target_value, context)
             if success and etf_metrics:
-                action = "ÂòÈë" if current_value < target_value else "µ÷²Ö"
+                action = "ä¹°å…¥" if current_value < target_value else "è°ƒä»“"
                 etf_name = get_security_name(etf)
-                log.info(f"?? {action}: {etf} {etf_name}£¬Ä¿±ê½ğ¶î: {target_value:.2f}£¬Äê»¯: {etf_metrics['annualized_returns']:.4f}£¬R2: {etf_metrics['r_squared']:.4f}£¬µÃ·Ö: {etf_metrics['score']:.4f}£¬¶ÌÆÚ¶¯Á¿: {etf_metrics['short_return']:.4f}£¬MA±ÈÂÊ: {etf_metrics['ma_ratio']:.4f}£¬³É½»Á¿±È: {etf_metrics['volume_ratio']:.2f}£¬RSI: {etf_metrics['current_rsi']:.1f}£¬MACDÖù: {etf_metrics['macd_bar']:.4f}£¬²¼ÁÖ´ø: {etf_metrics['bollinger_info']}")
+                log.info(f"?? {action}: {etf} {etf_name}ï¼Œç›®æ ‡é‡‘é¢: {target_value:.2f}ï¼Œå¹´åŒ–: {etf_metrics['annualized_returns']:.4f}ï¼ŒR2: {etf_metrics['r_squared']:.4f}ï¼Œå¾—åˆ†: {etf_metrics['score']:.4f}ï¼ŒçŸ­æœŸåŠ¨é‡: {etf_metrics['short_return']:.4f}ï¼ŒMAæ¯”ç‡: {etf_metrics['ma_ratio']:.4f}ï¼Œæˆäº¤é‡æ¯”: {etf_metrics['volume_ratio']:.2f}ï¼ŒRSI: {etf_metrics['current_rsi']:.1f}ï¼ŒMACDæŸ±: {etf_metrics['macd_bar']:.4f}ï¼Œå¸ƒæ—å¸¦: {etf_metrics['bollinger_info']}")
 
-# Ã¿ÈÕ½»Ò×Ö´ĞĞº¯Êı£¨±£³Ö¼æÈİĞÔ£©
+# æ¯æ—¥äº¤æ˜“æ‰§è¡Œå‡½æ•°ï¼ˆä¿æŒå…¼å®¹æ€§ï¼‰
 def trade(context):
-    """Ö÷½»Ò×º¯Êı£¬ÎªÁË¼æÈİĞÔ±£Áô"""
+    """ä¸»äº¤æ˜“å‡½æ•°ï¼Œä¸ºäº†å…¼å®¹æ€§ä¿ç•™"""
     etf_trade(context)

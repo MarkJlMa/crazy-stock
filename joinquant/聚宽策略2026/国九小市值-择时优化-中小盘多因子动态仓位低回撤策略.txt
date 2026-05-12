@@ -1,8 +1,8 @@
-# ¿ËÂ¡×Ô¾Û¿íÎÄÕÂ£ºhttps://www.joinquant.com/post/58638
-# ±êÌâ£º¡¾µÍ»Ø³·6Äê×î´ó½ö18%¡¿ÖĞĞ¡ÅÌ¶àÒò×Ó¶¯Ì¬²ÖÎ»µÍ»Ø³·²ßÂÔ
-# ×÷Õß£ºliulijun
+# å…‹éš†è‡ªèšå®½æ–‡ç« ï¼šhttps://www.joinquant.com/post/58638
+# æ ‡é¢˜ï¼šã€ä½å›æ’¤6å¹´æœ€å¤§ä»…18%ã€‘ä¸­å°ç›˜å¤šå› å­åŠ¨æ€ä»“ä½ä½å›æ’¤ç­–ç•¥
+# ä½œè€…ï¼šliulijun
 
-#µ¼Èëº¯Êı¿â
+#å¯¼å…¥å‡½æ•°åº“
 from jqdata import *
 from jqfactor import *
 import numpy as np
@@ -11,85 +11,85 @@ from datetime import time
 from jqdata import finance
 
 #import datetime
-#³õÊ¼»¯º¯Êı 
+#åˆå§‹åŒ–å‡½æ•° 
 def initialize(context):
-    # ¿ªÆô·ÀÎ´À´º¯Êı
+    # å¼€å¯é˜²æœªæ¥å‡½æ•°
     set_option('avoid_future_data', True)
-    # ³É½»Á¿ÉèÖÃ
+    # æˆäº¤é‡è®¾ç½®
     #set_option('order_volume_ratio', 0.10)
-    # Éè¶¨»ù×¼
+    # è®¾å®šåŸºå‡†
     set_benchmark('399101.XSHE')
-    # ÓÃÕæÊµ¼Û¸ñ½»Ò×
+    # ç”¨çœŸå®ä»·æ ¼äº¤æ˜“
     set_option('use_real_price', True)
-    # ½«»¬µãÉèÖÃÎª0
+    # å°†æ»‘ç‚¹è®¾ç½®ä¸º0
     set_slippage(FixedSlippage(3/10000))
-    # ÉèÖÃ½»Ò×³É±¾Íò·ÖÖ®Èı£¬²»Í¬»¬µãÓ°Ïì¿ÉÔÚ¹éÒò·ÖÎöÖĞ²é¿´
+    # è®¾ç½®äº¤æ˜“æˆæœ¬ä¸‡åˆ†ä¹‹ä¸‰ï¼Œä¸åŒæ»‘ç‚¹å½±å“å¯åœ¨å½’å› åˆ†æä¸­æŸ¥çœ‹
     set_order_cost(OrderCost(open_tax=0, close_tax=0.001, open_commission=2.5/10000, close_commission=2.5/10000, close_today_commission=0, min_commission=5),type='stock')
-    # ¹ıÂËorderÖĞµÍÓÚerror¼¶±ğµÄÈÕÖ¾
+    # è¿‡æ»¤orderä¸­ä½äºerrorçº§åˆ«çš„æ—¥å¿—
     log.set_level('order', 'error')
     log.set_level('system', 'error')
     log.set_level('strategy', 'debug')
-    #³õÊ¼»¯È«¾Ö±äÁ¿ bool
-    g.trading_signal = True  # ÊÇ·ñÎª¿É½»Ò×ÈÕ
-    g.run_stoploss = True  # ÊÇ·ñ½øĞĞÖ¹Ëğ
-    g.filter_audit = False  # ÊÇ·ñÉ¸Ñ¡Éó¼ÆÒâ¼û
-    g.adjust_num = True  # ÊÇ·ñµ÷Õû³Ö²ÖÊıÁ¿
-    #È«¾Ö±äÁ¿list
-    g.hold_list = [] #µ±Ç°³Ö²ÖµÄÈ«²¿¹ÉÆ±    
-    g.yesterday_HL_list = [] #¼ÇÂ¼³Ö²ÖÖĞ×òÈÕÕÇÍ£µÄ¹ÉÆ±
+    #åˆå§‹åŒ–å…¨å±€å˜é‡ bool
+    g.trading_signal = True  # æ˜¯å¦ä¸ºå¯äº¤æ˜“æ—¥
+    g.run_stoploss = True  # æ˜¯å¦è¿›è¡Œæ­¢æŸ
+    g.filter_audit = False  # æ˜¯å¦ç­›é€‰å®¡è®¡æ„è§
+    g.adjust_num = True  # æ˜¯å¦è°ƒæ•´æŒä»“æ•°é‡
+    #å…¨å±€å˜é‡list
+    g.hold_list = [] #å½“å‰æŒä»“çš„å…¨éƒ¨è‚¡ç¥¨    
+    g.yesterday_HL_list = [] #è®°å½•æŒä»“ä¸­æ˜¨æ—¥æ¶¨åœçš„è‚¡ç¥¨
     g.target_list = []
-    g.pass_months = [1, 4]  # ¿Õ²ÖµÄÔÂ·İ
-    g.limitup_stocks = []   # ¼ÇÂ¼ÕÇÍ£µÄ¹ÉÆ±±ÜÃâÔÙ´ÎÂòÈë
-    #È«¾Ö±äÁ¿float/str
-    g.min_mv = 10  # ¹ÉÆ±×îĞ¡ÊĞÖµÒªÇó
-    g.max_mv = 100  # ¹ÉÆ±×î´óÊĞÖµÒªÇó
-    g.stock_num =5  # ³Ö¹ÉÊıÁ¿
+    g.pass_months = [1, 4]  # ç©ºä»“çš„æœˆä»½
+    g.limitup_stocks = []   # è®°å½•æ¶¨åœçš„è‚¡ç¥¨é¿å…å†æ¬¡ä¹°å…¥
+    #å…¨å±€å˜é‡float/str
+    g.min_mv = 10  # è‚¡ç¥¨æœ€å°å¸‚å€¼è¦æ±‚
+    g.max_mv = 100  # è‚¡ç¥¨æœ€å¤§å¸‚å€¼è¦æ±‚
+    g.stock_num =5  # æŒè‚¡æ•°é‡
     g.reason_to_sell = {}
-    g.stoploss_strategy = 3  # 1ÎªÖ¹ËğÏßÖ¹Ëğ£¬2ÎªÊĞ³¡Ç÷ÊÆÖ¹Ëğ, 3ÎªÁªºÏ1¡¢2²ßÂÔ
-    g.stoploss_limit = 0.08  # Ö¹ËğÏß
-    g.stoploss_market = 0.05  # ÊĞ³¡Ç÷ÊÆÖ¹Ëğ²ÎÊı
-    g.highest = 50  # ¹ÉÆ±µ¥¼ÛÉÏÏŞÉèÖÃ
-    g.etf = '511880.XSHG'  # ¿Õ²ÖÔÂ·İ³ÖÓĞÒø»ªÈÕÀûETF
-    # ÉèÖÃ½»Ò×ÔËĞĞÊ±¼ä
+    g.stoploss_strategy = 3  # 1ä¸ºæ­¢æŸçº¿æ­¢æŸï¼Œ2ä¸ºå¸‚åœºè¶‹åŠ¿æ­¢æŸ, 3ä¸ºè”åˆ1ã€2ç­–ç•¥
+    g.stoploss_limit = 0.08  # æ­¢æŸçº¿
+    g.stoploss_market = 0.05  # å¸‚åœºè¶‹åŠ¿æ­¢æŸå‚æ•°
+    g.highest = 50  # è‚¡ç¥¨å•ä»·ä¸Šé™è®¾ç½®
+    g.etf = '511880.XSHG'  # ç©ºä»“æœˆä»½æŒæœ‰é“¶åæ—¥åˆ©ETF
+    # è®¾ç½®äº¤æ˜“è¿è¡Œæ—¶é—´
     run_daily(prepare_stock_list, '9:05')
-    run_daily(trade_afternoon, time='14:00', reference_security='399101.XSHE') #¼ì²é³Ö²ÖÖĞµÄÕÇÍ£¹ÉÊÇ·ñĞèÒªÂô³ö
-    run_daily(sell_stocks, time='10:00') # Ö¹Ëğº¯Êı
+    run_daily(trade_afternoon, time='14:00', reference_security='399101.XSHE') #æ£€æŸ¥æŒä»“ä¸­çš„æ¶¨åœè‚¡æ˜¯å¦éœ€è¦å–å‡º
+    run_daily(sell_stocks, time='10:00') # æ­¢æŸå‡½æ•°
     run_daily(close_account, '14:50')
     run_weekly(weekly_adjustment,2,'10:00')
     #run_weekly(print_position_info, 5, time='15:10', reference_security='000300.XSHG')
 
-#1-1 ×¼±¸¹ÉÆ±³Ø
+#1-1 å‡†å¤‡è‚¡ç¥¨æ± 
 def prepare_stock_list(context):
-    #»ñÈ¡ÒÑ³ÖÓĞÁĞ±í
+    #è·å–å·²æŒæœ‰åˆ—è¡¨
     g.hold_list= []
     g.limitup_stocks = []
     for position in list(context.portfolio.positions.values()):
         stock = position.security
         g.hold_list.append(stock)
-    #»ñÈ¡×òÈÕÕÇÍ£ÁĞ±í
+    #è·å–æ˜¨æ—¥æ¶¨åœåˆ—è¡¨
     if g.hold_list != []:
         df = get_price(g.hold_list, end_date=context.previous_date, frequency='daily', fields=['close','high_limit','low_limit'], count=1, panel=False, fill_paused=False)
         df = df[df['close'] == df['high_limit']]
         g.yesterday_HL_list = list(df.code)
     else:
         g.yesterday_HL_list = []
-    #ÅĞ¶Ï½ñÌìÊÇ·ñÎªÕË»§×Ê½ğÔÙÆ½ºâµÄÈÕÆÚ
+    #åˆ¤æ–­ä»Šå¤©æ˜¯å¦ä¸ºè´¦æˆ·èµ„é‡‘å†å¹³è¡¡çš„æ—¥æœŸ
     g.trading_signal = today_is_between(context)
 
-#1-2 Ñ¡¹ÉÄ£¿é
+#1-2 é€‰è‚¡æ¨¡å—
 def get_stock_list(context):
     final_list = []
     MKT_index = '399101.XSHE'
     initial_list = filter_stocks(context, get_index_stocks(MKT_index))
-    # ¹ú¾Å¸üĞÂ£º¹ıÂË½üÒ»Äê¾»ÀûÈóÎª¸ºÇÒÓªÒµÊÕÈëĞ¡ÓÚ1ÒÚµÄ
-    # ¹ú¾Å¸üĞÂ£º¹ıÂË½üÒ»ÄêÆÚÄ©¾»×Ê²úÎª¸ºµÄ (¾­²éÑ¯Ã»ÓĞÎª¸ºÊıµÄ£¬ËùÒÔÖ±½ÓpassÕâÌõ)
-    # ¹ú¾Å¸üĞÂ£º¹ıÂË½üÒ»ÄêÉó¼Æ½¨ÒéÎŞ·¨³ö¾ß»òÕßÎª¸ºÃæ½¨ÒéµÄ (¾­¹ı¾»ÀûÈóµÈÉ¸Ñ¡£¬Éó¼ÆÒâ¼û¼¸ºõ²»»á´æÔÚÒì³£)
+    # å›½ä¹æ›´æ–°ï¼šè¿‡æ»¤è¿‘ä¸€å¹´å‡€åˆ©æ¶¦ä¸ºè´Ÿä¸”è¥ä¸šæ”¶å…¥å°äº1äº¿çš„
+    # å›½ä¹æ›´æ–°ï¼šè¿‡æ»¤è¿‘ä¸€å¹´æœŸæœ«å‡€èµ„äº§ä¸ºè´Ÿçš„ (ç»æŸ¥è¯¢æ²¡æœ‰ä¸ºè´Ÿæ•°çš„ï¼Œæ‰€ä»¥ç›´æ¥passè¿™æ¡)
+    # å›½ä¹æ›´æ–°ï¼šè¿‡æ»¤è¿‘ä¸€å¹´å®¡è®¡å»ºè®®æ— æ³•å‡ºå…·æˆ–è€…ä¸ºè´Ÿé¢å»ºè®®çš„ (ç»è¿‡å‡€åˆ©æ¶¦ç­‰ç­›é€‰ï¼Œå®¡è®¡æ„è§å‡ ä¹ä¸ä¼šå­˜åœ¨å¼‚å¸¸)
     q = query(
         valuation.code,
-        valuation.market_cap,  # ×ÜÊĞÖµ circulating_market_cap/market_cap
-        income.np_parent_company_owners,  # ¹éÊôÓÚÄ¸¹«Ë¾ËùÓĞÕßµÄ¾»ÀûÈó
-        income.net_profit,  # ¾»ÀûÈó
-        income.operating_revenue  # ÓªÒµÊÕÈë
+        valuation.market_cap,  # æ€»å¸‚å€¼ circulating_market_cap/market_cap
+        income.np_parent_company_owners,  # å½’å±äºæ¯å…¬å¸æ‰€æœ‰è€…çš„å‡€åˆ©æ¶¦
+        income.net_profit,  # å‡€åˆ©æ¶¦
+        income.operating_revenue  # è¥ä¸šæ”¶å…¥
         #security_indicator.net_assets
     ).filter(
         valuation.code.in_(initial_list),
@@ -101,40 +101,40 @@ def get_stock_list(context):
     
     df = get_fundamentals(q)
     if g.filter_audit is True:
-        # Èç¹ûÉ¸Ñ¡Éó¼ÆÒâ¼û»á´ó·ù¶ÈÔö¼Ó»Ø²âÊ±³£
+        # å¦‚æœç­›é€‰å®¡è®¡æ„è§ä¼šå¤§å¹…åº¦å¢åŠ å›æµ‹æ—¶å¸¸
         before_audit_filter = len(df)
         df['audit'] = df['code'].apply(lambda x: filter_audit(context, x))
         df_audit = df[df['audit'] == True]
-        log.info('È¥³ıµôÁË´æÔÚÉó¼ÆÎÊÌâµÄ¹ÉÆ±{}Ö»'.format(len(df)-before_audit_filter))
+        log.info('å»é™¤æ‰äº†å­˜åœ¨å®¡è®¡é—®é¢˜çš„è‚¡ç¥¨{}åª'.format(len(df)-before_audit_filter))
     
     final_list = list(df.code)
     last_prices = history(1, unit='1d', field='close', security_list=final_list)
     
     if len(final_list) == 0:
-        # ÓÉÓÚÓĞÊ±ºòÑ¡¹ÉÌõ¼ş¿Á¿Ì£¬ËùÒÔ»áÃ»ÓĞ¹ÉÆ±ÈëÑ¡£¬ÕâÊ±ÂòÈëÒø»ªÈÕÀûETF
-        log.info('ÎŞÊÊºÏ¹ÉÆ±£¬ÂòÈëETF')
+        # ç”±äºæœ‰æ—¶å€™é€‰è‚¡æ¡ä»¶è‹›åˆ»ï¼Œæ‰€ä»¥ä¼šæ²¡æœ‰è‚¡ç¥¨å…¥é€‰ï¼Œè¿™æ—¶ä¹°å…¥é“¶åæ—¥åˆ©ETF
+        log.info('æ— é€‚åˆè‚¡ç¥¨ï¼Œä¹°å…¥ETF')
         return [g.etf]
     else:
         return [stock for stock in final_list if stock in g.hold_list or last_prices[stock][-1] <= g.highest]
 
-#1-3 ÕûÌåµ÷Õû³Ö²Ö
+#1-3 æ•´ä½“è°ƒæ•´æŒä»“
 def weekly_adjustment(context):
     if g.trading_signal and g.adjust_num:
         new_num = adjust_stock_num(context)
-        if new_num == 0:  #Õâ¶ÎÆäÊµÃ»ÓÃ£¬µ÷Õûnew_numµÄ·½·¨ÖĞ¾Í²»»á·µ»Ø0£¬µ«ÎÒÀÁµÃ¸ÄÁË
+        if new_num == 0:  #è¿™æ®µå…¶å®æ²¡ç”¨ï¼Œè°ƒæ•´new_numçš„æ–¹æ³•ä¸­å°±ä¸ä¼šè¿”å›0ï¼Œä½†æˆ‘æ‡’å¾—æ”¹äº†
             buy_security(context, [g.etf],1)
-            log.info('MAÖ¸Ê¾Ö¸Êı´óµø£¬³ÖÓĞÒø»ªÈÕÀûETF')
+            log.info('MAæŒ‡ç¤ºæŒ‡æ•°å¤§è·Œï¼ŒæŒæœ‰é“¶åæ—¥åˆ©ETF')
         else:
             if g.stock_num != new_num:
                 g.stock_num = new_num
-                log.info(f'³Ö²ÖÊıÁ¿ĞŞ¸ÄÎª{new_num}')
+                log.info(f'æŒä»“æ•°é‡ä¿®æ”¹ä¸º{new_num}')
             g.target_list = get_stock_list(context)[:g.stock_num]
             log.info(str(g.target_list))
             
             sell_list = [stock for stock in g.hold_list if stock not in g.target_list and stock not in g.yesterday_HL_list]
             hold_list = [stock for stock in g.hold_list if stock in g.target_list or stock in g.yesterday_HL_list]
-            log.info("Âô³ö[%s]" % (str(sell_list)))
-            log.info("ÒÑ³ÖÓĞ[%s]" % (str(hold_list)))
+            log.info("å–å‡º[%s]" % (str(sell_list)))
+            log.info("å·²æŒæœ‰[%s]" % (str(hold_list)))
 
             
             sell_positions = [context.portfolio.positions[stock] for stock in sell_list]
@@ -148,26 +148,26 @@ def weekly_adjustment(context):
                 stock = position.security
     else:
         buy_security(context, [g.etf],1)
-        log.info('¸ÃÔÂ·İÎª¿Õ²ÖÔÂ·İ£¬³ÖÓĞÒø»ªÈÕÀûETF')
+        log.info('è¯¥æœˆä»½ä¸ºç©ºä»“æœˆä»½ï¼ŒæŒæœ‰é“¶åæ—¥åˆ©ETF')
 
 
-#1-4 µ÷Õû×òÈÕÕÇÍ£¹ÉÆ±
+#1-4 è°ƒæ•´æ˜¨æ—¥æ¶¨åœè‚¡ç¥¨
 def check_limit_up(context):
     now_time = context.current_dt
     if g.yesterday_HL_list != []:
-        #¶Ô×òÈÕÕÇÍ£¹ÉÆ±¹Û²ìµ½Î²ÅÌÈç²»ÕÇÍ£ÔòÌáÇ°Âô³ö£¬Èç¹ûÕÇÍ£¼´Ê¹²»ÔÚÓ¦ÂòÈëÁĞ±íÈÔÔİÊ±³ÖÓĞ
+        #å¯¹æ˜¨æ—¥æ¶¨åœè‚¡ç¥¨è§‚å¯Ÿåˆ°å°¾ç›˜å¦‚ä¸æ¶¨åœåˆ™æå‰å–å‡ºï¼Œå¦‚æœæ¶¨åœå³ä½¿ä¸åœ¨åº”ä¹°å…¥åˆ—è¡¨ä»æš‚æ—¶æŒæœ‰
         for stock in g.yesterday_HL_list:
             current_data = get_price(stock, end_date=now_time, frequency='1m', fields=['close','high_limit'], skip_paused=False, fq='pre', count=1, panel=False, fill_paused=True)
             if current_data.iloc[0,0] <    current_data.iloc[0,1]:
-                log.info("[%s]ÕÇÍ£´ò¿ª£¬Âô³ö" % (stock))
+                log.info("[%s]æ¶¨åœæ‰“å¼€ï¼Œå–å‡º" % (stock))
                 position = context.portfolio.positions[stock]
                 close_position(position)
                 g.reason_to_sell[stock] = 'limitup'
                 g.limitup_stocks.append(stock)
             else:
-                log.info("[%s]ÕÇÍ££¬¼ÌĞø³ÖÓĞ" % (stock))
+                log.info("[%s]æ¶¨åœï¼Œç»§ç»­æŒæœ‰" % (stock))
 
-#1-5 Èç¹û×òÌìÓĞ¹ÉÆ±Âô³ö»òÕßÂòÈëÊ§°ÜÔì³É¿Õ²Ö£¬Ê£ÓàµÄ½ğ¶îµ±ÈÕÂòÈë
+#1-5 å¦‚æœæ˜¨å¤©æœ‰è‚¡ç¥¨å–å‡ºæˆ–è€…ä¹°å…¥å¤±è´¥é€ æˆç©ºä»“ï¼Œå‰©ä½™çš„é‡‘é¢å½“æ—¥ä¹°å…¥
 def check_remain_amount(context):
     stoploss_list = []
     uplimit_list = []
@@ -183,26 +183,26 @@ def check_remain_amount(context):
    
     g.hold_list = context.portfolio.positions
     if len(g.hold_list) < g.stock_num:   
-        # ¼ÆËãĞèÒªÂòÈëµÄ¹ÉÆ±ÊıÁ¿£¬Ö¹Ëğ²ÖÎ»²¹×ã»õ±Òetf
-        # ¿ÉÌæ»»ÏÂÒ»ĞĞ´úÂëÒÔ¸ü»»Âß¼­£º¸ÄÎª½«Çå¿Õ²ÖÎ»È«²¿²¹×ã¹ÉÆ±£¬¶ø·ÇÔ­×÷ÖĞÖ¹Ëğ²ÖÎ»²¹³ä»õ±Òetf
+        # è®¡ç®—éœ€è¦ä¹°å…¥çš„è‚¡ç¥¨æ•°é‡ï¼Œæ­¢æŸä»“ä½è¡¥è¶³è´§å¸etf
+        # å¯æ›¿æ¢ä¸‹ä¸€è¡Œä»£ç ä»¥æ›´æ¢é€»è¾‘ï¼šæ”¹ä¸ºå°†æ¸…ç©ºä»“ä½å…¨éƒ¨è¡¥è¶³è‚¡ç¥¨ï¼Œè€ŒéåŸä½œä¸­æ­¢æŸä»“ä½è¡¥å……è´§å¸etf
         # num_stocks_to_buy = min(empty_num,g.stock_num-len(g.hold_list))
         num_stocks_to_buy = min(addstock_num,g.stock_num-len(g.hold_list))
         target_list = [stock for stock in g.target_list if stock not in g.limitup_stocks][:num_stocks_to_buy]
-        log.info('ÓĞÓà¶î¿ÉÓÃ'+str(round((context.portfolio.cash),2))+'Ôª¡£ÂòÈë'+ str(target_list))
+        log.info('æœ‰ä½™é¢å¯ç”¨'+str(round((context.portfolio.cash),2))+'å…ƒã€‚ä¹°å…¥'+ str(target_list))
         buy_security(context,target_list,len(target_list))
         if etf_num !=0:
-            log.info('ÓĞÓà¶î¿ÉÓÃ'+str(round((context.portfolio.cash),2))+'Ôª¡£ÂòÈë»õ±Ò»ù½ğ'+ str(g.etf))
+            log.info('æœ‰ä½™é¢å¯ç”¨'+str(round((context.portfolio.cash),2))+'å…ƒã€‚ä¹°å…¥è´§å¸åŸºé‡‘'+ str(g.etf))
             buy_security(context,[g.etf],etf_num)
     
     g.reason_to_sell = {}
 
-#1-6 ÏÂÎç¼ì²é½»Ò×
+#1-6 ä¸‹åˆæ£€æŸ¥äº¤æ˜“
 def trade_afternoon(context):
     if g.trading_signal == True:
         check_limit_up(context)
         check_remain_amount(context)
         
-#1-7 Ö¹Ó¯Ö¹Ëğ
+#1-7 æ­¢ç›ˆæ­¢æŸ
 def sell_stocks(context):
     if g.run_stoploss:
         current_positions = context.portfolio.positions
@@ -210,89 +210,89 @@ def sell_stocks(context):
             for stock in current_positions.keys():
                 price = current_positions[stock].price
                 avg_cost = current_positions[stock].avg_cost
-                # ¸ö¹ÉÓ¯ÀûÖ¹Ó¯
+                # ä¸ªè‚¡ç›ˆåˆ©æ­¢ç›ˆ
                 if price >= avg_cost * 2:
                     order_target_value(stock, 0)
-                    log.debug("ÊÕÒæ100%Ö¹Ó¯,Âô³ö{}".format(stock))
-                # ¸ö¹ÉÖ¹Ëğ
+                    log.debug("æ”¶ç›Š100%æ­¢ç›ˆ,å–å‡º{}".format(stock))
+                # ä¸ªè‚¡æ­¢æŸ
                 elif price < avg_cost * (1 - g.stoploss_limit):
                     order_target_value(stock, 0)
-                    log.debug("ÊÕÒæÖ¹Ëğ,Âô³ö{}".format(stock))
+                    log.debug("æ”¶ç›Šæ­¢æŸ,å–å‡º{}".format(stock))
                     g.reason_to_sell[stock] = 'stoploss'
 
         if g.stoploss_strategy == 2 or g.stoploss_strategy == 3:
             stock_df = get_price(security=get_index_stocks('399101.XSHE')
                         ,end_date=context.previous_date, frequency='daily'
                         ,fields=['close', 'open'], count=1, panel=False)
-            # ¼ÆËã³É·Ö¹ÉÆ½¾ùÕÇµø£¬¼´Ö¸ÊıÕÇµø·ù
+            # è®¡ç®—æˆåˆ†è‚¡å¹³å‡æ¶¨è·Œï¼Œå³æŒ‡æ•°æ¶¨è·Œå¹…
             down_ratio = (1 - stock_df['close'] / stock_df['open']).mean()
-            # ÊĞ³¡´óµøÖ¹Ëğ
+            # å¸‚åœºå¤§è·Œæ­¢æŸ
             if down_ratio >= g.stoploss_market:
                 g.reason_to_sell[stock] = 'stoploss'
-                log.debug("´óÅÌ²Òµø,Æ½¾ù½µ·ù{:.2%}".format(down_ratio))
+                log.debug("å¤§ç›˜æƒ¨è·Œ,å¹³å‡é™å¹…{:.2%}".format(down_ratio))
                 for stock in current_positions.keys():
                     order_target_value(stock, 0)
 
 
-#1-8 ¶¯Ì¬µ÷²Ö´úÂë
+#1-8 åŠ¨æ€è°ƒä»“ä»£ç 
 def adjust_stock_num(context):
-    ma_para = 10  # ÉèÖÃMA²ÎÊı
+    ma_para = 10  # è®¾ç½®MAå‚æ•°
     today = context.previous_date
     start_date = today - datetime.timedelta(days = ma_para*2)
     index_df = get_price('399101.XSHE', start_date=start_date, end_date=today, frequency='daily')
     index_df['ma'] = index_df['close'].rolling(window=ma_para).mean()
     last_row = index_df.iloc[-1]
     diff = last_row['close'] - last_row['ma']
-    # ¸ù¾İ²îÖµ½á¹û·µ»ØÊı×Ö
+    # æ ¹æ®å·®å€¼ç»“æœè¿”å›æ•°å­—
     result = 3 if diff >= 500 else \
              3 if 200 <= diff < 500 else \
              4 if -200 <= diff < 200 else \
              5 if -500 <= diff < -200 else \
              6
              
-    ##Èç¹û´óÅÌ´óµø£¬½ñÈÕÔİ²»ÂòÈë         
+    ##å¦‚æœå¤§ç›˜å¤§è·Œï¼Œä»Šæ—¥æš‚ä¸ä¹°å…¥         
     stock_df = get_price(security=get_index_stocks('399101.XSHE')
                         ,end_date=context.previous_date, frequency='daily'
                         ,fields=['close', 'open'], count=1, panel=False)
-    # ¼ÆËã³É·Ö¹ÉÆ½¾ùÕÇµø£¬¼´Ö¸ÊıÕÇµø·ù
+    # è®¡ç®—æˆåˆ†è‚¡å¹³å‡æ¶¨è·Œï¼Œå³æŒ‡æ•°æ¶¨è·Œå¹…
     down_ratio = (1 - stock_df['close'] / stock_df['open']).mean()
     if down_ratio >= g.stoploss_market:
-        log.debug("´óÅÌ²Òµø,Æ½¾ù½µ·ù{:.2%}".format(down_ratio))
+        log.debug("å¤§ç›˜æƒ¨è·Œ,å¹³å‡é™å¹…{:.2%}".format(down_ratio))
         result=0
         
     return result
     
 
-#2 ¹ıÂË¸÷ÖÖ¹ÉÆ±
+#2 è¿‡æ»¤å„ç§è‚¡ç¥¨
 def filter_stocks(context, stock_list):
     current_data = get_current_data()
-        # ÕÇµøÍ£ºÍ×î½ü¼Û¸ñµÄÅĞ¶Ï
+        # æ¶¨è·Œåœå’Œæœ€è¿‘ä»·æ ¼çš„åˆ¤æ–­
     last_prices = history(1, unit='1m', field='close', security_list=stock_list)
-        # ¹ıÂË±ê×¼
+        # è¿‡æ»¤æ ‡å‡†
     filtered_stocks = []
     for stock in stock_list:
-        if current_data[stock].paused:  # Í£ÅÆ
+        if current_data[stock].paused:  # åœç‰Œ
             continue
         if current_data[stock].is_st:  # ST
             continue
-        if 'ÍË' in current_data[stock].name:  # ÍËÊĞ
+        if 'é€€' in current_data[stock].name:  # é€€å¸‚
             continue
-        if stock.startswith('30') or stock.startswith('68') or stock.startswith('8') or stock.startswith('4'):  # ÊĞ³¡ÀàĞÍ
+        if stock.startswith('30') or stock.startswith('68') or stock.startswith('8') or stock.startswith('4'):  # å¸‚åœºç±»å‹
             continue
-        if not (stock in context.portfolio.positions or last_prices[stock][-1] < current_data[stock].high_limit):  # ÕÇÍ£
+        if not (stock in context.portfolio.positions or last_prices[stock][-1] < current_data[stock].high_limit):  # æ¶¨åœ
             continue
-        if not (stock in context.portfolio.positions or last_prices[stock][-1] > current_data[stock].low_limit):  # µøÍ£
+        if not (stock in context.portfolio.positions or last_prices[stock][-1] > current_data[stock].low_limit):  # è·Œåœ
             continue
-        # ´ÎĞÂ¹É¹ıÂË
+        # æ¬¡æ–°è‚¡è¿‡æ»¤
         start_date = get_security_info(stock).start_date
         if context.previous_date - start_date < timedelta(days=375):
             continue
         filtered_stocks.append(stock)
     return filtered_stocks
 
-#2.1 É¸Ñ¡Éó¼ÆÒâ¼û
+#2.1 ç­›é€‰å®¡è®¡æ„è§
 def filter_audit(context, code):
-    # »ñÈ¡Éó¼ÆÒâ¼û£¬½üÈıÄêÄÚÈç¹ûÓĞ²»ºÏ¸ñ(report_typeÎª2¡¢3¡¢4¡¢5)µÄÉó¼ÆÒâ¼ûÔò·µ»ØFalse£¬·ñÔò·µ»ØTrue
+    # è·å–å®¡è®¡æ„è§ï¼Œè¿‘ä¸‰å¹´å†…å¦‚æœæœ‰ä¸åˆæ ¼(report_typeä¸º2ã€3ã€4ã€5)çš„å®¡è®¡æ„è§åˆ™è¿”å›Falseï¼Œå¦åˆ™è¿”å›True
     lstd = context.previous_date
     last_year = (lstd.replace(year=lstd.year - 3, month=1, day=1)).strftime('%Y-%m-%d')
     q=query(finance.STK_AUDIT_OPINION).filter(finance.STK_AUDIT_OPINION.code==code,finance.STK_AUDIT_OPINION.pub_date>=last_year)
@@ -301,7 +301,7 @@ def filter_audit(context, code):
     contains_nums = df['report_type'].str.contains(r'2|3|4|5')
     return not contains_nums.any()
 
-#3-1 ½»Ò×Ä£¿é-×Ô¶¨ÒåÏÂµ¥
+#3-1 äº¤æ˜“æ¨¡å—-è‡ªå®šä¹‰ä¸‹å•
 def order_target_value_(security, value):
     if value == 0:
         pass
@@ -310,59 +310,59 @@ def order_target_value_(security, value):
         log.debug("Order %s to value %f" % (security, value))
     return order_target_value(security, value)
 
-#3-2 ½»Ò×Ä£¿é-¿ª²Ö
+#3-2 äº¤æ˜“æ¨¡å—-å¼€ä»“
 def open_position(security, value):
     order = order_target_value_(security, value)
     if order != None and order.filled > 0:
         return True
     return False
 
-#3-3 ½»Ò×Ä£¿é-Æ½²Ö
+#3-3 äº¤æ˜“æ¨¡å—-å¹³ä»“
 def close_position(position):
     security = position.security
-    order = order_target_value_(security, 0)  # ¿ÉÄÜ»áÒòÍ£ÅÆÊ§°Ü
+    order = order_target_value_(security, 0)  # å¯èƒ½ä¼šå› åœç‰Œå¤±è´¥
     if order != None:
         if order.status == OrderStatus.held and order.filled == order.amount:
             return True
     return False
 
-#3-4 ÂòÈëÄ£¿é
+#3-4 ä¹°å…¥æ¨¡å—
 def buy_security(context,target_list,num):
-    #µ÷²ÖÂòÈë
+    #è°ƒä»“ä¹°å…¥
     position_count = len(context.portfolio.positions)
     target_num = num
     if target_num !=0:
         value = context.portfolio.cash / target_num
         for stock in target_list:
             open_position(stock, value)
-            log.info("ÂòÈë[%s]£¨%sÔª£©" % (stock,value))
+            log.info("ä¹°å…¥[%s]ï¼ˆ%så…ƒï¼‰" % (stock,value))
             if len(context.portfolio.positions) == g.stock_num:
                 break
 
 
-#4-1 ÅĞ¶Ï½ñÌìÊÇ·ñÌø¹ıÔÂ·İ
+#4-1 åˆ¤æ–­ä»Šå¤©æ˜¯å¦è·³è¿‡æœˆä»½
 def today_is_between(context):
-    # ¸ù¾İg.pass_monthÌø¹ıÖ¸¶¨ÔÂ·İ
+    # æ ¹æ®g.pass_monthè·³è¿‡æŒ‡å®šæœˆä»½
     month = context.current_dt.month
-    # ÅĞ¶Ïµ±Ç°ÔÂ·İÊÇ·ñÔÚÖ¸¶¨ÔÂ·İ·¶Î§ÄÚ
+    # åˆ¤æ–­å½“å‰æœˆä»½æ˜¯å¦åœ¨æŒ‡å®šæœˆä»½èŒƒå›´å†…
     if month in g.pass_months:
-        # ÅĞ¶Ïµ±Ç°ÈÕÆÚÊÇ·ñÔÚÖ¸¶¨ÈÕÆÚ·¶Î§ÄÚ
+        # åˆ¤æ–­å½“å‰æ—¥æœŸæ˜¯å¦åœ¨æŒ‡å®šæ—¥æœŸèŒƒå›´å†…
         return False
     else:
         day = context.current_dt.day
-        # 12ÔÂÏÂ°ëÔÂºÍ3ÔÂÏÂ°ëÔÂ²»×ö
+        # 12æœˆä¸‹åŠæœˆå’Œ3æœˆä¸‹åŠæœˆä¸åš
         if (month ==12 or month == 3 ) and day>=16:
             return False
         return True
 
-#4-2 Çå²Öºó´ÎÈÕ×Ê½ğ¿É×ª
+#4-2 æ¸…ä»“åæ¬¡æ—¥èµ„é‡‘å¯è½¬
 def close_account(context):
     if g.trading_signal == False:
         if len(g.hold_list) != 0 and g.hold_list != [g.etf]:
             for stock in g.hold_list:
                 position = context.portfolio.positions[stock]
                 close_position(position)
-                log.info("Âô³ö[%s]" % (stock))
+                log.info("å–å‡º[%s]" % (stock))
 
 
 def print_position_info(context):
@@ -373,10 +373,10 @@ def print_position_info(context):
         ret=100*(price/cost-1)
         value=position.value
         amount=position.total_amount    
-        print('´úÂë:{}'.format(securities))
-        print('³É±¾¼Û:{}'.format(format(cost,'.2f')))
-        print('ÏÖ¼Û:{}'.format(price))
-        print('ÊÕÒæÂÊ:{}%'.format(format(ret,'.2f')))
-        print('³Ö²Ö(¹É):{}'.format(amount))
-        print('ÊĞÖµ:{}'.format(format(value,'.2f')))
-    print('¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª·Ö¸îÏß¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª')
+        print('ä»£ç :{}'.format(securities))
+        print('æˆæœ¬ä»·:{}'.format(format(cost,'.2f')))
+        print('ç°ä»·:{}'.format(price))
+        print('æ”¶ç›Šç‡:{}%'.format(format(ret,'.2f')))
+        print('æŒä»“(è‚¡):{}'.format(amount))
+        print('å¸‚å€¼:{}'.format(format(value,'.2f')))
+    print('â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”åˆ†å‰²çº¿â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”')

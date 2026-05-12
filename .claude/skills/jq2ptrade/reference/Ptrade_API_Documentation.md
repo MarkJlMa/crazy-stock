@@ -5,6 +5,7 @@
 ## 目录
 
 - [概述](#概述)
+- [回测与实盘环境差异](#回测与实盘环境差异)
 - [快速入门](#快速入门)
 - [策略引擎](#策略引擎)
 - [设置函数](#设置函数)
@@ -48,6 +49,211 @@ PTrade 是由恒生电子开发的量化交易平台，运行在券商机房，�
 
 - 国金证券 PTrade：Python 3.11
 - 其他券商：Python 3.5（部分函数返回格式有差异）
+
+---
+
+## 回测与实盘环境差异
+
+### 环境判断函数
+
+```python
+is_trade()
+```
+
+判断当前运行模式：
+- 返回 `True`：实盘交易模式
+- 返回 `False`：回测模式
+
+```python
+def initialize(context):
+    log.info(f"运行模式: {'实盘' if is_trade() else '回测'}")
+```
+
+### 函数可用性对比
+
+#### 仅实盘环境支持的函数
+
+以下函数**仅支持实盘交易环境**，在回测环境中调用会报错：
+
+| 函数 | 说明 | 回测替代方案 |
+|------|------|-------------|
+| `get_snapshot()` | 获取实时行情快照 | 使用 `get_history()` |
+| `get_gear_price()` | 获取档位行情价格 | 使用 `get_history()` |
+| `get_individual_entrust()` | 获取逐笔委托行情 | 无替代 |
+| `get_individual_transaction()` | 获取逐笔成交行情 | 无替代 |
+| `get_tick_direction()` | 获取分时成交行情 | 无替代 |
+| `get_sort_msg()` | 获取板块涨幅排名 | 无替代 |
+| `order_market()` | 市价委托 | 使用限价单 `order()` |
+| `order_tick()` | tick级别下单 | 使用 `order()` |
+| `tick_data()` | tick级别回调 | 使用 `handle_data()` |
+| `run_interval()` | 按秒级周期运行 | 使用 `run_daily()` |
+| `ipo_stocks_order()` | 新股申购 | 无替代 |
+| `after_trading_order()` | 盘后固定价委托 | 无替代 |
+| `etf_basket_order()` | ETF篮子下单 | 无替代 |
+| `etf_purchase_redemption()` | ETF申赎 | 无替代 |
+| `debt_to_stock_order()` | 债转股委托 | 无替代 |
+| `get_cb_list()` | 获取可转债列表 | 使用静态列表 |
+| `get_etf_list()` | 获取ETF列表 | 使用静态列表 |
+| `get_etf_info()` | 获取ETF信息 | 无替代 |
+| `get_etf_stock_info()` | 获取ETF成分券信息 | 无替代 |
+| `get_etf_stock_list()` | 获取ETF成分券列表 | 无替代 |
+| `get_deliver()` | 获取交割单 | 无替代 |
+| `get_fundjour()` | 获取资金流水 | 无替代 |
+| `get_trade_name()` | 获取交易名称 | 无替代 |
+| `cancel_order_ex()` | 批量撤单 | 使用 `cancel_order()` |
+| `get_all_orders()` | 获取全部订单 | 使用 `get_orders()` |
+| `permission_test()` | 权限校验 | 无替代 |
+| **融资融券相关** | | |
+| `margin_trade()` | 担保品买卖 | 无替代 |
+| `margincash_open()` | 融资买入 | 无替代 |
+| `margincash_close()` | 卖券还款 | 无替代 |
+| `margincash_direct_refund()` | 直接还款 | 无替代 |
+| `marginsec_open()` | 融券卖出 | 无替代 |
+| `marginsec_close()` | 买券还券 | 无替代 |
+| `marginsec_direct_refund()` | 直接还券 | 无替代 |
+| `get_margincash_stocks()` | 获取融资标的 | 无替代 |
+| `get_marginsec_stocks()` | 获取融券标的 | 无替代 |
+| `get_margin_contract()` | 合约查询 | 无替代 |
+| `get_margin_contractreal()` | 实时合约查询 | 无替代 |
+| `get_margin_assert()` | 信用资产查询 | 无替代 |
+| `get_assure_security_list()` | 担保券查询 | 无替代 |
+| `get_margincash_open_amount()` | 融资最大可买 | 无替代 |
+| `get_marginsec_open_amount()` | 融券最大可卖 | 无替代 |
+| `get_marginsec_close_amount()` | 融券最大可还 | 无替代 |
+| `get_margincash_close_amount()` | 融资最大可还 | 无替代 |
+
+#### 仅回测环境支持的函数
+
+以下函数**仅支持回测环境**：
+
+| 函数 | 说明 |
+|------|------|
+| `set_commission()` | 设置佣金费率 |
+| `set_fixed_slippage()` | 设置固定滑点 |
+| `set_slippage()` | 设置滑点比例 |
+| `set_volume_ratio()` | 设置成交比例 |
+| `set_limit_mode()` | 设置成交数量限制模式 |
+| `set_yesterday_position()` | 设置底仓 |
+| `convert_position_from_csv()` | 从CSV导入持仓 |
+| `get_trades_file()` | 获取回测成交记录 |
+
+#### 回测和实盘都支持的函数
+
+以下函数**在回测和实盘环境都可用**：
+
+| 函数 | 说明 |
+|------|------|
+| `set_universe()` | 设置股票池 |
+| `set_benchmark()` | 设置基准 |
+| `set_parameters()` | 设置策略参数 |
+| `run_daily()` | 按日周期运行 |
+| `get_trading_day()` | 获取交易日期 |
+| `get_all_trades_days()` | 获取全部交易日 |
+| `get_trade_days()` | 获取指定范围交易日 |
+| `get_history()` | 获取历史行情 |
+| `get_price()` | 获取历史数据 |
+| `get_Ashares()` | 获取A股列表 |
+| `get_index_stocks()` | 获取指数成分股 |
+| `get_industry_stocks()` | 获取行业成分股 |
+| `get_stock_name()` | 获取股票名称 |
+| `get_stock_info()` | 获取股票信息 |
+| `get_stock_status()` | 获取股票状态 |
+| `get_stock_exrights()` | 获取除权除息信息 |
+| `get_stock_blocks()` | 获取股票板块 |
+| `get_fundamentals()` | 获取财务数据 |
+| `get_market_list()` | 获取市场列表 |
+| `get_market_detail()` | 获取市场详情 |
+| `get_MACD()` | MACD指标 |
+| `get_KDJ()` | KDJ指标 |
+| `get_RSI()` | RSI指标 |
+| `get_CCI()` | CCI指标 |
+| `order()` | 按数量下单 |
+| `order_target()` | 目标数量下单 |
+| `order_value()` | 按价值下单 |
+| `order_target_value()` | 目标价值下单 |
+| `cancel_order()` | 撤单 |
+| `get_order()` | 获取订单 |
+| `get_orders()` | 获取全部订单 |
+| `get_open_orders()` | 获取未完成订单 |
+| `get_trades()` | 获取成交记录 |
+| `get_position()` | 获取持仓 |
+| `get_positions()` | 获取多股票持仓 |
+| `get_all_positions()` | 获取全部持仓 |
+| `is_trade()` | 判断运行模式 |
+| `get_user_name()` | 获取资金账号 |
+| `get_research_path()` | 获取研究路径 |
+| `create_dir()` | 创建目录 |
+| `log.info/warn/error()` | 日志输出 |
+
+### 持仓获取差异
+
+**重要**：`get_position()` 和 `get_all_positions()` 在回测和实盘环境返回的属性名称不同：
+
+| 属性 | 回测环境 | 实盘环境 |
+|------|---------|---------|
+| 持仓数量 | `total_amount` | `amount` |
+| 可用数量 | `closeable_amount` | `enable_amount` |
+| 持仓成本 | `avg_cost` | `cost_basis` |
+| 标的代码 | `security` | `sid` |
+| 最新价格 | `last_sale_price` | `last_sale_price` |
+
+**兼容处理示例**：
+
+```python
+def get_position_compat(context, stock):
+    """获取持仓（兼容回测和实盘）"""
+    if not is_trade():
+        # 回测环境
+        pos = context.portfolio.positions.get(stock, None)
+        if pos:
+            return {
+                'sid': stock,
+                'amount': pos.total_amount,
+                'enable_amount': pos.closeable_amount,
+                'cost_basis': pos.avg_cost,
+                'last_sale_price': pos.last_sale_price
+            }
+        return {'sid': stock, 'amount': 0, 'enable_amount': 0, 'cost_basis': 0, 'last_sale_price': 0}
+    else:
+        # 实盘环境
+        pos = get_position(stock)
+        return {
+            'sid': pos.sid,
+            'amount': pos.amount,
+            'enable_amount': pos.enable_amount,
+            'cost_basis': pos.cost_basis,
+            'last_sale_price': pos.last_sale_price
+        }
+```
+
+### 行情获取差异
+
+回测环境不支持 `get_snapshot()`，需要使用 `get_history()` 替代：
+
+```python
+def get_stock_data(stock):
+    """获取股票数据（兼容回测和实盘）"""
+    if not is_trade():
+        # 回测环境：使用get_history
+        df = get_history(1, '1d', ['close', 'high_limit', 'low_limit'], security_list=stock)
+        if df is None or df.empty:
+            return None
+        return {
+            'last_px': df['close'].iloc[-1],
+            'limit_up': df['high_limit'].iloc[-1] if 'high_limit' in df.columns else 0,
+            'limit_down': df['low_limit'].iloc[-1] if 'low_limit' in df.columns else 0,
+        }
+    else:
+        # 实盘环境：使用get_snapshot
+        snapshot = get_snapshot(stock)
+        if snapshot is None:
+            return None
+        return {
+            'last_px': snapshot.get('last_px', 0),
+            'limit_up': snapshot.get('limit_up', 0),
+            'limit_down': snapshot.get('limit_down', 0),
+        }
+```
 
 ---
 

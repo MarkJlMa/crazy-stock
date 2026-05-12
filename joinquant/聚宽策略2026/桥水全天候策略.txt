@@ -1,14 +1,14 @@
-# øÀ¬°◊‘æ€øÌŒƒ’¬£∫https://www.joinquant.com/post/37928
-# ±ÍÃ‚£∫…Òº∂≤ﬂ¬‘£∫«≈ÀÆ»´ÃÏ∫Ú≤ﬂ¬‘-7ƒÍ◊Ó¥Ûªÿ≥∑Ωˆ3.5%
-# ◊˜’ﬂ£∫easy184
+# ÂÖãÈöÜËá™ËÅöÂÆΩÊñáÁ´†Ôºöhttps://www.joinquant.com/post/37928
+# Ê†áÈ¢òÔºöÁ•ûÁ∫ßÁ≠ñÁï•ÔºöÊ°•Ê∞¥ÂÖ®Â§©ÂÄôÁ≠ñÁï•-7Âπ¥ÊúÄÂ§ßÂõûÊí§‰ªÖ3.5%
+# ‰ΩúËÄÖÔºöeasy184
 
-# øÀ¬°◊‘æ€øÌŒƒ’¬£∫https://www.joinquant.com/post/37611
-# ±ÍÃ‚£∫÷¬æ¥æ≠µ‰◊˜∆∑°™°™–°±¯∏Á°∂“ª÷¬–‘∑Áœ’∂»¡ø°∑°™°™º´ÀŸ∞Ê
-# ◊˜’ﬂ£∫jqz1226
+# ÂÖãÈöÜËá™ËÅöÂÆΩÊñáÁ´†Ôºöhttps://www.joinquant.com/post/37611
+# Ê†áÈ¢òÔºöËá¥Êï¨ÁªèÂÖ∏‰ΩúÂìÅ‚Äî‚ÄîÂ∞èÂÖµÂì•„Ää‰∏ÄËá¥ÊÄßÈ£éÈô©Â∫¶Èáè„Äã‚Äî‚ÄîÊûÅÈÄüÁâà
+# ‰ΩúËÄÖÔºöjqz1226
 
-# øÀ¬°◊‘æ€øÌŒƒ’¬£∫https://www.joinquant.com/post/2116
-# ±ÍÃ‚£∫“ª÷¬–‘∑Áœ’∂»¡ø£®«≈ÀÆ»´ÃÏ∫ÚŒ™¿˝£©
-# ◊˜’ﬂ£∫–°±¯∏Á
+# ÂÖãÈöÜËá™ËÅöÂÆΩÊñáÁ´†Ôºöhttps://www.joinquant.com/post/2116
+# Ê†áÈ¢òÔºö‰∏ÄËá¥ÊÄßÈ£éÈô©Â∫¶ÈáèÔºàÊ°•Ê∞¥ÂÖ®Â§©ÂÄô‰∏∫‰æãÔºâ
+# ‰ΩúËÄÖÔºöÂ∞èÂÖµÂì•
 
 import datetime as dt
 import math
@@ -19,29 +19,29 @@ from jqdata import *
 def initialize(context):
     set_benchmark('511010.XSHG')
     set_option('use_real_price', True)
-    # πÿ±’≤ø∑÷log
+    # ÂÖ≥Èó≠ÈÉ®ÂàÜlog
     log.set_level('order', 'error')
     set_slippage(FixedSlippage(0.002))
-    # Ωª“◊º«¬º£¨
+    # ‰∫§ÊòìËÆ∞ÂΩïÔºå
     g.transactionRecord, g.trade_ratio, g.positions = {}, {}, {}
     g.hold_periods, g.hold_cycle = 0, 30
 
     g.QuantLib = QuantLib()
 
-    # ø™≈Ã«∞‘À––
+    # ÂºÄÁõòÂâçËøêË°å
     run_daily(before_market_open, time='before_open', reference_security='000300.XSHG')
-    # ø™≈Ã ±‘À––
+    # ÂºÄÁõòÊó∂ËøêË°å
     run_daily(market_open, time='open', reference_security='000300.XSHG')
-    #  ’≈Ã∫Û‘À––
+    # Êî∂ÁõòÂêéËøêË°å
     run_daily(after_market_close, time='after_close', reference_security='000300.XSHG')
 
 
 # initialize parameters
 def fun_initialize(context):
     """
-    “ÚŒ™ƒ£ƒ‚Ωª“◊ ±£¨ª·±£¡Ù≤Œ ˝¿˙ ∑∏≥÷µ£¨÷ÿ–¬∏≥÷µ–Ë∏ƒ√˚°£
-    Œ™¡À±‹√‚≤Œ ˝±‰∏¸∫Û‘⁄ƒ£ƒ‚Ωª“◊¿Ô≤ª…˙–ß£¨µ•∂¿∏≥÷µ“ª¥Œ£¨
-    –Ë±£¡Ù◊¥Ã¨µƒ≤Œ ˝£¨≤ªƒ‹∑≈¥À∫Ø ˝ƒ⁄
+    Âõ†‰∏∫Ê®°Êãü‰∫§ÊòìÊó∂Ôºå‰ºö‰øùÁïôÂèÇÊï∞ÂéÜÂè≤ËµãÂÄºÔºåÈáçÊñ∞ËµãÂÄºÈúÄÊîπÂêç„ÄÇ
+    ‰∏∫‰∫ÜÈÅøÂÖçÂèÇÊï∞ÂèòÊõ¥ÂêéÂú®Ê®°Êãü‰∫§ÊòìÈáå‰∏çÁîüÊïàÔºåÂçïÁã¨ËµãÂÄº‰∏ÄÊ¨°Ôºå
+    ÈúÄ‰øùÁïôÁä∂ÊÄÅÁöÑÂèÇÊï∞Ôºå‰∏çËÉΩÊîæÊ≠§ÂáΩÊï∞ÂÜÖ
     """
 
     # g.equity = ['510300.XSHG','510500.XSHG','159915.XSHE','510050.XSHG']
@@ -55,7 +55,7 @@ def fun_initialize(context):
 
     g.confidence_level = 2.58
 
-    # …œ –≤ª◊„ 60 ÃÏµƒÃﬁ≥˝µÙ
+    # ‰∏äÂ∏Ç‰∏çË∂≥ 60 Â§©ÁöÑÂâîÈô§Êéâ
     # g.equity = g.QuantLib.fun_delNewShare(context, g.equity, 60)
     # g.commodities = g.QuantLib.fun_delNewShare(context, g.commodities, 60)
     # g.bonds = g.QuantLib.fun_delNewShare(context, g.bonds, 60)
@@ -63,19 +63,19 @@ def fun_initialize(context):
 
     g.pools = g.equity + g.commodities + g.bonds + g.money_fund
 
-    # Õ≥º∆Ωª“◊◊ ¡œ
+    # ÁªüËÆ°‰∫§ÊòìËµÑÊñô
     for stock in g.pools:
         if stock not in g.transactionRecord:
             g.QuantLib.fun_createTransactionRecord(context, stock)
 
 
 def before_market_open(context):
-    # ≥ı ºªØ≤Œ ˝
+    # ÂàùÂßãÂåñÂèÇÊï∞
     fun_initialize(context)
 
-    # ¥À∂Œ¥˙¬ÎΩˆ”√”⁄∑¢Œ¢–≈£¨ø…“‘Ã¯π˝
+    # Ê≠§ÊÆµ‰ª£Á†Å‰ªÖÁî®‰∫éÂèëÂæÆ‰ø°ÔºåÂèØ‰ª•Ë∑≥Ëøá
     g.message = ""
-    g.message += "Returns£®≈Ã«∞£©£∫" + str(round(context.portfolio.returns, 5) * 100) + "%\n"
+    g.message += "ReturnsÔºàÁõòÂâçÔºâÔºö" + str(round(context.portfolio.returns, 5) * 100) + "%\n"
     g.hold = {}
     for stock in g.pools:
         if stock in context.portfolio.positions:
@@ -85,7 +85,7 @@ def before_market_open(context):
 
 
 def after_market_close(context):
-    # ¥À∂Œ¥˙¬ÎΩˆ”√”⁄∑¢Œ¢–≈£¨ø…“‘Ã¯π˝
+    # Ê≠§ÊÆµ‰ª£Á†Å‰ªÖÁî®‰∫éÂèëÂæÆ‰ø°ÔºåÂèØ‰ª•Ë∑≥Ëøá
     message = ""
     for stock in g.pools:
         beforeAmount = g.hold[stock]
@@ -101,7 +101,7 @@ def after_market_close(context):
         else:
             message += stock + " : " + str(afterAmount) + "(" + str(afterAmount - beforeAmount) + ")\n"
 
-    message += "Returns£®≈Ã∫Û£©£∫" + str(round(context.portfolio.returns, 5) * 100) + "%"
+    message += "ReturnsÔºàÁõòÂêéÔºâÔºö" + str(round(context.portfolio.returns, 5) * 100) + "%"
     g.message += message
 
     g.message += g.QuantLib.fun_print_transactionRecord(context)
@@ -122,8 +122,8 @@ def market_open(context):
     #
     fun_trade(context, g.trade_ratio)
 
-    if g.tradeRecord != "":  # »Áπ˚¥Ú”°º«¬º≤ªŒ™ø’£¨‘Ú∑¢Œ¢–≈
-        message = "\n ΩÒ»’µ˜≤÷ \n"
+    if g.tradeRecord != "":  # Â¶ÇÊûúÊâìÂç∞ËÆ∞ÂΩï‰∏ç‰∏∫Á©∫ÔºåÂàôÂèëÂæÆ‰ø°
+        message = "\n ‰ªäÊó•Ë∞É‰ªì \n"
         message += g.tradeRecord
         # send_message(message)
         log.info(message)
@@ -254,7 +254,7 @@ def fun_calc_trade_ratio(context):
     __ratio = __fun_calc_trade_ratio(__ratio, g.bonds, bonds_ratio, bonds_position, total_position)
     __ratio = __fun_calc_trade_ratio(__ratio, g.money_fund, money_fund_ratio, money_fund_position, total_position)
 
-    log.info('≤÷Œª:%s' % __ratio)
+    log.info('‰ªì‰Ωç:%s' % __ratio)
     return __ratio
 
 
@@ -277,7 +277,7 @@ def fun_trade(context, buyDict):
             if deltaValue / Quota >= 0.25 and deltaValue > 1000:
                 if Quota > curValue:
                     avg_cost = g.transactionRecord[_stock]['avg_cost']
-                    if curPrice > avg_cost:  # »Áπ˚ø˜À£¨≤ªº”≤÷
+                    if curPrice > avg_cost:  # Â¶ÇÊûú‰∫èÊçüÔºå‰∏çÂä†‰ªì
                         cash = _context.portfolio.available_cash
                         if cash >= Quota * 0.25:
                             g.QuantLib.fun_trade(_context, _stock, Quota)
@@ -289,7 +289,7 @@ def fun_trade(context, buyDict):
     my_hold_stock = list(context.portfolio.positions.keys())
     portfolioValue = context.portfolio.total_value
 
-    # “—”–≤÷Œª
+    # Â∑≤Êúâ‰ªì‰Ωç
     holdDict = dict()
     if my_hold_stock:
         h_hold_stocks = history(1, '1d', 'close', my_hold_stock, df=False)
@@ -297,21 +297,21 @@ def fun_trade(context, buyDict):
             tmpW = round((context.portfolio.positions[stock].total_amount * h_hold_stocks[stock][0]) / portfolioValue, 2)
             holdDict[stock] = float(tmpW)
 
-    # ∂‘“—”–≤÷Œª◊ˆ≈≈–Ú
+    # ÂØπÂ∑≤Êúâ‰ªì‰ΩçÂÅöÊéíÂ∫è
     tmpDict = {}
     for stock in holdDict:
         if stock in buyDict:
             tmpDict[stock] = round((buyDict[stock] - holdDict[stock]), 2)
     tradeOrder = sorted(tmpDict.items(), key=lambda d: d[1], reverse=False)
 
-    # œ»¬ÙµÙ≥÷≤÷ºı…Ÿµƒ±Íµƒ
+    # ÂÖàÂçñÊéâÊåÅ‰ªìÂáèÂ∞ëÁöÑÊ†áÁöÑ
     _tmplist = []
     for idx in tradeOrder:
         stock = idx[0]
         __fun_tradeStock(context, stock, buyDict[stock])
         _tmplist.append(stock)
 
-    # Ωª“◊∆‰À˚π…∆±
+    # ‰∫§ÊòìÂÖ∂‰ªñËÇ°Á•®
     for i in range(len(buy_list)):
         stock = buy_list[i]
         if len(_tmplist) != 0:
@@ -324,7 +324,7 @@ def fun_trade(context, buyDict):
 def need_rebalance(context):
     # type: (Context) -> bool
     """
-    ≥÷≤÷÷–£¨”–◊ ≤˙º€∏Ò±‰ªØ∑˘∂»≥¨π˝15%£¨æÕ–Ë“™÷ÿ–¬balance
+    ÊåÅ‰ªì‰∏≠ÔºåÊúâËµÑ‰∫ß‰ª∑Ê†ºÂèòÂåñÂπÖÂ∫¶Ë∂ÖËøá15%ÔºåÂ∞±ÈúÄË¶ÅÈáçÊñ∞balance
     """
     for stock in context.portfolio.positions:
         curPrice = context.portfolio.positions[stock].price
@@ -338,7 +338,7 @@ class QuantLib(object):
 
     def __init__(self, _period='1d'):
         """
-        ÷‹∆⁄ period  £®÷ß≥÷°ØXd°Ø,°ØXm°Ø, X «“ª∏ˆ’˝’˚ ˝£©
+        Âë®Êúü period  ÔºàÊîØÊåÅ‚ÄôXd‚Äô,‚ÄôXm‚Äô, XÊòØ‰∏Ä‰∏™Ê≠£Êï¥Êï∞Ôºâ
         """
 
         # self.period = _period
@@ -362,12 +362,12 @@ class QuantLib(object):
                 if cash > (curPrice * 100):
                     self.fun_trade(context, stock, Value)
             else:
-                # »Áπ˚ «“¯ª™»’¿˚£¨∂‡¬Ù 100 π…£¨±‹√‚∏ˆπ…¬Ú…Ÿ¡À
+                # Â¶ÇÊûúÊòØÈì∂ÂçéÊó•Âà©ÔºåÂ§öÂçñ 100 ËÇ°ÔºåÈÅøÂÖç‰∏™ËÇ°‰π∞Â∞ë‰∫Ü
                 if stock == '511880.XSHG':
                     Value -= curPrice * 100
                 self.fun_trade(context, stock, Value)
 
-    # Ãﬁ≥˝…œ – ±º‰Ωœ∂Ãµƒ≤˙∆∑
+    # ÂâîÈô§‰∏äÂ∏ÇÊó∂Èó¥ËæÉÁü≠ÁöÑ‰∫ßÂìÅ
     def fun_delNewShare(self, context, equity, delta_day):
         # type: (Context, list, int) -> list
         deltaDate = context.current_dt.date() - dt.timedelta(delta_day)
@@ -381,7 +381,7 @@ class QuantLib(object):
 
     def fun_trade(self, context, stock, value):
         # type: (Context, str, float) -> NoReturn
-        g.tradeRecord += stock + " µ˜≤÷µΩ " + str(round(value, 2)) + "\n"
+        g.tradeRecord += stock + " Ë∞É‰ªìÂà∞ " + str(round(value, 2)) + "\n"
         # self.fun_setCommission(context, stock)
         order_target_value(stock, value)
         self.fun_record(context, stock)
@@ -404,12 +404,12 @@ class QuantLib(object):
         myAmount = tmpDict[stock]['amount']
         myAvg_cost = tmpDict[stock]['avg_cost']
         if myAmount != newAmount:
-            # ¬Ú»Î
+            # ‰π∞ÂÖ•
             if myAmount <= newAmount:
                 myAvg_cost = ((myAvg_cost * myAmount) + myPrice * (newAmount - myAmount)) / newAmount
                 # g.positions[stock] = context.portfolio.positions[stock].price
                 tmpDict[stock]['buy_times'] += 1
-            # ¬Ùπ‚
+            # ÂçñÂÖâ
             elif newAmount == 0:
                 if myPrice >= myAvg_cost:
                     tmpDict[stock]['win'] += 1
@@ -423,14 +423,14 @@ class QuantLib(object):
 
                 tmpDict[stock]['Margin'] += float(round(myMargin, 2))
                 tmpDict[stock]['sell_times'] += 1
-            # √ª¬Ùπ‚
+            # Ê≤°ÂçñÂÖâ
             elif myAmount > newAmount:
                 myAvg_cost = ((myAvg_cost * myAmount) - (myPrice * (myAmount - newAmount))) / newAmount
                 # g.positions[stock] = context.portfolio.positions[stock].price
                 tmpDict[stock]['sell_times'] += 1
 
-        g.tradeRecord += stock + " ≥÷π…¥” " + str(myAmount) + " ±‰Œ™ " + str(newAmount) + \
-                         " ’º±» " + str(
+        g.tradeRecord += stock + " ÊåÅËÇ°‰ªé " + str(myAmount) + " Âèò‰∏∫ " + str(newAmount) + \
+                         " Âç†ÊØî " + str(
             100 * round((myPrice * newAmount) / context.portfolio.total_value, 2)) + "%\n"
 
         # renew after trade
