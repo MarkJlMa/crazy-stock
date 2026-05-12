@@ -209,11 +209,63 @@ def initialize(context):
     run_daily(context, trade_afternoon, time='14:00')
     run_daily(context, sell_stocks, time='10:00')
     run_daily(context, close_account, time='14:50')
+        # 打印持仓信息
+    run_daily(context, print_position_info, "14:55")
     run_daily(context, weekly_adjustment, time='10:00')  # PTrade不支持run_weekly，改为每日运行并在函数内判断
 
     log.info(f"运行模式: {'实盘' if is_trade() else '回测'}")
 
 
+def print_position_info(context):
+    """打印持仓信息（按流通市值从小到大排列）"""
+    log.info("=" * 50)
+    log.info("持仓信息（按流通市值从小到大排列）")
+    log.info("=" * 50)
+
+    # 收集持仓信息
+    positions_data = []
+    for stock, pos in context.portfolio.positions.items():
+        pos_value = pos.amount * pos.last_sale_price
+        if pos_value <= 0:
+            continue
+
+        try:
+            stock_name = get_stock_name(stock)
+            if isinstance(stock_name, dict):
+                stock_name = stock_name.get(stock, "未知")
+        except:
+            stock_name = "未知"
+
+        cost = pos.cost_basis
+        price = pos.last_sale_price
+        ret = 100 * (price / cost - 1) if cost > 0 else 0
+
+        # 获取流通市值
+        try:
+            fund_df = get_fundamentals([stock], "valuation", fields=["float_value"], date=context.previous_date)
+            float_value = fund_df.loc[stock, "float_value"] if not fund_df.empty else 0
+        except:
+            float_value = 0
+
+        positions_data.append({
+            'stock': stock,
+            'name': stock_name,
+            'cost': cost,
+            'price': price,
+            'ret': ret,
+            'amount': pos.amount,
+            'pos_value': pos_value,
+            'float_value': float_value
+        })
+
+    # 按流通市值从小到大排序
+    positions_data.sort(key=lambda x: x['float_value'])
+
+    # 打印排序后的持仓信息
+    for i, data in enumerate(positions_data, 1):
+        log.info(f"[{i}] {data['stock']} {data['name']}: 现价 {data['price']:.2f}, 收益率 {data['ret']:.2f}%, 流通市值 {data['float_value']/1e8:.2f}亿")
+
+        
 # PTrade必选函数 - 按周期执行
 def handle_data(context, data):
     """
