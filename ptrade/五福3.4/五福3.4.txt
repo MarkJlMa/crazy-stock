@@ -4,9 +4,6 @@
 # 策略说明：ETF轮动策略（PTrade国金版）
 # 原始策略来自聚宽，已转换为PTrade平台
 
-"""
-#以上注释部分是PTrade版代码
-
 import numpy as np
 import math
 import pandas as pd
@@ -199,7 +196,7 @@ def initialize(context):
     g.fixed_etf_pool = [
         # 大宗商品ETF
         '518880.SS',  # 黄金ETF
-        #'161226.SZ',  # 国投白银LOF
+        '161226.SZ',  # 国投白银LOF
         '159980.SZ',  # 有色ETF大成
         '501018.SS',  # 南方原油ETF
         '159985.SZ',  # 豆粕ETF
@@ -409,7 +406,7 @@ def initialize(context):
     
     # ==================== 定时任务 ====================
     run_daily(context, morning_routine, time='09:00')
-    run_daily(context, afternoon_routine, time='13:30')
+    run_daily(context, afternoon_routine, time='13:10')
     run_daily(context, reset_daily_flags, time='15:10')
     
     # 分钟级止损任务
@@ -525,31 +522,46 @@ def morning_routine(context):
         init_range_bound_status(context)
         g.range_bound_initialized = True
     
+    log.info("【持仓检查】检查当前持仓状态...")
     check_positions(context)
+    log.info("【回撤监控】监控策略回撤...")
     monitor_drawdown(context)
+    log.info("【流动性阈值】计算全市场ETF流动性阈值...")
     calculate_global_etf_threshold(context)
+    log.info("【动态池更新】更新行业ETF动态池...")
     update_sector_pool(context)
+    log.info("【固定池过滤】过滤固定ETF池流动性...")
     filter_fixed_pool_by_volume(context)
+    log.info("【合并池】合并固定池与动态池...")
     daily_merge_etf_pools(context)
-
+    log.info("【晨间流水线】执行完毕！")
 
 def afternoon_routine(context):
     # 午后交易流水线（13:10执行）：震荡期退出检查 → 震荡期进入检查 → 动量计算 → 卖出执行 → 买入执行
+    log.info("▶️ 【午后交易流水线】启动...")
+    log.info("【震荡期退出检查】检查是否需要退出震荡期...")
     check_and_exit_range_bound_mode(context)
+    log.info("【震荡期进入检查】检查是否需要进入震荡期...")
     check_and_enter_range_bound_mode(context)
+    log.info("【动量计算】计算ETF动量得分与排序...")
     calculate_and_log_ranked_etfs(context)
+    log.info("【卖出执行】执行卖出操作...")
     execute_sell_trades(context)
+    log.info("【买入执行】执行买入操作...")
     execute_buy_trades(context)
+    log.info("⏸️ 【午后交易流水线】执行完毕！")
 
 def reset_daily_flags(context):
     # 收盘后重置当日标志（15:10执行）：重置止损标志 → 更新震荡期统计
     g.stop_loss_triggered_today = False
     g.sold_today.clear()
+    log.info("🔄 【收盘重置】今日止损标志已重置")
     # 更新震荡期交易日计数
     if g.current_filter == 'range_bound' and g.range_bound_start_date is not None:
         trade_days = get_trade_days(start_date=str(g.range_bound_start_date).replace('-', ''), 
                                     end_date=context.blotter.current_dt.strftime('%Y%m%d'))
         g.range_bound_days_count = len(trade_days) - 1
+        log.info("【震荡期统计】已持续 %s 个交易日" % g.range_bound_days_count)
 
 # ==================== 持仓检查 ====================
 def check_positions(context):
@@ -1297,22 +1309,18 @@ def get_volume_ratio(hist_volumes, today_vol, lookback_days=None):
 #  溢价率计算（回测不支持，但是基本不影响。
 # 请注意！这里回测是不支持的，要实盘才可以用！
 def calculate_premium_rate(etf, context):
-    # 回测模式直接返回，不支持溢价率计算
-    if not is_trade():
-        return None, True
-
     # PTrade版本：使用get_etf_info计算溢价率
     try:
         # 获取ETF信息（仅股票交易模块可用）
         etf_info = get_etf_info(etf) #et_etf_info：回测不支持，仅实盘可用
         if not etf_info or etf not in etf_info:
             return None, True
-
+        
         # 提取T-1日基金单位净值
         nav = etf_info[etf].get('nav_pre')
         if nav is None or nav <= 0:
             return None, True
-
+        
         # 获取当前价格（从get_current_data或实时行情）
         current_data = get_current_data()
         if current_data and etf in current_data:
@@ -1323,10 +1331,10 @@ def calculate_premium_rate(etf, context):
             if price_df is None or price_df.empty:
                 return None, True
             etf_price = price_df['close'].iloc[-1]
-
+        
         if etf_price <= 0:
             return None, True
-
+        
         premium_rate = (etf_price - float(nav)) / float(nav) * 100
         passed_premium = premium_rate <= g.max_premium_rate
         return premium_rate, passed_premium
@@ -1422,8 +1430,8 @@ def get_final_ranked_etfs(context):
         return []
 
     # ========== 2. 获取今日分钟数据（到13:10为止） ==========
-    # 聚宽原版在13:10运行，已交易130分钟（9:30-11:30共120分钟，13:00-13:10共10分钟），因此获取前150分钟的分钟数据以确保覆盖到13:10
-    mins_elapsed = 150
+    # 聚宽原版在13:10运行，已交易130分钟（9:30-11:30共120分钟，13:00-13:10共10分钟）
+    mins_elapsed = 130
     minute_price_df = get_history(mins_elapsed, '1m', ['close'], etf_set, fq='pre', include=True)
     minute_price_df = _normalize_price_df(minute_price_df)
     minute_vol_df = get_history(mins_elapsed, '1m', ['volume'], etf_set, fq='pre', include=True)
@@ -2194,4 +2202,8 @@ def check_defensive_etf_available(context):
 def handle_data(context, data):
     # 主函数（必须保留）
     pass
+
+
+"""
+#以上注释部分是PTrade版代码
 

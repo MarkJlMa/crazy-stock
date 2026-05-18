@@ -45,7 +45,12 @@
       "Bash(iconv -f GBK -t UTF-8 \"d:/Code/crazy_stock/joinquant/三架马车1-\\(小市值-白马-ETF组合\\)-最优投资组合.txt\")",
       "Bash(powershell -Command \"[System.IO.File]::ReadAllText\\('d:/Code/crazy_stock/joinquant/三架马车1-\\(小市值-白马-ETF组合\\)-最优投资组合.txt', [System.Text.Encoding]::GetEncoding\\('GB2312'\\)\\)\")",
       "Bash(powershell -Command \"[System.IO.File]::ReadAllText\\('d:/Code/crazy_stock/joinquant/三架马车1-\\(小市值-白马-ETF组合\\)-最优投资组合.txt', [System.Text.Encoding]::Default\\)\")",
-      "Edit(/.claude/skills/jq2ptrade/**)"
+      "Edit(/.claude/skills/jq2ptrade/**)",
+      "Bash(mkdir -p \"d:/Code/crazy_stock/.claude/skills/ptrade-review\")",
+      "Edit(/.claude/skills/ptrade-review/**)"
+    ],
+    "additionalDirectories": [
+      "d:\\Code\\crazy_stock\\.claude\\skills"
     ]
   }
 }

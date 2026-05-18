@@ -14,10 +14,10 @@ metadata:
 
 本Skill用于将聚宽(JQData)平台的量化策略代码转换为PTrade平台兼容代码。
 
-**参考文档**（位于 `reference/` 目录）：
-- 聚宽API文档：`reference/JoinQuant_API_Documentation.md`
-- PTrade API文档：`reference/Ptrade_API_Documentation.md`
-- API对比文档：`reference/JoinQuant_vs_PTrade_API_Comparison.md`
+**参考文档**（位于项目 `.claude/reference/` 目录）：
+- 聚宽API文档：`.claude/reference/JoinQuant_API_Documentation.md`
+- PTrade API文档：`.claude/reference/Ptrade_API_Documentation.md`
+- API对比文档：`.claude/reference/JoinQuant_vs_PTrade_API_Comparison.md`
 
 ---
 
@@ -214,7 +214,7 @@ def some_function():
 
 ##### 仅实盘环境支持的函数
 
-以下函数**仅支持实盘交易环境**，在回测环境中调用会报错：
+以下函数**仅支持实盘交易环境**，在回测环境中调用会报错或输出警告：
 
 | 函数 | 说明 | 回测替代方案 |
 |------|------|-------------|
@@ -236,6 +236,7 @@ def some_function():
 | `get_fundjour()` | 获取资金流水 | 无替代 |
 | `cancel_order_ex()` | 批量撤单 | 使用 `cancel_order()` |
 | `get_all_orders()` | 获取全部订单 | 使用 `get_orders()` |
+| `get_all_positions()` | 获取全部持仓 | 使用 `context.portfolio.positions` 或 `get_positions()` |
 
 ##### 仅回测环境支持的函数
 
@@ -280,14 +281,29 @@ def some_function():
 | `get_orders()` | 获取全部订单 |
 | `get_open_orders()` | 获取未完成订单 |
 | `get_trades()` | 获取成交记录 |
-| `get_position()` | 获取持仓 |
-| `get_all_positions()` | 获取全部持仓 |
+| `get_position()` | 获取单只股票持仓 |
+| `get_positions()` | 获取多只股票持仓 |
 | `is_trade()` | 判断运行模式 |
 | `log.info/warn/error()` | 日志输出 |
 
+**注意**：`get_all_positions()` 在回测环境会输出WARNING警告，官方明确说明不可用，应使用 `get_positions()` 或 `context.portfolio.positions` 替代。
+
 #### 持仓获取差异
 
-**重要**：`get_position()` 和 `get_all_positions()` 在回测和实盘环境返回的属性名称不同：
+**重要**：持仓获取函数在回测和实盘环境存在以下差异：
+
+##### 函数支持情况
+
+| 函数 | 回测支持 | 实盘支持 | 说明 |
+|------|---------|---------|------|
+| `get_position('code')` | ✅ 支持 | ✅ 支持 | 获取单只股票持仓 |
+| `get_position()` 不传参 | ✅ 支持 | ✅ 支持 | 返回SymbolDict（空字典） |
+| `get_positions()` | ✅ 支持 | ✅ 支持 | 获取多只股票持仓 |
+| `get_all_positions()` | ❌ 不支持 | ✅ 支持 | 回测输出WARNING，不可用 |
+
+##### 属性名称差异
+
+`get_position()` 返回的持仓对象在回测和实盘环境属性名称不同：
 
 | 属性 | 回测环境 | 实盘环境 |
 |------|---------|---------|
@@ -296,6 +312,24 @@ def some_function():
 | 持仓成本 | `avg_cost` | `cost_basis` |
 | 标的代码 | `security` | `sid` |
 | 最新价格 | `last_sale_price` | `last_sale_price` |
+
+##### 回测环境持仓获取方式
+
+在回测环境中，推荐使用以下方式获取持仓：
+
+```python
+# 方式1：使用get_position()获取单只股票
+position = get_position('000001.SZ')
+if position.amount > 0:  # 注意：回测环境用amount，不是total_amount
+    log.info(f"持仓数量: {position.amount}")
+
+# 方式2：使用get_positions()获取多只股票
+positions = get_positions()  # 返回SymbolDict
+
+# 方式3：通过context.portfolio.positions遍历
+for stock, pos in context.portfolio.positions.items():
+    log.info(f"{stock}: {pos.total_amount}")
+```
 
 #### 必须实现的兼容函数
 
@@ -383,16 +417,31 @@ def get_all_positions_compat(context=None):
     """
     获取所有持仓（兼容回测和实盘环境）
 
+    注意：回测环境不支持get_all_positions()，使用get_positions()替代
+
     返回:
         持仓列表，每个元素包含 sid, amount, enable_amount, cost_basis, last_sale_price 等属性
     """
     # is_trade() 返回 True 表示实盘，False 表示回测
     if not is_trade():
-        # 回测环境：通过context.portfolio.positions获取
+        # 回测环境：使用get_positions()或context.portfolio.positions
         positions = []
-        if context and hasattr(context, 'portfolio') and hasattr(context.portfolio, 'positions'):
+        # 方式1：使用get_positions()
+        pos_dict = get_positions()
+        if pos_dict:
+            for stock, pos in pos_dict.items():
+                class PositionCompat:
+                    pass
+                p = PositionCompat()
+                p.sid = stock
+                p.amount = pos.total_amount if hasattr(pos, 'total_amount') else pos.amount
+                p.enable_amount = pos.closeable_amount if hasattr(pos, 'closeable_amount') else pos.enable_amount
+                p.cost_basis = pos.avg_cost if hasattr(pos, 'avg_cost') else pos.cost_basis
+                p.last_sale_price = pos.last_sale_price if hasattr(pos, 'last_sale_price') else pos.price
+                positions.append(p)
+        # 方式2：通过context.portfolio.positions获取（备用）
+        elif context and hasattr(context, 'portfolio') and hasattr(context.portfolio, 'positions'):
             for stock, pos in context.portfolio.positions.items():
-                # 创建兼容的持仓对象
                 class PositionCompat:
                     pass
                 p = PositionCompat()
@@ -421,20 +470,19 @@ def get_position_compat(context, stock):
     """
     # is_trade() 返回 True 表示实盘，False 表示回测
     if not is_trade():
-        # 回测环境：通过context.portfolio.positions获取
-        if context and hasattr(context, 'portfolio') and hasattr(context.portfolio, 'positions'):
-            pos = context.portfolio.positions.get(stock, None)
-            if pos:
-                # 创建兼容的持仓对象
-                class PositionCompat:
-                    pass
-                p = PositionCompat()
-                p.sid = stock
-                p.amount = pos.total_amount if hasattr(pos, 'total_amount') else pos.amount
-                p.enable_amount = pos.closeable_amount if hasattr(pos, 'closeable_amount') else pos.enable_amount
-                p.cost_basis = pos.avg_cost if hasattr(pos, 'avg_cost') else pos.cost_basis
-                p.last_sale_price = pos.last_sale_price if hasattr(pos, 'last_sale_price') else pos.price
-                return p
+        # 回测环境：直接使用get_position()
+        pos = get_position(stock)
+        if pos and hasattr(pos, 'amount') and pos.amount > 0:
+            # 创建兼容的持仓对象
+            class PositionCompat:
+                pass
+            p = PositionCompat()
+            p.sid = stock
+            p.amount = pos.total_amount if hasattr(pos, 'total_amount') else pos.amount
+            p.enable_amount = pos.closeable_amount if hasattr(pos, 'closeable_amount') else pos.enable_amount
+            p.cost_basis = pos.avg_cost if hasattr(pos, 'avg_cost') else pos.cost_basis
+            p.last_sale_price = pos.last_sale_price if hasattr(pos, 'last_sale_price') else pos.price
+            return p
         # 返回空持仓对象
         class PositionCompat:
             pass
@@ -807,14 +855,41 @@ PTrade的 `run_daily` 需要传入context参数，聚宽不需要。需要在调
 - **实盘环境**：使用 `get_snapshot(stock)` 获取 `limit_up` 和 `limit_down` 字段
 - **推荐**：使用统一的 `get_stock_data()` 函数自动适配
 
-### Q8: 回测环境不支持get_all_positions/get_position怎么办？
+### Q8: 回测环境如何获取持仓？
 
-使用兼容函数 `get_all_positions_compat(context)` 和 `get_position_compat(context, stock)`：
-- **回测环境**：通过 `context.portfolio.positions` 获取持仓信息
-- **实盘环境**：使用 `get_all_positions()` 和 `get_position()`
+**回测环境持仓函数支持情况**：
+
+| 函数 | 回测支持 | 说明 |
+|------|---------|------|
+| `get_position('code')` | ✅ 支持 | 获取单只股票持仓，返回Position对象 |
+| `get_position()` 不传参 | ✅ 支持 | 返回SymbolDict（空字典） |
+| `get_positions()` | ✅ 支持 | 返回SymbolDict |
+| `get_all_positions()` | ❌ 不支持 | 输出WARNING警告，不可用 |
+
+**推荐使用方式**：
+
+```python
+# 回测环境获取持仓
+if not is_trade():
+    # 方式1：获取单只股票持仓
+    position = get_position('000001.SZ')
+    if position.amount > 0:
+        log.info(f"持仓数量: {position.amount}")
+
+    # 方式2：获取所有持仓
+    positions = get_positions()
+    for stock, pos in positions.items():
+        log.info(f"{stock}: {pos.total_amount}")
+
+    # 方式3：通过context.portfolio.positions
+    for stock, pos in context.portfolio.positions.items():
+        log.info(f"{stock}: {pos.total_amount}")
+```
+
+**兼容函数**：使用 `get_all_positions_compat(context)` 和 `get_position_compat(context, stock)` 自动适配回测和实盘环境。
 
 ---
 
-> 文档版本：1.5
-> 更新日期：2026-05-12
-> 更新内容：完善回测与实盘环境适配章节，参考PTrade API文档，增加函数可用性对比表、持仓获取差异说明、环境适配检查清单
+> 文档版本：1.6
+> 更新日期：2026-05-13
+> 更新内容：修正持仓函数在回测环境的支持情况：get_position()和get_positions()支持回测，get_all_positions()不支持回测（输出WARNING）
